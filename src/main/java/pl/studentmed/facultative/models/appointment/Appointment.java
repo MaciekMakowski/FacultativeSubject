@@ -40,12 +40,11 @@ public class Appointment extends BasicEntity {
 
     private String recommendations;
 
-    public Appointment(Patient patient, Doctor doctor, AppointmentDate date, String patientSymptoms, String recommendations) {
+    public Appointment(Patient patient, Doctor doctor, AppointmentDate date, String patientSymptoms) {
         this.patient = patient;
         this.doctor = doctor;
         this.date = date;
         this.patientSymptoms = patientSymptoms;
-        this.recommendations = recommendations;
         this.status = AppointmentStatus.NEW;
         var now = LocalDateTime.now();
         this.createdAt = now.format(DAY_MONTH_YEAR_TIME);
