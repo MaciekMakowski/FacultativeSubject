@@ -44,4 +44,10 @@ public class ExceptionsHandler {
         return new ErrorMessage("role", exception.getMessage());
     }
 
+    @ExceptionHandler(value = EntityNotFoundException.class)
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+    public ErrorMessage entityNotFoundException(EntityNotFoundException exception) {
+        return new ErrorMessage(exception.entityName, exception.getMessage());
+    }
+
 }
