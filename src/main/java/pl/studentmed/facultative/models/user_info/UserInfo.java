@@ -1,14 +1,13 @@
 package pl.studentmed.facultative.models.user_info;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.studentmed.facultative.models.BasicEntity;
 import pl.studentmed.facultative.models.addresses.Address;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -21,11 +20,12 @@ public class UserInfo extends BasicEntity {
     private String lastName;
     private String email;
     private String password;
-    private String birthDate;
+    private LocalDateTime birthdate;
+    @Enumerated(EnumType.STRING)
     private Role role;
     private String phoneNumber;
-    private String createdAt;
-    private String modifiedAt;
+    private LocalDateTime createdAt;
+    private LocalDateTime modifiedAt;
 
     @OneToOne
     @JoinColumn(name = "address_id", referencedColumnName = "id")
