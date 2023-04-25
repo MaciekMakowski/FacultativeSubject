@@ -32,4 +32,10 @@ public class ExceptionsHandler {
         return new ErrorMessage(exception.fieldName, exception.getMessage());
     }
 
+    @ExceptionHandler(value = InvalidAppointmentStatusException.class)
+    @ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
+    public ErrorMessage invalidAppointmentStatusException(InvalidAppointmentStatusException exception) {
+        return new ErrorMessage("appointmentStatus", exception.getMessage());
+    }
+
 }
