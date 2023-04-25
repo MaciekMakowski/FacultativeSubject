@@ -5,7 +5,7 @@ public class InvalidLengthException extends RuntimeException {
     public final String fieldName;
 
     public InvalidLengthException(String fieldName, String message) {
-        super(fieldName + ' ' + message);
+        super(message);
         this.fieldName = fieldName;
     }
 }

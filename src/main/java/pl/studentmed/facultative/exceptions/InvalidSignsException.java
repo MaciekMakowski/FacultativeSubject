@@ -1,12 +1,11 @@
 package pl.studentmed.facultative.exceptions;
 
-public class EmptyFieldException extends RuntimeException {
+public class InvalidSignsException extends RuntimeException{
 
     public final String fieldName;
 
-    public EmptyFieldException(String fieldName, String message) {
+    public InvalidSignsException(String fieldName, String message) {
         super(message);
         this.fieldName = fieldName;
     }
-
 }

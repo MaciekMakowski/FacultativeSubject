@@ -15,11 +15,11 @@ import pl.studentmed.facultative.models.BasicEntity;
 @NoArgsConstructor
 public class Address extends BasicEntity {
 
-    private String city;
+    private City city;
     private ZipCode zipCode;
-    private String street;
+    private Street street;
 
-    public Address(String city, ZipCode zipCode, String street) {
+    public Address(City city, ZipCode zipCode, Street street) {
         this.city = city;
         this.zipCode = zipCode;
         this.street = street;

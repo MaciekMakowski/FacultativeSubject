@@ -26,4 +26,10 @@ public class ExceptionsHandler {
         return new ErrorMessage("zipCode", exception.getMessage());
     }
 
+    @ExceptionHandler(value = InvalidSignsException.class)
+    @ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
+    public ErrorMessage invalidSignsException(InvalidSignsException exception) {
+        return new ErrorMessage(exception.fieldName, exception.getMessage());
+    }
+
 }
