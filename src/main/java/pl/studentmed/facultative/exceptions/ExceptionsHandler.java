@@ -38,4 +38,10 @@ public class ExceptionsHandler {
         return new ErrorMessage("appointmentStatus", exception.getMessage());
     }
 
+    @ExceptionHandler(value = InvalidRoleException.class)
+    @ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
+    public ErrorMessage invalidRoleException(InvalidRoleException exception) {
+        return new ErrorMessage("role", exception.getMessage());
+    }
+
 }
