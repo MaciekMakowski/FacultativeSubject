@@ -1,0 +1,1 @@
+alter table user_infos alter column birthdate type date;
