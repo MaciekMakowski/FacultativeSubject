@@ -13,9 +13,12 @@ class UserInfoFacade {
     private final UserInfoCRUDService userInfoCRUDService;
     private final AddressCRUDService addressCRUDService;
 
+    public UserInfo getUserInfoById(Long userInfoId) {
+        return userInfoCRUDService.getUserInfoById(userInfoId);
+    }
+
     public UserInfo createUserInfo(UserInfoCreateDTO dto) {
         var userAddress = addressCRUDService.createEmptyAddress();
         return userInfoCRUDService.createUser(dto, userAddress);
     }
-
 }

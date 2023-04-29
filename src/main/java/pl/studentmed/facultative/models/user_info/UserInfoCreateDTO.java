@@ -20,6 +20,7 @@ public record UserInfoCreateDTO(@NotNull
                                 @Size(min = 8, max = 25)
                                 String password,
                                 @NotNull
+                                @Pattern(regexp = "\\d+", message = "Phone number must contains only digits.")
                                 @Size(min = 9, max = 9)
                                 String phoneNumber,
                                 @NotNull

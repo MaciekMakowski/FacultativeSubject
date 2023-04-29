@@ -1,12 +1,11 @@
 package pl.studentmed.facultative.services.user_info;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pl.studentmed.facultative.models.user_info.UserInfo;
 import pl.studentmed.facultative.models.user_info.UserInfoCreateDTO;
-
-import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/userinfo")
@@ -14,6 +13,12 @@ import jakarta.validation.Valid;
 class UserInfoController {
 
     private final UserInfoFacade facade;
+
+    @GetMapping("/{userInfoId}")
+    @ResponseStatus(HttpStatus.OK)
+    public UserInfo getUserInfoById(@PathVariable Long userInfoId) {
+        return facade.getUserInfoById(userInfoId);
+    }
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
