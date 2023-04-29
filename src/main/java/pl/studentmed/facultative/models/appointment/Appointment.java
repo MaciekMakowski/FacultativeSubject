@@ -27,7 +27,7 @@ public class Appointment extends BasicEntity {
     @JoinColumn(name = "doctor_id", referencedColumnName = "id")
     private Doctor doctor;
 
-    private AppointmentDate date;
+    private AppointmentDate appointmentDate;
 
     private String createdAt;
 
@@ -40,10 +40,10 @@ public class Appointment extends BasicEntity {
 
     private String recommendations;
 
-    public Appointment(Patient patient, Doctor doctor, AppointmentDate date, String patientSymptoms) {
+    public Appointment(Patient patient, Doctor doctor, AppointmentDate appointmentDate, String patientSymptoms) {
         this.patient = patient;
         this.doctor = doctor;
-        this.date = date;
+        this.appointmentDate = appointmentDate;
         this.patientSymptoms = patientSymptoms;
         this.status = AppointmentStatus.NEW;
         var now = LocalDateTime.now();

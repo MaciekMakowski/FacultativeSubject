@@ -26,4 +26,5 @@ public class AppointmentFacade {
         var appointmentDate = new AppointmentDate(dto.appDate());
         return appointmentCRUDService.createAppointment(patient, doctor, appointmentDate, dto.patientSymptoms());
     }
+
 }

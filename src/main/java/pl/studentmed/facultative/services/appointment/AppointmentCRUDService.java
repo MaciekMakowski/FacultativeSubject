@@ -2,6 +2,7 @@ package pl.studentmed.facultative.services.appointment;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import pl.studentmed.facultative.exceptions.AppointmentDateAlreadyTakenException;
 import pl.studentmed.facultative.models.appointment.Appointment;
 import pl.studentmed.facultative.models.appointment.AppointmentDate;
 import pl.studentmed.facultative.models.doctor.Doctor;
@@ -19,6 +20,9 @@ public class AppointmentCRUDService {
     }
 
     public Appointment createAppointment(Patient patient, Doctor doctor, AppointmentDate appointmentDate, String patientSymptoms) {
+        if (reader.checkIfDoctorHasAppointementOnThisDate(doctor, appointmentDate)) {
+            throw new AppointmentDateAlreadyTakenException("appointment", "This date is already taken.");
+        }
         return creator.createAppointment(patient, doctor, appointmentDate, patientSymptoms);
     }
 
