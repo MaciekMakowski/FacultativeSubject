@@ -10,7 +10,7 @@ public enum Role {
     DOCTOR("doctor"),
     RECEPTION("reception");
 
-    public String value;
+    public final String value;
 
     Role(String role) {
         this.value = role;
@@ -20,8 +20,19 @@ public enum Role {
         return Stream.of(values())
                 .filter(role -> role.value.equals(givenValue))
                 .findFirst()
-                .orElseThrow(() -> new InvalidRoleException(String.format("Role must be one of '%s', '%s', or '%s'",
-                        PATIENT.value, DOCTOR.value, RECEPTION.value)));
+                .orElseThrow(InvalidRoleException::new);
+    }
+
+    public static boolean isPatient(String role) {
+        return role.equals(PATIENT.value);
+    }
+
+    public static boolean isDoctor(String role) {
+        return role.equals(DOCTOR.value);
+    }
+
+    public static boolean isReception(String role) {
+        return role.equals(RECEPTION.value);
     }
 
 }

@@ -58,4 +58,10 @@ public class ExceptionsHandler {
         return new ErrorMessage(exception.getFieldError().getField(), StringUtils.capitalize(exception.getFieldError().getDefaultMessage()));
     }
 
+    @ExceptionHandler(value = UserAlreadyExistsException.class)
+    @ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
+    public ErrorMessage userAlreadyExsistsException(UserAlreadyExistsException exception) {
+        return new ErrorMessage(exception.fieldName, exception.getMessage());
+    }
+
 }
