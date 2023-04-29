@@ -6,7 +6,7 @@ import pl.studentmed.facultative.models.doctor.Doctor;
 
 @Component
 @RequiredArgsConstructor
-public class DoctorFacade {
+class DoctorFacade {
 
     private final DoctorCRUDService doctorCRUDService;
 

@@ -24,6 +24,8 @@ public class Doctor extends BasicEntity {
     @OneToMany(mappedBy = "doctor")
     List<Appointment> appointments;
 
+    // add specialization
+
     public Doctor(UserInfo userInfo) {
         this.userInfo = userInfo;
     }

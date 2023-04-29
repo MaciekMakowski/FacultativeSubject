@@ -23,7 +23,7 @@ public class AppointmentFacade {
     public Appointment createAppointment(AppointmentCreateDTO dto) {
         var patient = patientCRUDService.getPatientById(dto.patientId());
         var doctor = doctorCRUDService.getDoctorById(dto.doctorId());
-        var appointmentDate = new AppointmentDate(dto.appDate());
+        var appointmentDate = new AppointmentDate(dto.appointmentDate());
         return appointmentCRUDService.createAppointment(patient, doctor, appointmentDate, dto.patientSymptoms());
     }
 
