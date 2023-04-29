@@ -17,4 +17,5 @@ class DoctorReader {
                         () -> new EntityNotFoundException("doctor", "Doctor with id: " + doctorId + " doesn't exists.")
                 );
     }
+
 }
