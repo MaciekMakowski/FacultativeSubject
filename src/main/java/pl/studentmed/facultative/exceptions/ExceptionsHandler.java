@@ -1,6 +1,8 @@
 package pl.studentmed.facultative.exceptions;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -48,6 +50,12 @@ public class ExceptionsHandler {
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
     public ErrorMessage entityNotFoundException(EntityNotFoundException exception) {
         return new ErrorMessage(exception.entityName, exception.getMessage());
+    }
+
+    @ExceptionHandler(value = MethodArgumentNotValidException.class)
+    @ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
+    public ErrorMessage methodArgumentNotValidException(MethodArgumentNotValidException exception) {
+        return new ErrorMessage(exception.getFieldError().getField(), StringUtils.capitalize(exception.getFieldError().getDefaultMessage()));
     }
 
 }
