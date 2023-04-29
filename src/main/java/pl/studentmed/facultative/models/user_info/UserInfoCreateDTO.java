@@ -28,7 +28,8 @@ public record UserInfoCreateDTO(@NotNull
                                 LocalDate birthdate,
                                 @NotNull
                                 @Pattern(regexp = "\\d+", message = "Pesel must contains only digits.")
-                                @Size(min = 11, max = 11, message = "Pesel must be 11 chars length.") String pesel,
+                                @Size(min = 11, max = 11, message = "Pesel must be 11 chars length.")
+                                String pesel,
                                 @NotEmpty String role) {
 
     @Builder public UserInfoCreateDTO {}

@@ -18,4 +18,7 @@ class UserInfoReader {
                 );
     }
 
+    public boolean existsByEmailOrPesel(String email, String pesel) {
+        return repository.existsByEmailOrPesel(email, pesel);
+    }
 }

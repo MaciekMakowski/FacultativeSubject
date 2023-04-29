@@ -36,7 +36,7 @@ public class UserInfo extends BasicEntity {
 
     @Builder
     public UserInfo(String firstName, String lastName, String email, String password,
-                    LocalDate birthdate, String phoneNumber, String pesel, String role,
+                    LocalDate birthdate, String phoneNumber, String pesel, Role role,
                     Address address) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -45,7 +45,7 @@ public class UserInfo extends BasicEntity {
         this.birthdate = birthdate;
         this.pesel = pesel;
         this.phoneNumber = phoneNumber;
-        this.role = Role.getRole(role);
+        this.role = role;
         this.createdAt = LocalDateTime.now();
         this.modifiedAt = LocalDateTime.now();
         this.address = address;
