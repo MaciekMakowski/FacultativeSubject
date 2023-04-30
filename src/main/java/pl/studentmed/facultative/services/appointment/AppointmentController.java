@@ -1,5 +1,6 @@
 package pl.studentmed.facultative.services.appointment;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ public class AppointmentController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public AppointmentResponseDTO createAppointment(@RequestBody AppointmentCreateDTO appointmentCreateDTO) {
+    public AppointmentResponseDTO createAppointment(@Valid @RequestBody AppointmentCreateDTO appointmentCreateDTO) {
         return facade.createAppointment(appointmentCreateDTO);
     }
 

@@ -11,7 +11,7 @@ import pl.studentmed.facultative.services.patient.PatientCRUDService;
 
 @Component
 @RequiredArgsConstructor
-public class AppointmentFacade {
+class AppointmentFacade {
 
     private final AppointmentCRUDService appointmentCRUDService;
     private final PatientCRUDService patientCRUDService;

@@ -9,6 +9,9 @@ import pl.studentmed.facultative.models.appointment.AppointmentResponseDTO;
 import pl.studentmed.facultative.models.doctor.Doctor;
 import pl.studentmed.facultative.models.patient.Patient;
 
+import java.time.LocalDate;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class AppointmentCRUDService {
@@ -25,6 +28,10 @@ public class AppointmentCRUDService {
             throw new AppointmentDateAlreadyTakenException("appointment", "This date is already taken.");
         }
         return creator.createAppointment(patient, doctor, appointmentDate, patientSymptoms);
+    }
+
+    public List<AppointmentResponseDTO> getDoctorAppointments(Long doctorId, LocalDate date, Integer offset, Integer limit) {
+        return reader.getDoctorAppointments(doctorId, date, offset, limit);
     }
 
 }
