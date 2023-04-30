@@ -1,5 +1,6 @@
 package pl.studentmed.facultative.exceptions;
 
+import jakarta.validation.ConstraintViolationException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -68,6 +69,12 @@ public class ExceptionsHandler {
     @ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
     public ErrorMessage userAlreadyExsistsException(UserAlreadyExistsException exception) {
         return new ErrorMessage(exception.fieldName, exception.getMessage());
+    }
+
+    @ExceptionHandler(value = ConstraintViolationException.class)
+    @ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
+    public ErrorMessage constraintViolationException(ConstraintViolationException exception) {
+        return ErrorMessage.of(exception);
     }
 
 }
