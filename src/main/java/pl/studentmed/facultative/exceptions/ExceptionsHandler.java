@@ -40,6 +40,12 @@ public class ExceptionsHandler {
         return new ErrorMessage("appointmentStatus", exception.getMessage());
     }
 
+    @ExceptionHandler(value = AppointmentDateAlreadyTakenException.class)
+    @ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
+    public ErrorMessage appointmentDateAlreadyTakenException(AppointmentDateAlreadyTakenException exception) {
+        return new ErrorMessage(exception.fieldName, exception.getMessage());
+    }
+
     @ExceptionHandler(value = InvalidRoleException.class)
     @ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
     public ErrorMessage invalidRoleException(InvalidRoleException exception) {
