@@ -19,12 +19,12 @@ public class Doctor extends BasicEntity {
 
     @OneToOne
     @JoinColumn(name = "user_infos_id")
-    UserInfo userInfo;
+    private UserInfo userInfo;
 
     @OneToMany(mappedBy = "doctor")
-    List<Appointment> appointments;
+    private List<Appointment> appointments;
 
-    // add specialization
+    private String specialization;
 
     public Doctor(UserInfo userInfo) {
         this.userInfo = userInfo;

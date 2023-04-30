@@ -3,6 +3,7 @@ package pl.studentmed.facultative.models.user_info;
 import jakarta.validation.constraints.*;
 import lombok.Builder;
 import org.springframework.validation.annotation.Validated;
+import pl.studentmed.facultative.models.validators.role.Role;
 
 import java.time.LocalDate;
 
@@ -30,7 +31,9 @@ public record UserInfoCreateDTO(@NotNull
                                 @Pattern(regexp = "\\d+", message = "Pesel must contains only digits.")
                                 @Size(min = 11, max = 11, message = "Pesel must be 11 chars length.")
                                 String pesel,
-                                @NotEmpty String role) {
+                                @NotEmpty
+                                @Role
+                                String role) {
 
     @Builder public UserInfoCreateDTO {}
 

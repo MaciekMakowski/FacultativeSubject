@@ -4,7 +4,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import pl.studentmed.facultative.models.user_info.UserInfo;
+import pl.studentmed.facultative.models.user_info.IUserInfoDTO;
 import pl.studentmed.facultative.models.user_info.UserInfoCreateDTO;
 
 @RestController
@@ -16,7 +16,7 @@ class UserInfoController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public UserInfo createUser(@Valid @RequestBody UserInfoCreateDTO dto) {
+    public IUserInfoDTO createUser(@Valid @RequestBody UserInfoCreateDTO dto) {
         return facade.createUser(dto);
     }
 
