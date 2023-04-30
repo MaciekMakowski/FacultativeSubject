@@ -15,7 +15,7 @@ public class AppointmentCreator {
 
     public Appointment createAppointment(Patient patient, Doctor doctor, AppointmentDate appointmentDate, String patientSymptoms) {
         Appointment appointment = new Appointment(patient, doctor, appointmentDate, patientSymptoms);
-        return appointment;
+        return repository.saveAndFlush(appointment);
     }
 
 

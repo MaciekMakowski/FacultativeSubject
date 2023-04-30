@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pl.studentmed.facultative.exceptions.AppointmentDateAlreadyTakenException;
 import pl.studentmed.facultative.models.appointment.Appointment;
 import pl.studentmed.facultative.models.appointment.AppointmentDate;
+import pl.studentmed.facultative.models.appointment.AppointmentResponseDTO;
 import pl.studentmed.facultative.models.doctor.Doctor;
 import pl.studentmed.facultative.models.patient.Patient;
 
@@ -15,7 +16,7 @@ public class AppointmentCRUDService {
     private final AppointmentCreator creator;
     private final AppointmentReader reader;
 
-    public Appointment getAppointmentById(Long appointmentId) {
+    public AppointmentResponseDTO getAppointmentById(Long appointmentId) {
         return reader.getAppointmentById(appointmentId);
     }
 

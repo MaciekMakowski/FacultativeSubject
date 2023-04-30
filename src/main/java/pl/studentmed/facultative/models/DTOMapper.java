@@ -1,6 +1,8 @@
 package pl.studentmed.facultative.models;
 
 import org.springframework.stereotype.Component;
+import pl.studentmed.facultative.models.appointment.Appointment;
+import pl.studentmed.facultative.models.appointment.AppointmentResponseDTO;
 import pl.studentmed.facultative.models.doctor.Doctor;
 import pl.studentmed.facultative.models.doctor.DoctorResponseDTO;
 import pl.studentmed.facultative.models.patient.Patient;
@@ -35,4 +37,27 @@ public class DTOMapper {
                 .build();
     }
 
+    public AppointmentResponseDTO toAppointmentResponseDTO(Appointment appointment) {
+        var patient = appointment.getPatient().getUserInfo();
+        var doctor = appointment.getDoctor().getUserInfo();
+        return AppointmentResponseDTO.builder()
+                .appointmentId(appointment.getId())
+                .patientName(combineStrings(patient.getFirstName(), patient.getLastName()))
+                .doctorName(combineStrings(doctor.getFirstName(), doctor.getLastName()))
+                .appointmentDate(appointment.getAppointmentDate().date)
+                .appointmentStatus(appointment.getStatus())
+                .patientSymptoms(appointment.getPatientSymptoms())
+                .doctorRecommendations(appointment.getRecommendations())
+                .createdAt(appointment.getCreatedAt())
+                .modifiedAt(appointment.getModifiedAt())
+                .build();
+    }
+
+    private String combineStrings(String first, String second) {
+        var strBuilder = new StringBuilder();
+        strBuilder.append(first);
+        strBuilder.append(" ");
+        strBuilder.append(second);
+        return strBuilder.toString();
+    }
 }
