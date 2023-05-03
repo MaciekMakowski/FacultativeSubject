@@ -5,6 +5,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 import pl.studentmed.facultative.exceptions.EntityNotFoundException;
+import pl.studentmed.facultative.models.appointment.AppointmentBusyHoursDTO;
 import pl.studentmed.facultative.models.appointment.AppointmentDate;
 import pl.studentmed.facultative.models.appointment.AppointmentResponseDTO;
 import pl.studentmed.facultative.models.doctor.Doctor;
@@ -51,6 +52,11 @@ class AppointmentReader {
             return repository.getAppointmentsByPatientIdAndAppointmentDateLike(patientId, wantedDate, pageable);
         }
         return repository.getAppointmentsByPatientId(patientId, pageable);
+    }
+
+    public List<AppointmentBusyHoursDTO> getBusyAppointmentHoursForDate(LocalDate givenDate) {
+        var wantedDate = givenDate.format(DAY_MONTH_YEAR);
+        return repository.getBusyAppointmentsHoursByGivenDate(wantedDate);
     }
 
 }

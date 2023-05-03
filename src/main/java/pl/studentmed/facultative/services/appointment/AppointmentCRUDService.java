@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.studentmed.facultative.exceptions.AppointmentDateAlreadyTakenException;
 import pl.studentmed.facultative.models.appointment.Appointment;
+import pl.studentmed.facultative.models.appointment.AppointmentBusyHoursDTO;
 import pl.studentmed.facultative.models.appointment.AppointmentDate;
 import pl.studentmed.facultative.models.appointment.AppointmentResponseDTO;
 import pl.studentmed.facultative.models.doctor.Doctor;
@@ -36,6 +37,10 @@ public class AppointmentCRUDService {
 
     public List<AppointmentResponseDTO> getPatientAppointments(Long patientId, LocalDate date, Integer offset, Integer limit) {
         return reader.getPatientAppointments(patientId, date, offset, limit);
+    }
+
+    public List<AppointmentBusyHoursDTO> getBusyAppointmentHoursForDate(LocalDate givenDate) {
+        return reader.getBusyAppointmentHoursForDate(givenDate);
     }
 
 }

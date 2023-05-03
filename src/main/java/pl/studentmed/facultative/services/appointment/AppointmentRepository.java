@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import pl.studentmed.facultative.models.appointment.Appointment;
+import pl.studentmed.facultative.models.appointment.AppointmentBusyHoursDTO;
 import pl.studentmed.facultative.models.appointment.AppointmentDate;
 import pl.studentmed.facultative.models.appointment.AppointmentResponseDTO;
 import pl.studentmed.facultative.models.doctor.Doctor;
@@ -130,4 +131,16 @@ interface AppointmentRepository extends JpaRepository<Appointment, Long> {
             order by app.appointmentDate.date asc
            """)
     List<AppointmentResponseDTO> getAppointmentsByPatientId(@Param("patientId") Long patientId, Pageable pageable);
+
+
+    @Query("""
+            select new pl.studentmed.facultative.models.appointment.AppointmentBusyHoursDTO
+                (
+                substring(app.appointmentDate.date, 12)
+                )
+            from Appointment app
+            where app.appointmentDate.date like :appointmentDate%
+           """)
+    List<AppointmentBusyHoursDTO> getBusyAppointmentsHoursByGivenDate(@Param("appointmentDate") String appointmentDate);
+
 }

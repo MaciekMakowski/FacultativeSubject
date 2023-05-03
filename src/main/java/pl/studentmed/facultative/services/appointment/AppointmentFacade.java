@@ -3,11 +3,15 @@ package pl.studentmed.facultative.services.appointment;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import pl.studentmed.facultative.models.DTOMapper;
+import pl.studentmed.facultative.models.appointment.AppointmentBusyHoursDTO;
 import pl.studentmed.facultative.models.appointment.AppointmentCreateDTO;
 import pl.studentmed.facultative.models.appointment.AppointmentDate;
 import pl.studentmed.facultative.models.appointment.AppointmentResponseDTO;
 import pl.studentmed.facultative.services.doctor.DoctorCRUDService;
 import pl.studentmed.facultative.services.patient.PatientCRUDService;
+
+import java.time.LocalDate;
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -28,6 +32,10 @@ class AppointmentFacade {
         var appointmentDate = new AppointmentDate(dto.appointmentDate());
         var appointment = appointmentCRUDService.createAppointment(patient, doctor, appointmentDate, dto.patientSymptoms());
         return mapper.toAppointmentResponseDTO(appointment);
+    }
+
+    public List<AppointmentBusyHoursDTO> getBusyAppointmentHoursForDate(LocalDate givenDate) {
+        return appointmentCRUDService.getBusyAppointmentHoursForDate(givenDate);
     }
 
 }
