@@ -10,7 +10,7 @@ import pl.studentmed.facultative.models.appointment.AppointmentResponseDTO;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/appointments")
-public class AppointmentController {
+class AppointmentController {
 
     private final AppointmentFacade facade;
 

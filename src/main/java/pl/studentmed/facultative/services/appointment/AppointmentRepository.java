@@ -78,10 +78,56 @@ interface AppointmentRepository extends JpaRepository<Appointment, Long> {
             join fetch Doctor d on app.doctor = d
             where d.id = :doctorId
             and app.appointmentDate.date like :appointmentDate%
+            order by app.appointmentDate.date asc
             """
     )
     List<AppointmentResponseDTO> getAppointmentsByDoctorIdAndAppointmentDateLike(@Param("doctorId") Long doctorId,
                                                                                  @Param("appointmentDate") String appointmentDate,
                                                                                  Pageable pageable);
+    @Query(
+            """
+            select new pl.studentmed.facultative.models.appointment.AppointmentResponseDTO
+                (
+                app.id,
+                concat(p.userInfo.firstName, " ", p.userInfo.lastName),
+                concat(d.userInfo.firstName, " ", d.userInfo.lastName),
+                app.appointmentDate.date,
+                app.patientSymptoms,
+                app.status,
+                app.recommendations,
+                app.createdAt,
+                app.modifiedAt
+                )
+            from Appointment app
+            join fetch Patient p on app.patient = p
+            join fetch Doctor d on app.doctor = d
+            where p.id = :patientId
+            and app.appointmentDate.date like :appointmentDate%
+            order by app.appointmentDate.date asc
+            """
+    )
+    List<AppointmentResponseDTO> getAppointmentsByPatientIdAndAppointmentDateLike(@Param("patientId") Long patientId,
+                                                                                  @Param("appointmentDate") String wantedDate,
+                                                                                  Pageable pageable);
 
+    @Query("""
+           select new pl.studentmed.facultative.models.appointment.AppointmentResponseDTO
+                (
+                app.id,
+                concat(p.userInfo.firstName, " ", p.userInfo.lastName),
+                concat(d.userInfo.firstName, " ", d.userInfo.lastName),
+                app.appointmentDate.date,
+                app.patientSymptoms,
+                app.status,
+                app.recommendations,
+                app.createdAt,
+                app.modifiedAt
+                )
+            from Appointment app
+            join fetch Patient p on app.patient = p
+            join fetch Doctor d on app.doctor = d
+            where p.id = :patientId
+            order by app.appointmentDate.date asc
+           """)
+    List<AppointmentResponseDTO> getAppointmentsByPatientId(@Param("patientId") Long patientId, Pageable pageable);
 }

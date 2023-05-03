@@ -9,7 +9,7 @@ import pl.studentmed.facultative.models.patient.Patient;
 
 @Component
 @RequiredArgsConstructor
-public class AppointmentCreator {
+class AppointmentCreator {
 
     private final AppointmentRepository repository;
 

@@ -41,4 +41,16 @@ class AppointmentReader {
         }
         return repository.getAppointmentsByDoctorId(doctorId, pageable);
     }
+
+    public List<AppointmentResponseDTO> getPatientAppointments(Long patientId, LocalDate date, Integer givenOffset, Integer givenLimit) {
+        var offset = givenOffset != null ? givenOffset : 0;
+        var limit = givenLimit != null ? givenLimit : 5;
+        var pageable = PageRequest.of(offset, limit, Sort.by("appointmentDate").ascending());
+        if (date != null) {
+            var wantedDate = date.format(DAY_MONTH_YEAR);
+            return repository.getAppointmentsByPatientIdAndAppointmentDateLike(patientId, wantedDate, pageable);
+        }
+        return repository.getAppointmentsByPatientId(patientId, pageable);
+    }
+
 }

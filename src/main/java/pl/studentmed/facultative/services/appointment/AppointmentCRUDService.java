@@ -34,4 +34,8 @@ public class AppointmentCRUDService {
         return reader.getDoctorAppointments(doctorId, date, offset, limit);
     }
 
+    public List<AppointmentResponseDTO> getPatientAppointments(Long patientId, LocalDate date, Integer offset, Integer limit) {
+        return reader.getPatientAppointments(patientId, date, offset, limit);
+    }
+
 }
