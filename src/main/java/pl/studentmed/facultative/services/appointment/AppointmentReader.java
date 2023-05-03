@@ -33,9 +33,7 @@ class AppointmentReader {
     }
 
     public List<AppointmentResponseDTO> getDoctorAppointments(Long doctorId, LocalDate date, Integer givenOffset, Integer givenLimit) {
-        var offset = givenOffset != null ? givenOffset : 0;
-        var limit = givenLimit != null ? givenLimit : 5;
-        var pageable = PageRequest.of(offset, limit, Sort.by("appointmentDate").ascending());
+        var pageable = createPageRequest(givenOffset, givenLimit);
         if (date != null) {
             var wantedDate = date.format(DAY_MONTH_YEAR);
             return repository.getAppointmentsByDoctorIdAndAppointmentDateLike(doctorId, wantedDate, pageable);
@@ -44,14 +42,18 @@ class AppointmentReader {
     }
 
     public List<AppointmentResponseDTO> getPatientAppointments(Long patientId, LocalDate date, Integer givenOffset, Integer givenLimit) {
-        var offset = givenOffset != null ? givenOffset : 0;
-        var limit = givenLimit != null ? givenLimit : 5;
-        var pageable = PageRequest.of(offset, limit, Sort.by("appointmentDate").ascending());
+        var pageable = createPageRequest(givenOffset, givenLimit);
         if (date != null) {
             var wantedDate = date.format(DAY_MONTH_YEAR);
             return repository.getAppointmentsByPatientIdAndAppointmentDateLike(patientId, wantedDate, pageable);
         }
         return repository.getAppointmentsByPatientId(patientId, pageable);
+    }
+
+    private static PageRequest createPageRequest(Integer givenOffset, Integer givenLimit) {
+        var offset = givenOffset != null ? givenOffset : 0;
+        var limit = givenLimit != null ? givenLimit : 5;
+        return PageRequest.of(offset, limit, Sort.by("appointmentDate").ascending());
     }
 
     public List<AppointmentBusyHoursDTO> getBusyAppointmentHoursForDate(LocalDate givenDate) {
