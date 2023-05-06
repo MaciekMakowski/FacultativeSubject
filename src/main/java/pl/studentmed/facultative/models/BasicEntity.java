@@ -1,6 +1,6 @@
 package pl.studentmed.facultative.models;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 

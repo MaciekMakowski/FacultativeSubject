@@ -1,7 +1,7 @@
 package pl.studentmed.facultative.models.validators.role;
 
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 import pl.studentmed.facultative.models.user_info.Role;
 
 import java.util.Arrays;

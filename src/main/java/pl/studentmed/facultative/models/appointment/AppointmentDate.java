@@ -1,6 +1,6 @@
 package pl.studentmed.facultative.models.appointment;
 
-import jakarta.persistence.Embeddable;
+import javax.persistence.Embeddable;
 import lombok.NoArgsConstructor;
 import pl.studentmed.facultative.exceptions.EmptyFieldException;
 

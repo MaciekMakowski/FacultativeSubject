@@ -1,6 +1,6 @@
 package pl.studentmed.facultative.models.user_info;
 
-import jakarta.validation.constraints.*;
+import javax.validation.constraints.*;
 import lombok.Builder;
 import org.springframework.validation.annotation.Validated;
 import pl.studentmed.facultative.models.validators.role.Role;

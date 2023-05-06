@@ -21,8 +21,8 @@ interface AppointmentRepository extends JpaRepository<Appointment, Long> {
             select new pl.studentmed.facultative.models.appointment.AppointmentResponseDTO
                 (
                 app.id,
-                concat(p.userInfo.firstName, " ", p.userInfo.lastName),
-                concat(d.userInfo.firstName, " ", d.userInfo.lastName),
+                concat(p.userInfo.firstName, ' ', p.userInfo.lastName),
+                concat(d.userInfo.firstName, ' ', d.userInfo.lastName),
                 app.appointmentDate.date,
                 app.patientSymptoms,
                 app.status,
@@ -42,8 +42,8 @@ interface AppointmentRepository extends JpaRepository<Appointment, Long> {
             select new pl.studentmed.facultative.models.appointment.AppointmentResponseDTO
                 (
                 app.id,
-                concat(p.userInfo.firstName, " ", p.userInfo.lastName),
-                concat(d.userInfo.firstName, " ", d.userInfo.lastName),
+                concat(p.userInfo.firstName, ' ', p.userInfo.lastName),
+                concat(d.userInfo.firstName, ' ', d.userInfo.lastName),
                 app.appointmentDate.date,
                 app.patientSymptoms,
                 app.status,
@@ -65,8 +65,8 @@ interface AppointmentRepository extends JpaRepository<Appointment, Long> {
             select new pl.studentmed.facultative.models.appointment.AppointmentResponseDTO
                 (
                 app.id,
-                concat(p.userInfo.firstName, " ", p.userInfo.lastName),
-                concat(d.userInfo.firstName, " ", d.userInfo.lastName),
+                concat(p.userInfo.firstName, ' ', p.userInfo.lastName),
+                concat(d.userInfo.firstName, ' ', d.userInfo.lastName),
                 app.appointmentDate.date,
                 app.patientSymptoms,
                 app.status,
@@ -90,8 +90,8 @@ interface AppointmentRepository extends JpaRepository<Appointment, Long> {
             select new pl.studentmed.facultative.models.appointment.AppointmentResponseDTO
                 (
                 app.id,
-                concat(p.userInfo.firstName, " ", p.userInfo.lastName),
-                concat(d.userInfo.firstName, " ", d.userInfo.lastName),
+                concat(p.userInfo.firstName, ' ', p.userInfo.lastName),
+                concat(d.userInfo.firstName, ' ', d.userInfo.lastName),
                 app.appointmentDate.date,
                 app.patientSymptoms,
                 app.status,
@@ -115,8 +115,8 @@ interface AppointmentRepository extends JpaRepository<Appointment, Long> {
            select new pl.studentmed.facultative.models.appointment.AppointmentResponseDTO
                 (
                 app.id,
-                concat(p.userInfo.firstName, " ", p.userInfo.lastName),
-                concat(d.userInfo.firstName, " ", d.userInfo.lastName),
+                concat(p.userInfo.firstName, ' ', p.userInfo.lastName),
+                concat(d.userInfo.firstName, ' ', d.userInfo.lastName),
                 app.appointmentDate.date,
                 app.patientSymptoms,
                 app.status,

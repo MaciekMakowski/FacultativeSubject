@@ -1,6 +1,6 @@
 package pl.studentmed.facultative.exceptions;
 
-import jakarta.validation.ConstraintViolationException;
+import javax.validation.ConstraintViolationException;
 
 public record ErrorMessage(String fieldName, String error) {
 
