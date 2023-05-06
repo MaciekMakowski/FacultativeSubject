@@ -16,6 +16,7 @@ public class AppointmentCRUDService {
 
     private final AppointmentCreator creator;
     private final AppointmentReader reader;
+    private final AppointmentUpdater updater;
 
     public AppointmentResponseDTO getAppointmentDTOById(Long appointmentId) {
         return reader.getAppointmentDTOById(appointmentId);
@@ -26,10 +27,14 @@ public class AppointmentCRUDService {
     }
 
     public Appointment createAppointment(Patient patient, Doctor doctor, AppointmentDate appointmentDate, String patientSymptoms) {
+        isAppointmentDateAvailable(doctor, appointmentDate);
+        return creator.createAppointment(patient, doctor, appointmentDate, patientSymptoms);
+    }
+
+    private void isAppointmentDateAvailable(Doctor doctor, AppointmentDate appointmentDate) {
         if (reader.checkIfDoctorHasAppointementOnThisDate(doctor, appointmentDate)) {
             throw new AppointmentDateAlreadyTakenException("appointment", "This date is already taken.");
         }
-        return creator.createAppointment(patient, doctor, appointmentDate, patientSymptoms);
     }
 
     public List<AppointmentResponseDTO> getDoctorAppointments(Long doctorId, LocalDate date, Integer offset, Integer limit) {
@@ -42,6 +47,14 @@ public class AppointmentCRUDService {
 
     public List<AppointmentBusyHoursDTO> getBusyAppointmentHoursForDate(LocalDate givenDate) {
         return reader.getBusyAppointmentHoursForDate(givenDate);
+    }
+
+    public Appointment editAppointment(Appointment appointment, AppointmentEditDTO dto) {
+        if(dto.newAppointmentDate() != null) {
+            var appointmentDate = new AppointmentDate(dto.newAppointmentDate());
+            isAppointmentDateAvailable(appointment.getDoctor(), appointmentDate);
+        }
+        return updater.editAppointment(appointment, dto);
     }
 
 }
