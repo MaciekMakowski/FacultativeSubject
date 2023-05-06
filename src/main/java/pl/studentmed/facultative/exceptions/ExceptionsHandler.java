@@ -3,6 +3,7 @@ package pl.studentmed.facultative.exceptions;
 import javax.validation.ConstraintViolationException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -69,6 +70,12 @@ public class ExceptionsHandler {
     @ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
     public ErrorMessage userAlreadyExsistsException(UserAlreadyExistsException exception) {
         return new ErrorMessage(exception.fieldName, exception.getMessage());
+    }
+
+    @ExceptionHandler(value = BadCredentialsException.class)
+    @ResponseStatus(value = HttpStatus.UNAUTHORIZED)
+    public ErrorMessage badCredentialsException() {
+        return new ErrorMessage("password", "You have written wrong email or password.");
     }
 
     @ExceptionHandler(value = ConstraintViolationException.class)
