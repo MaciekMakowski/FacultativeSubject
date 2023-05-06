@@ -4,9 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import pl.studentmed.facultative.exceptions.UserAlreadyExistsException;
 import pl.studentmed.facultative.models.DTOMapper;
-import pl.studentmed.facultative.models.user_info.IUserInfoDTO;
-import pl.studentmed.facultative.models.user_info.Role;
-import pl.studentmed.facultative.models.user_info.UserInfoCreateDTO;
+import pl.studentmed.facultative.models.user_info.*;
 import pl.studentmed.facultative.services.addresses.AddressCRUDService;
 import pl.studentmed.facultative.services.doctor.DoctorCRUDService;
 import pl.studentmed.facultative.services.patient.PatientCRUDService;
@@ -41,6 +39,10 @@ class UserInfoFacade {
             var patient = patientCRUDService.createPatient(userInfo);
             return mapper.toPatientResponseDTO(patient, userInfo);
         }
+    }
+
+    public UserInfoLoginResponseDTO loginUser(UserInfoLoginRequestDTO userInfoLoginRequestDTO) {
+        return userInfoCRUDService.loginUser(userInfoLoginRequestDTO);
     }
 
 }
