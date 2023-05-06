@@ -3,10 +3,7 @@ package pl.studentmed.facultative.services.appointment;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.studentmed.facultative.exceptions.AppointmentDateAlreadyTakenException;
-import pl.studentmed.facultative.models.appointment.Appointment;
-import pl.studentmed.facultative.models.appointment.AppointmentBusyHoursDTO;
-import pl.studentmed.facultative.models.appointment.AppointmentDate;
-import pl.studentmed.facultative.models.appointment.AppointmentResponseDTO;
+import pl.studentmed.facultative.models.appointment.*;
 import pl.studentmed.facultative.models.doctor.Doctor;
 import pl.studentmed.facultative.models.patient.Patient;
 
@@ -20,7 +17,11 @@ public class AppointmentCRUDService {
     private final AppointmentCreator creator;
     private final AppointmentReader reader;
 
-    public AppointmentResponseDTO getAppointmentById(Long appointmentId) {
+    public AppointmentResponseDTO getAppointmentDTOById(Long appointmentId) {
+        return reader.getAppointmentDTOById(appointmentId);
+    }
+
+    public Appointment getAppointmentById(Long appointmentId) {
         return reader.getAppointmentById(appointmentId);
     }
 

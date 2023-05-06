@@ -25,7 +25,7 @@ class AppointmentController {
     @GetMapping("/{appointmentId}")
     @ResponseStatus(HttpStatus.OK)
     public AppointmentResponseDTO getAppointmentById(@PathVariable Long appointmentId) {
-        return facade.getAppointmentById(appointmentId);
+        return facade.getAppointmentDTOById(appointmentId);
     }
 
     @PostMapping("")
