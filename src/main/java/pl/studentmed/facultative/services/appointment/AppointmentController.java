@@ -9,6 +9,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import pl.studentmed.facultative.models.appointment.AppointmentBusyHoursDTO;
 import pl.studentmed.facultative.models.appointment.AppointmentCreateDTO;
+import pl.studentmed.facultative.models.appointment.AppointmentEditDTO;
 import pl.studentmed.facultative.models.appointment.AppointmentResponseDTO;
 
 import java.time.LocalDate;
@@ -38,6 +39,12 @@ class AppointmentController {
     public ResponseEntity<List<AppointmentBusyHoursDTO>> getBusyAppointmentHoursForDate(@NotNull @RequestParam LocalDate givenDate) {
         var busyHours = facade.getBusyAppointmentHoursForDate(givenDate);
         return busyHours.size() > 0 ? ResponseEntity.ok(busyHours) : ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping("")
+    @ResponseStatus(HttpStatus.OK)
+    public AppointmentResponseDTO editAppointment(@Valid @RequestBody AppointmentEditDTO appointmentEditDTO) {
+        return facade.editAppointment(appointmentEditDTO);
     }
 
 }

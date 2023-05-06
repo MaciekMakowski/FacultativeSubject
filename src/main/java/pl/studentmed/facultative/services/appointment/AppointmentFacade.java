@@ -35,4 +35,10 @@ class AppointmentFacade {
         return appointmentCRUDService.getBusyAppointmentHoursForDate(givenDate);
     }
 
+    public AppointmentResponseDTO editAppointment(AppointmentEditDTO dto) {
+        var appointmentToEdit = appointmentCRUDService.getAppointmentById(dto.appointmentId());
+        var editedAppointment = appointmentCRUDService.editAppointment(appointmentToEdit, dto);
+        return mapper.toAppointmentResponseDTO(editedAppointment);
+    }
+
 }
