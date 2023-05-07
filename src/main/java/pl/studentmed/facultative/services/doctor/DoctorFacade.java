@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import pl.studentmed.facultative.models.appointment.AppointmentResponseDTO;
 import pl.studentmed.facultative.models.doctor.Doctor;
+import pl.studentmed.facultative.models.doctor.DoctorSpecializationDTO;
 import pl.studentmed.facultative.services.appointment.AppointmentCRUDService;
 
 import java.time.LocalDate;
@@ -22,6 +23,14 @@ class DoctorFacade {
 
     public List<AppointmentResponseDTO> getDoctorAppointments(Long doctorId, LocalDate date, Integer offset, Integer limit) {
         return appointmentCRUDService.getDoctorAppointments(doctorId, date, offset, limit);
+    }
+
+    public List<DoctorSpecializationDTO> getDoctorsBySpecialization(String specialization) {
+        return doctorCRUDService.getDoctorsBySpecialization(specialization);
+    }
+
+    public DoctorSpecializationDTO changeDoctorSpecialization(Long doctorId, String specialization) {
+        return doctorCRUDService.changeDoctorSpecialization(doctorId, specialization);
     }
 
 }

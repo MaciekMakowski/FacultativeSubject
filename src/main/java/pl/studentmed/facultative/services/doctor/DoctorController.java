@@ -1,7 +1,5 @@
 package pl.studentmed.facultative.services.doctor;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +7,11 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import pl.studentmed.facultative.models.appointment.AppointmentResponseDTO;
 import pl.studentmed.facultative.models.doctor.Doctor;
+import pl.studentmed.facultative.models.doctor.DoctorSpecializationDTO;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -36,6 +38,17 @@ class DoctorController {
     ) {
         var appointments = doctorFacade.getDoctorAppointments(doctorId, appointmentDate, offset, limit);
         return appointments.size() > 0 ? ResponseEntity.ok(appointments) : ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("")
+    public ResponseEntity<List<DoctorSpecializationDTO>> getDoctorsBySpecialization(@NotEmpty @RequestParam String specialization) {
+        var doctors = doctorFacade.getDoctorsBySpecialization(specialization);
+        return doctors.size() > 0 ? ResponseEntity.ok(doctors) : ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping("/{doctorId}")
+    public DoctorSpecializationDTO changeDoctorSpecialization(@PathVariable Long doctorId, @NotEmpty @RequestParam String specialization) {
+        return doctorFacade.changeDoctorSpecialization(doctorId, specialization);
     }
 
 }
