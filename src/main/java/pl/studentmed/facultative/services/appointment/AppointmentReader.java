@@ -49,13 +49,29 @@ class AppointmentReader {
         return repository.getAppointmentsByDoctorId(doctorId, pageable);
     }
 
-    public List<AppointmentResponseDTO> getPatientAppointments(Long patientId, LocalDate date, Integer givenOffset, Integer givenLimit) {
+    public List<AppointmentResponseDTO> getPatientAppointments(Long patientId, LocalDate appointmentDate,
+                                                               LocalDate secondDate, Integer givenOffset,
+                                                               Integer givenLimit) {
         var pageable = createPageRequest(givenOffset, givenLimit);
-        if (date != null) {
-            var wantedDate = date.format(DAY_MONTH_YEAR);
-            return repository.getAppointmentsByPatientIdAndAppointmentDateLike(patientId, wantedDate, pageable);
+        if (appointmentDate != null && secondDate != null) {
+            return getAppointmentWithDateBetween(patientId, appointmentDate, secondDate, pageable);
+        }
+        if (appointmentDate != null) {
+            return getAppointmentWithDateLike(patientId, appointmentDate, pageable);
         }
         return repository.getAppointmentsByPatientId(patientId, pageable);
+    }
+
+    private List<AppointmentResponseDTO> getAppointmentWithDateBetween(
+            Long patientId, LocalDate firstDate, LocalDate secondDate, PageRequest pageable) {
+        var startDate = firstDate.format(DAY_MONTH_YEAR);
+        var endDate = secondDate.format(DAY_MONTH_YEAR);
+        return repository.getAppointmentsByPatientIdAndDateBetween(patientId, startDate, endDate, pageable);
+    }
+    private List<AppointmentResponseDTO> getAppointmentWithDateLike(
+            Long patientId, LocalDate appointmentDate, PageRequest pageable) {
+        var wantedDate = appointmentDate.format(DAY_MONTH_YEAR);
+        return repository.getAppointmentsByPatientIdAndAppointmentDateLike(patientId, wantedDate, pageable);
     }
 
     private static PageRequest createPageRequest(Integer givenOffset, Integer givenLimit) {

@@ -20,8 +20,8 @@ class PatientFacade {
         return patientCRUDService.getPatientById(patientId);
     }
 
-    public List<AppointmentResponseDTO> getPatientAppointments(Long patientId, LocalDate date, Integer offset, Integer limit) {
-        return appointmentCRUDService.getPatientAppointments(patientId, date, offset, limit);
+    public List<AppointmentResponseDTO> getPatientAppointments(Long patientId, LocalDate appointmentDate, LocalDate secondDate, Integer offset, Integer limit) {
+        return appointmentCRUDService.getPatientAppointments(patientId, appointmentDate, secondDate, offset, limit);
     }
 
 }
