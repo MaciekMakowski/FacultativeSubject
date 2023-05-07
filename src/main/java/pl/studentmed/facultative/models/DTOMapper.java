@@ -4,7 +4,8 @@ import org.springframework.stereotype.Component;
 import pl.studentmed.facultative.models.appointment.Appointment;
 import pl.studentmed.facultative.models.appointment.AppointmentResponseDTO;
 import pl.studentmed.facultative.models.doctor.Doctor;
-import pl.studentmed.facultative.models.doctor.DoctorResponseDTO;
+import pl.studentmed.facultative.models.doctor.DoctorSpecializationDTO;
+import pl.studentmed.facultative.models.doctor.DoctorUserInfoDTO;
 import pl.studentmed.facultative.models.patient.Patient;
 import pl.studentmed.facultative.models.patient.PatientResponseDTO;
 import pl.studentmed.facultative.models.user_info.UserInfo;
@@ -16,15 +17,15 @@ import static pl.studentmed.facultative.models.StudentMedDateUtils.DAY_MONTH_YEA
 @Component
 public class DTOMapper {
 
-    public PatientResponseDTO toPatientResponseDTO(Patient patient, UserInfo userInfo) {
-            return new PatientResponseDTO(patient.getId(), toUserInfoResponseDTO(userInfo));
+    public static PatientResponseDTO toDTO(Patient patient, UserInfo userInfo) {
+            return new PatientResponseDTO(patient.getId(), toDTO(userInfo));
     }
 
-    public DoctorResponseDTO toDoctorResponseDTO(Doctor doctor, UserInfo userInfo) {
-        return new DoctorResponseDTO(doctor.getId(), doctor.getSpecialization(), toUserInfoResponseDTO(userInfo));
+    public static DoctorUserInfoDTO toDTO(Doctor doctor, UserInfo userInfo) {
+        return new DoctorUserInfoDTO(doctor.getId(), doctor.getSpecialization(), toDTO(userInfo));
     }
 
-    public UserInfoResponseDTO toUserInfoResponseDTO(UserInfo userInfo) {
+    public static UserInfoResponseDTO toDTO(UserInfo userInfo) {
         return UserInfoResponseDTO.builder()
                 .userInfoId(userInfo.getId())
                 .firstName(userInfo.getFirstName())
@@ -37,7 +38,7 @@ public class DTOMapper {
                 .build();
     }
 
-    public AppointmentResponseDTO toAppointmentResponseDTO(Appointment appointment) {
+    public static AppointmentResponseDTO toDTO(Appointment appointment) {
         var patient = appointment.getPatient().getUserInfo();
         var doctor = appointment.getDoctor().getUserInfo();
         return AppointmentResponseDTO.builder()
@@ -53,7 +54,15 @@ public class DTOMapper {
                 .build();
     }
 
-    private String combineStrings(String first, String second) {
+    public static DoctorSpecializationDTO toDTO(Doctor doctor) {
+        return DoctorSpecializationDTO.builder()
+                .doctorId(doctor.getId())
+                .doctorName(combineStrings(doctor.getUserInfo().getFirstName(), doctor.getUserInfo().getLastName()))
+                .specialization(doctor.getSpecialization())
+                .build();
+    }
+
+    private static String combineStrings(String first, String second) {
         var strBuilder = new StringBuilder();
         strBuilder.append(first);
         strBuilder.append(" ");
