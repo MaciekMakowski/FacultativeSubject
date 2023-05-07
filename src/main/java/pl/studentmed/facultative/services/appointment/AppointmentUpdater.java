@@ -2,6 +2,7 @@ package pl.studentmed.facultative.services.appointment;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import pl.studentmed.facultative.exceptions.AppointmentCantBeCancelledException;
 import pl.studentmed.facultative.models.appointment.Appointment;
 import pl.studentmed.facultative.models.appointment.AppointmentDate;
 import pl.studentmed.facultative.models.appointment.AppointmentEditDTO;
@@ -33,10 +34,16 @@ class AppointmentUpdater {
     private void changeAppointmentDate(Appointment appointmentToEdit, LocalDateTime givenAppointmentDate) {
         var newAppointmentDate = new AppointmentDate(givenAppointmentDate);
         appointmentToEdit.setAppointmentDate(newAppointmentDate);
+        appointmentToEdit.setStatus(AppointmentStatus.RESCHEDULED);
     }
 
     private void changeAppointmentStatus(Appointment appointmentToEdit, String givenStatus) {
         var newStatus = AppointmentStatus.getAppointmentStatus(givenStatus);
+        if (AppointmentStatus.isCanceled(newStatus)) {
+            if (!appointmentToEdit.canBeCanceled()) {
+                throw new AppointmentCantBeCancelledException();
+            }
+        }
         appointmentToEdit.setStatus(newStatus);
     }
 

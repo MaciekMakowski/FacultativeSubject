@@ -1,9 +1,9 @@
 package pl.studentmed.facultative.models.appointment;
 
-import javax.persistence.Embeddable;
 import lombok.NoArgsConstructor;
 import pl.studentmed.facultative.exceptions.EmptyFieldException;
 
+import javax.persistence.Embeddable;
 import java.time.LocalDateTime;
 
 import static pl.studentmed.facultative.models.StudentMedDateUtils.DAY_MONTH_YEAR_TIME;
@@ -20,6 +20,16 @@ public class AppointmentDate {
             throw new EmptyFieldException("appointmentDate", "Appointment date can't be empty.");
         }
         this.date = appointmentDate.format(DAY_MONTH_YEAR_TIME);
+    }
+
+    public LocalDateTime toLocalDateTime() {
+        var days = this.date.substring(0, 2);
+        var month = this.date.substring(3, 5);
+        var year = this.date.substring(6, 10);
+        var hours = this.date.substring(11, 13);
+        var minutes = this.date.substring(14);
+        return LocalDateTime.of(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(days),
+                Integer.parseInt(hours), Integer.parseInt(minutes));
     }
 
 }

@@ -84,4 +84,10 @@ public class ExceptionsHandler {
         return ErrorMessage.of(exception);
     }
 
+    @ExceptionHandler(value = AppointmentCantBeCancelledException.class)
+    @ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
+    public ErrorMessage appointmentCantBeCancelledException(AppointmentCantBeCancelledException exception) {
+        return new ErrorMessage(exception.fieldName, exception.getMessage());
+    }
+
 }

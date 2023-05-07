@@ -51,5 +51,11 @@ public class Appointment extends BasicEntity {
         this.modifiedAt = now.format(DAY_MONTH_YEAR_TIME);
     }
 
+    public boolean canBeCanceled() {
+        var appointmentDate = this.appointmentDate.toLocalDateTime();
+        var now = LocalDateTime.now();
+        var appDateWithAdded24Hours = appointmentDate.plusHours(24);
+        return appDateWithAdded24Hours.isAfter(now);
+    }
 
 }

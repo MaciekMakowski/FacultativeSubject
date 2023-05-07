@@ -25,4 +25,8 @@ public enum AppointmentStatus {
                 .orElseThrow(() -> new InvalidAppointmentStatusException(String.format("Appointment status must be one of '%s', '%s', '%s', '%s', or '%s'",
                         NEW.value, APPROVED.value, CANCELED.value, DONE.value, RESCHEDULED.value)));
     }
+
+    public static boolean isCanceled(AppointmentStatus appointmentStatus) {
+        return appointmentStatus.equals(AppointmentStatus.CANCELED);
+    }
 }
