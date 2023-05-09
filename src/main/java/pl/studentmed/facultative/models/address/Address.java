@@ -1,4 +1,4 @@
-package pl.studentmed.facultative.models.addresses;
+package pl.studentmed.facultative.models.address;
 
 
 import javax.persistence.Entity;

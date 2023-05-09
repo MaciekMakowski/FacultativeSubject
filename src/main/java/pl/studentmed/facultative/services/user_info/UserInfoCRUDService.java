@@ -3,7 +3,7 @@ package pl.studentmed.facultative.services.user_info;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl.studentmed.facultative.models.addresses.Address;
+import pl.studentmed.facultative.models.address.Address;
 import pl.studentmed.facultative.models.user_info.*;
 
 @Service

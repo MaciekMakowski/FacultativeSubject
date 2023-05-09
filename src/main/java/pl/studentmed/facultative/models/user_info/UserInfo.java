@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.studentmed.facultative.models.BasicEntity;
-import pl.studentmed.facultative.models.addresses.Address;
+import pl.studentmed.facultative.models.address.Address;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

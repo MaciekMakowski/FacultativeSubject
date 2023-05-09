@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import pl.studentmed.facultative.models.addresses.Address;
+import pl.studentmed.facultative.models.address.Address;
 import pl.studentmed.facultative.models.user_info.Role;
 import pl.studentmed.facultative.models.user_info.UserInfo;
 import pl.studentmed.facultative.models.user_info.UserInfoCreateDTO;
