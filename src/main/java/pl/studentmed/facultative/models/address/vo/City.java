@@ -1,4 +1,4 @@
-package pl.studentmed.facultative.models.address;
+package pl.studentmed.facultative.models.address.vo;
 
 import javax.persistence.Embeddable;
 import lombok.NoArgsConstructor;

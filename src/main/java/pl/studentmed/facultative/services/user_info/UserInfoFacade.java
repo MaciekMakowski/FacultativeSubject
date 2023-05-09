@@ -32,13 +32,13 @@ class UserInfoFacade {
             var doctorAddress = addressCRUDService.createEmptyAddress();
             var userInfo = userInfoCRUDService.createUser(user, doctorAddress, Role.DOCTOR);
             var doctor = doctorCRUDService.createDoctor(userInfo);
-            return toDTO(doctor, userInfo);
+            return toDTO(doctor, userInfo, doctorAddress);
         }
         else {
             var patientAddress = addressCRUDService.createEmptyAddress();
             var userInfo = userInfoCRUDService.createUser(user, patientAddress, Role.PATIENT);
             var patient = patientCRUDService.createPatient(userInfo);
-            return toDTO(patient, userInfo);
+            return toDTO(patient, userInfo, patientAddress);
         }
     }
 

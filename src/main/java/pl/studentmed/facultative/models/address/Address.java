@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.studentmed.facultative.models.BasicEntity;
+import pl.studentmed.facultative.models.address.vo.City;
+import pl.studentmed.facultative.models.address.vo.Street;
+import pl.studentmed.facultative.models.address.vo.ZipCode;
 
 @Entity
 @Table(name = "addresses")

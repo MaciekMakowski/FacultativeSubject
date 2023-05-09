@@ -1,6 +1,8 @@
 package pl.studentmed.facultative.models;
 
 import org.springframework.stereotype.Component;
+import pl.studentmed.facultative.models.address.Address;
+import pl.studentmed.facultative.models.address.AddressResponseDTO;
 import pl.studentmed.facultative.models.appointment.Appointment;
 import pl.studentmed.facultative.models.appointment.AppointmentResponseDTO;
 import pl.studentmed.facultative.models.doctor.Doctor;
@@ -17,17 +19,23 @@ import static pl.studentmed.facultative.models.StudentMedDateUtils.DAY_MONTH_YEA
 @Component
 public class DTOMapper {
 
-    public static PatientResponseDTO toDTO(Patient patient, UserInfo userInfo) {
+    public static PatientResponseDTO toDTO(Patient patient, UserInfo userInfo, Address address) {
             return new PatientResponseDTO(
                     patient.getId(),
                     patient.getAllergies(),
                     patient.getMedicines(),
-                    toDTO(userInfo)
+                    toDTO(userInfo),
+                    toDTO(address)
             );
     }
 
-    public static DoctorUserInfoDTO toDTO(Doctor doctor, UserInfo userInfo) {
-        return new DoctorUserInfoDTO(doctor.getId(), doctor.getSpecialization(), toDTO(userInfo));
+    public static DoctorUserInfoDTO toDTO(Doctor doctor, UserInfo userInfo, Address address) {
+        return new DoctorUserInfoDTO(
+                doctor.getId(),
+                doctor.getSpecialization(),
+                toDTO(userInfo),
+                toDTO(address)
+        );
     }
 
     public static UserInfoResponseDTO toDTO(UserInfo userInfo) {
@@ -64,6 +72,15 @@ public class DTOMapper {
                 .doctorId(doctor.getId())
                 .doctorName(combineStrings(doctor.getUserInfo().getFirstName(), doctor.getUserInfo().getLastName()))
                 .specialization(doctor.getSpecialization())
+                .build();
+    }
+
+    public static AddressResponseDTO toDTO (Address address) {
+        return AddressResponseDTO.builder()
+                .addressId(address.getId())
+                .city(address.getCity() != null ? address.getCity().value() : null)
+                .street(address.getStreet() != null ? address.getStreet().value() : null)
+                .zipCode(address.getZipCode() != null ? address.getZipCode().value() : null)
                 .build();
     }
 
