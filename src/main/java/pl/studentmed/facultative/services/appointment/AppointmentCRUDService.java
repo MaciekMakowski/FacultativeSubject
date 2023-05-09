@@ -32,7 +32,7 @@ public class AppointmentCRUDService {
     }
 
     private void isAppointmentDateAvailable(Doctor doctor, AppointmentDate appointmentDate) {
-        if (reader.checkIfDoctorHasAppointementOnThisDate(doctor, appointmentDate)) {
+        if (reader.checkIfDoctorHasAppointmentOnThisDate(doctor, appointmentDate)) {
             throw new AppointmentDateAlreadyTakenException("appointment", "This date is already taken.");
         }
     }

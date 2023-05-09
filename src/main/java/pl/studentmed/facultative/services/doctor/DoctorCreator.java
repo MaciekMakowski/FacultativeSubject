@@ -15,4 +15,5 @@ class DoctorCreator {
         var doctor = new Doctor(userInfo);
         return repository.saveAndFlush(doctor);
     }
+
 }

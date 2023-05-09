@@ -31,4 +31,5 @@ class UserInfoController {
     public UserInfoLoginResponseDTO loginUser(@RequestBody UserInfoLoginRequestDTO user) {
         return facade.loginUser(user);
     }
+
 }

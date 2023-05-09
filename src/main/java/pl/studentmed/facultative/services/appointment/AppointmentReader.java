@@ -36,7 +36,7 @@ class AppointmentReader {
                 );
     }
 
-    public boolean checkIfDoctorHasAppointementOnThisDate(Doctor doctor, AppointmentDate appointmentDate) {
+    public boolean checkIfDoctorHasAppointmentOnThisDate(Doctor doctor, AppointmentDate appointmentDate) {
         return repository.existsByAppointmentDateAndDoctor(appointmentDate, doctor);
     }
 
