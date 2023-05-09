@@ -9,7 +9,7 @@ public class ValueObject {
                 .allMatch(character -> Character.isLetter(character) || Character.isSpaceChar(character));
     }
 
-    public static boolean constainsLettersDigitsAndSpaces(String value) {
+    public static boolean containsLettersDigitsAndSpaces(String value) {
         return value.chars()
                 .allMatch(character -> Character.isLetterOrDigit(character) || Character.isSpaceChar(character));
     }

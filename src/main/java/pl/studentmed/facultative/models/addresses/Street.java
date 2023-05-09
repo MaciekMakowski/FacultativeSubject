@@ -6,7 +6,7 @@ import pl.studentmed.facultative.exceptions.EmptyFieldException;
 import pl.studentmed.facultative.exceptions.InvalidLengthException;
 import pl.studentmed.facultative.exceptions.InvalidSignsException;
 
-import static pl.studentmed.facultative.models.validators.ValueObject.constainsLettersDigitsAndSpaces;
+import static pl.studentmed.facultative.models.validators.ValueObject.containsLettersDigitsAndSpaces;
 
 @Embeddable
 @NoArgsConstructor
@@ -17,16 +17,20 @@ public class Street {
 
     public Street(String street) {
         if(street == null || street.length() == 0) {
-            throw new EmptyFieldException("street", "Street can't be empty.");
+            throw new EmptyFieldException("street", "Street name can't be empty.");
         }
         street = street.strip();
         if (street.length() > MAXIMUM_LENGTH) {
             throw new InvalidLengthException("street", "Street name is too long.");
         }
-        if (!constainsLettersDigitsAndSpaces(street)) {
-            throw new InvalidSignsException("street", "Street contains invalid signs.");
+        if (!containsLettersDigitsAndSpaces(street)) {
+            throw new InvalidSignsException("street", "Street name contains invalid signs.");
         }
         this.street = street;
+    }
+
+    public String value() {
+        return this.street;
     }
 
 }
