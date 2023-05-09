@@ -18,7 +18,12 @@ import static pl.studentmed.facultative.models.StudentMedDateUtils.DAY_MONTH_YEA
 public class DTOMapper {
 
     public static PatientResponseDTO toDTO(Patient patient, UserInfo userInfo) {
-            return new PatientResponseDTO(patient.getId(), toDTO(userInfo));
+            return new PatientResponseDTO(
+                    patient.getId(),
+                    patient.getAllergies(),
+                    patient.getMedicines(),
+                    toDTO(userInfo)
+            );
     }
 
     public static DoctorUserInfoDTO toDTO(Doctor doctor, UserInfo userInfo) {
