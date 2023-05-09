@@ -1,13 +1,18 @@
 package pl.studentmed.facultative.exceptions;
 
 import javax.validation.ConstraintViolationException;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static pl.studentmed.facultative.exceptions.ErrorMessage.extractFieldName;
 
 @RestControllerAdvice
 public class ExceptionsHandler {
@@ -62,8 +67,19 @@ public class ExceptionsHandler {
 
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     @ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
-    public ErrorMessage methodArgumentNotValidException(MethodArgumentNotValidException exception) {
-        return new ErrorMessage(exception.getFieldError().getField(), StringUtils.capitalize(exception.getFieldError().getDefaultMessage()));
+    public List<ErrorMessage> methodArgumentNotValidException(MethodArgumentNotValidException exception) {
+        BindingResult result = exception.getBindingResult();
+        return result.getFieldErrors().stream()
+                .map(fieldError -> new ErrorMessage(fieldError.getField(), fieldError.getDefaultMessage()))
+                .collect(Collectors.toList());
+    }
+
+    @ExceptionHandler(value = ConstraintViolationException.class)
+    @ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
+    public List<ErrorMessage> constraintViolationException(ConstraintViolationException exception) {
+        return exception.getConstraintViolations().stream()
+                .map(violation -> new ErrorMessage(extractFieldName(violation), violation.getMessage()))
+                .collect(Collectors.toList());
     }
 
     @ExceptionHandler(value = UserAlreadyExistsException.class)
@@ -76,12 +92,6 @@ public class ExceptionsHandler {
     @ResponseStatus(value = HttpStatus.UNAUTHORIZED)
     public ErrorMessage badCredentialsException() {
         return new ErrorMessage("password", "Wrong password or email entered.");
-    }
-
-    @ExceptionHandler(value = ConstraintViolationException.class)
-    @ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
-    public ErrorMessage constraintViolationException(ConstraintViolationException exception) {
-        return ErrorMessage.of(exception);
     }
 
     @ExceptionHandler(value = AppointmentCantBeCancelledException.class)
