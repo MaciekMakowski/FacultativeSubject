@@ -5,7 +5,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import pl.studentmed.facultative.models.user_info.UserInfo;
-import pl.studentmed.facultative.services.user_info.UserInfoCRUDService;
+import pl.studentmed.facultative.services.user_info.crud.UserInfoCRUDService;
 
 @Service
 @RequiredArgsConstructor
@@ -26,4 +26,5 @@ public class CurrentUserService implements UserDetailsService {
         else
             throw new UsernameNotFoundException("Failed to find user with email: " + username);
     }
+
 }

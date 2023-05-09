@@ -1,4 +1,4 @@
-package pl.studentmed.facultative.services.appointment;
+package pl.studentmed.facultative.services.appointment.crud;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -168,4 +168,5 @@ interface AppointmentRepository extends JpaRepository<Appointment, Long> {
                                                                           @Param("startDate") String startDate,
                                                                           @Param("endDate") String endDate,
                                                                           PageRequest pageable);
+
 }

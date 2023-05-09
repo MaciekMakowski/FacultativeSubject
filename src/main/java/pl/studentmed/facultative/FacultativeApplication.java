@@ -29,4 +29,5 @@ public class FacultativeApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(FacultativeApplication.class, args);
 	}
+
 }

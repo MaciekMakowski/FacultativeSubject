@@ -1,6 +1,5 @@
 package pl.studentmed.facultative.models.address;
 
-
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import lombok.Getter;

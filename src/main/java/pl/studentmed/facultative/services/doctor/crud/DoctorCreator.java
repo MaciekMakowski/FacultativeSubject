@@ -1,4 +1,4 @@
-package pl.studentmed.facultative.services.doctor;
+package pl.studentmed.facultative.services.doctor.crud;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

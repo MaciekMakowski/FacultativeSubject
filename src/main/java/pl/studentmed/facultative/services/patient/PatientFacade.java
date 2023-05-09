@@ -4,7 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import pl.studentmed.facultative.models.appointment.AppointmentResponseDTO;
 import pl.studentmed.facultative.models.patient.Patient;
-import pl.studentmed.facultative.services.appointment.AppointmentCRUDService;
+import pl.studentmed.facultative.services.appointment.crud.AppointmentCRUDService;
+import pl.studentmed.facultative.services.patient.crud.PatientCRUDService;
 
 import java.time.LocalDate;
 import java.util.List;

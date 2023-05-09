@@ -1,4 +1,4 @@
-package pl.studentmed.facultative.services.user_info;
+package pl.studentmed.facultative.services.user_info.crud;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

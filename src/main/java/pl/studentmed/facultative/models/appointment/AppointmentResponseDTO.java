@@ -13,4 +13,5 @@ public record AppointmentResponseDTO(Long appointmentId,
                                      String modifiedAt) {
 
     @Builder public AppointmentResponseDTO {}
+
 }

@@ -1,4 +1,4 @@
-package pl.studentmed.facultative.services.user_info;
+package pl.studentmed.facultative.services.user_info.crud;
 
 
 import lombok.RequiredArgsConstructor;
@@ -33,4 +33,5 @@ public class UserInfoCRUDService {
     public boolean existsByEmailOrPesel(String email, String pesel) {
         return reader.existsByEmailOrPesel(email, pesel);
     }
+
 }

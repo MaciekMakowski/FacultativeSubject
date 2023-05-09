@@ -68,14 +68,14 @@ public class ExceptionsHandler {
 
     @ExceptionHandler(value = UserAlreadyExistsException.class)
     @ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
-    public ErrorMessage userAlreadyExsistsException(UserAlreadyExistsException exception) {
+    public ErrorMessage userAlreadyExistsException(UserAlreadyExistsException exception) {
         return new ErrorMessage(exception.fieldName, exception.getMessage());
     }
 
     @ExceptionHandler(value = BadCredentialsException.class)
     @ResponseStatus(value = HttpStatus.UNAUTHORIZED)
     public ErrorMessage badCredentialsException() {
-        return new ErrorMessage("password", "You have written wrong email or password.");
+        return new ErrorMessage("password", "Wrong password or email entered.");
     }
 
     @ExceptionHandler(value = ConstraintViolationException.class)

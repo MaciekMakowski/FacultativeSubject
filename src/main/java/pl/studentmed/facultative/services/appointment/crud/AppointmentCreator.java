@@ -1,4 +1,4 @@
-package pl.studentmed.facultative.services.appointment;
+package pl.studentmed.facultative.services.appointment.crud;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -17,6 +17,5 @@ class AppointmentCreator {
         Appointment appointment = new Appointment(patient, doctor, appointmentDate, patientSymptoms);
         return repository.saveAndFlush(appointment);
     }
-
 
 }

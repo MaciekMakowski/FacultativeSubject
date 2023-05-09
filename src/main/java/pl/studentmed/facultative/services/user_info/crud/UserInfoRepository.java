@@ -1,4 +1,4 @@
-package pl.studentmed.facultative.services.user_info;
+package pl.studentmed.facultative.services.user_info.crud;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import pl.studentmed.facultative.models.user_info.UserInfo;

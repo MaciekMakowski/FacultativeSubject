@@ -3,8 +3,9 @@ package pl.studentmed.facultative.services.appointment;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import pl.studentmed.facultative.models.appointment.*;
-import pl.studentmed.facultative.services.doctor.DoctorCRUDService;
-import pl.studentmed.facultative.services.patient.PatientCRUDService;
+import pl.studentmed.facultative.services.appointment.crud.AppointmentCRUDService;
+import pl.studentmed.facultative.services.doctor.crud.DoctorCRUDService;
+import pl.studentmed.facultative.services.patient.crud.PatientCRUDService;
 
 import java.time.LocalDate;
 import java.util.List;

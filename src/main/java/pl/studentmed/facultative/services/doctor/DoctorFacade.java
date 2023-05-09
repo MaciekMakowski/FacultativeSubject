@@ -5,7 +5,8 @@ import org.springframework.stereotype.Component;
 import pl.studentmed.facultative.models.appointment.AppointmentResponseDTO;
 import pl.studentmed.facultative.models.doctor.Doctor;
 import pl.studentmed.facultative.models.doctor.DoctorSpecializationDTO;
-import pl.studentmed.facultative.services.appointment.AppointmentCRUDService;
+import pl.studentmed.facultative.services.appointment.crud.AppointmentCRUDService;
+import pl.studentmed.facultative.services.doctor.crud.DoctorCRUDService;
 
 import java.time.LocalDate;
 import java.util.List;

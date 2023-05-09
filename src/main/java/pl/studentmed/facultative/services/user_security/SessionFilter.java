@@ -1,6 +1,5 @@
 package pl.studentmed.facultative.services.user_security;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.lang.NonNull;
@@ -58,4 +57,5 @@ public class SessionFilter extends OncePerRequestFilter {
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
         filterChain.doFilter(request, response);
     }
+
 }

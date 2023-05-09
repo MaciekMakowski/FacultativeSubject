@@ -1,4 +1,4 @@
-package pl.studentmed.facultative.services.addresses;
+package pl.studentmed.facultative.services.addresses.crud;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -6,12 +6,13 @@ import pl.studentmed.facultative.models.address.Address;
 
 @Component
 @RequiredArgsConstructor
-public class AddressCRUDService {
+class AddressCreator {
 
-    private final AddressCreator creator;
+    private final AddressRepository repository;
 
     public Address createEmptyAddress() {
-        return creator.createEmptyAddress();
+        var emptyAddress = new Address();
+        return repository.saveAndFlush(emptyAddress);
     }
 
 }

@@ -1,4 +1,4 @@
-package pl.studentmed.facultative.services.doctor;
+package pl.studentmed.facultative.services.doctor.crud;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

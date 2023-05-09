@@ -29,4 +29,5 @@ public enum AppointmentStatus {
     public static boolean isCanceled(AppointmentStatus appointmentStatus) {
         return appointmentStatus.equals(AppointmentStatus.CANCELED);
     }
+
 }

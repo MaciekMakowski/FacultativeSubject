@@ -1,4 +1,4 @@
-package pl.studentmed.facultative.services.appointment;
+package pl.studentmed.facultative.services.appointment.crud;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;

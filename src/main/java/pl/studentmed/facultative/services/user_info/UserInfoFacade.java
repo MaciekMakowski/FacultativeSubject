@@ -4,9 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import pl.studentmed.facultative.exceptions.UserAlreadyExistsException;
 import pl.studentmed.facultative.models.user_info.*;
-import pl.studentmed.facultative.services.addresses.AddressCRUDService;
-import pl.studentmed.facultative.services.doctor.DoctorCRUDService;
-import pl.studentmed.facultative.services.patient.PatientCRUDService;
+import pl.studentmed.facultative.services.addresses.crud.AddressCRUDService;
+import pl.studentmed.facultative.services.doctor.crud.DoctorCRUDService;
+import pl.studentmed.facultative.services.patient.crud.PatientCRUDService;
+import pl.studentmed.facultative.services.user_info.crud.UserInfoCRUDService;
 
 import static pl.studentmed.facultative.models.DTOMapper.toDTO;
 

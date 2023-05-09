@@ -1,4 +1,4 @@
-package pl.studentmed.facultative.services.appointment;
+package pl.studentmed.facultative.services.appointment.crud;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -41,7 +41,8 @@ class AppointmentUpdater {
         var newStatus = AppointmentStatus.getAppointmentStatus(givenStatus);
         if (AppointmentStatus.isCanceled(newStatus)) {
             if (!appointmentToEdit.canBeCanceled()) {
-                throw new AppointmentCantBeCancelledException();
+                throw new AppointmentCantBeCancelledException("appointment",
+                        "Appointment can't be cancelled if there is less than 24 hours left.");
             }
         }
         appointmentToEdit.setStatus(newStatus);
