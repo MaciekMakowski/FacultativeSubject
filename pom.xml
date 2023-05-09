@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>pl.studentmed</groupId>
 	<artifactId>facultative</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-VERSION</version>
 	<name>facultative</name>
 	<description>Medical clinic application for students</description>
 	<properties>
@@ -62,7 +62,7 @@
 		<dependency>
 			<groupId>org.hibernate.validator</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>8.0.0.Final</version>
+			<version>6.2.0.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
