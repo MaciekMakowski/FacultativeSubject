@@ -3,6 +3,7 @@ package pl.studentmed.facultative.services.appointment;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -36,7 +37,7 @@ class AppointmentController {
     }
 
     @GetMapping("/busy_at")
-    public ResponseEntity<List<AppointmentBusyHoursDTO>> getBusyAppointmentHoursForDate(@NotNull @RequestParam LocalDate givenDate) {
+    public ResponseEntity<List<AppointmentBusyHoursDTO>> getBusyAppointmentHoursForDate(@NotNull @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate givenDate) {
         var busyHours = facade.getBusyAppointmentHoursForDate(givenDate);
         return busyHours.size() > 0 ? ResponseEntity.ok(busyHours) : ResponseEntity.noContent().build();
     }

@@ -6,8 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import pl.studentmed.facultative.models.appointment.AppointmentResponseDTO;
-import pl.studentmed.facultative.models.doctor.Doctor;
 import pl.studentmed.facultative.models.doctor.DoctorSpecializationDTO;
+import pl.studentmed.facultative.models.doctor.DoctorUserInfoDTO;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -25,7 +25,7 @@ class DoctorController {
 
     @GetMapping("/{doctorId}")
     @ResponseStatus(HttpStatus.OK)
-    public Doctor getDoctorById(@PathVariable Long doctorId) {
+    public DoctorUserInfoDTO getDoctorById(@PathVariable Long doctorId) {
         return doctorFacade.getDoctorById(doctorId);
     }
 
