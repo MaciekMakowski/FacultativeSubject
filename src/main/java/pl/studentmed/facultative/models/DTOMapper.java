@@ -32,7 +32,7 @@ public class DTOMapper {
     public static DoctorUserInfoDTO toDTO(Doctor doctor, UserInfo userInfo, Address address) {
         return new DoctorUserInfoDTO(
                 doctor.getId(),
-                doctor.getSpecialization(),
+                doctor.getSpecialization().value,
                 toDTO(userInfo),
                 toDTO(address)
         );
@@ -73,7 +73,7 @@ public class DTOMapper {
         return DoctorSpecializationDTO.builder()
                 .doctorId(doctor.getId())
                 .doctorName(combineStrings(doctor.getUserInfo().getFirstName(), doctor.getUserInfo().getLastName()))
-                .specialization(doctor.getSpecialization())
+                .specialization(doctor.getSpecialization().value)
                 .build();
     }
 

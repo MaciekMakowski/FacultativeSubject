@@ -24,7 +24,8 @@ public class Doctor extends BasicEntity {
     @OneToMany(mappedBy = "doctor")
     private List<Appointment> appointments;
 
-    private String specialization;
+    @Enumerated(EnumType.STRING)
+    private Specialization specialization;
 
     public Doctor(UserInfo userInfo) {
         this.userInfo = userInfo;

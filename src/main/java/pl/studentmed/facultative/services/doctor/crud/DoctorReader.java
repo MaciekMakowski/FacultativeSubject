@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import pl.studentmed.facultative.exceptions.EntityNotFoundException;
 import pl.studentmed.facultative.models.doctor.Doctor;
 import pl.studentmed.facultative.models.doctor.DoctorSpecializationDTO;
+import pl.studentmed.facultative.models.doctor.Specialization;
 
 import java.util.List;
 
@@ -21,7 +22,8 @@ class DoctorReader {
                 );
     }
 
-    public List<DoctorSpecializationDTO> getDoctorsBySpecialization(String specialization) {
+    public List<DoctorSpecializationDTO> getDoctorsBySpecialization(String givenSpecialization) {
+        var specialization = Specialization.getSpecialization(givenSpecialization);
         return repository.getDoctorsBySpecialization(specialization);
     }
 

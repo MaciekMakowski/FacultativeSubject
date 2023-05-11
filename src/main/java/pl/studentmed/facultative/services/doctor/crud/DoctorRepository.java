@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import pl.studentmed.facultative.models.doctor.Doctor;
 import pl.studentmed.facultative.models.doctor.DoctorSpecializationDTO;
+import pl.studentmed.facultative.models.doctor.Specialization;
 
 import java.util.List;
 
@@ -15,11 +16,11 @@ interface DoctorRepository extends JpaRepository<Doctor, Long> {
             (
                 doc.id,
                 concat(doc.userInfo.firstName, ' ', doc.userInfo.lastName),
-                doc.specialization
+                cast(doc.specialization as string) 
             )
             from Doctor doc
             where doc.specialization = :specialization
            """)
-    List<DoctorSpecializationDTO> getDoctorsBySpecialization(@Param("specialization") String specialization);
+    List<DoctorSpecializationDTO> getDoctorsBySpecialization(@Param("specialization") Specialization specialization);
 
 }
