@@ -19,6 +19,9 @@ public record UserInfoUpdateDTO(
                                 @Size(min = 2, max = 30, message = "Last name must be between 2 and 30 characters.")
                                 @Pattern(regexp = NAME_REGEX, message = "Last name must contain only letters.")
                                 String lastName,
+                                @NotNull(message = "Password field must be filled in.")
+                                @Size(min = 8, max = 25, message = "Password must be between 8 and 25 characters.")
+                                String password,
                                 @Pattern(regexp = "\\d+", message = "Phone number must contain only digits.")
                                 @Size(min = 9, max = 9, message = "Phone number must contain exact 9 characters.")
                                 String phoneNumber,

@@ -41,6 +41,7 @@ public class UserInfoCRUDService {
                 userInfo,
                 userInfoUpdateDTO.firstName(),
                 userInfoUpdateDTO.lastName(),
+                userInfoUpdateDTO.password(),
                 userInfoUpdateDTO.phoneNumber(),
                 userInfoUpdateDTO.birthdate()
         );

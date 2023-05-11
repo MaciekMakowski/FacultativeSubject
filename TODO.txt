@@ -1,6 +1,6 @@
 For patient -
-1. User's profile and medicines edit
-2. User's appointment cancel
+1. User's appointment cancel
+2. Password reminder
 
 For admin -
 1. Acceptation of appointment
