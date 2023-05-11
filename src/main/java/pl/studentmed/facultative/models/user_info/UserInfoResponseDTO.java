@@ -8,6 +8,7 @@ public record UserInfoResponseDTO(Long userInfoId,
                                   String email,
                                   String birthdate,
                                   String pesel,
+                                  String phoneNumber,
                                   String userRole,
                                   String createdAt,
                                   String modifiedAt
