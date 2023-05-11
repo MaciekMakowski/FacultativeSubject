@@ -100,4 +100,10 @@ public class ExceptionsHandler {
         return new ErrorMessage(exception.fieldName, exception.getMessage());
     }
 
+    @ExceptionHandler(value = InvalidSpecializationException.class)
+    @ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
+    public ErrorMessage invalidSpecializationException(InvalidSpecializationException exception) {
+        return new ErrorMessage("specialization", exception.getMessage());
+    }
+
 }
