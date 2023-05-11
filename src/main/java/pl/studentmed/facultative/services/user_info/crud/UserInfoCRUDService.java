@@ -12,6 +12,7 @@ public class UserInfoCRUDService {
 
     private final UserInfoReader reader;
     private final UserInfoCreator creator;
+    private final UserInfoUpdater updater;
 
 
     public UserInfo getUserInfoById(Long userInfoId) {
@@ -32,6 +33,17 @@ public class UserInfoCRUDService {
 
     public boolean existsByEmailOrPesel(String email, String pesel) {
         return reader.existsByEmailOrPesel(email, pesel);
+    }
+
+    public UserInfo updateUserInfo(UserInfoUpdateDTO userInfoUpdateDTO) {
+        var userInfo = reader.getUserInfoById(userInfoUpdateDTO.userInfoId());
+        return updater.updateUserInfo(
+                userInfo,
+                userInfoUpdateDTO.firstName(),
+                userInfoUpdateDTO.lastName(),
+                userInfoUpdateDTO.phoneNumber(),
+                userInfoUpdateDTO.birthdate()
+        );
     }
 
 }
