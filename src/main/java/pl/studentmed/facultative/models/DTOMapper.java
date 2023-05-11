@@ -46,6 +46,7 @@ public class DTOMapper {
                 .email(userInfo.getEmail())
                 .userRole(userInfo.getRole().value)
                 .birthdate(userInfo.getBirthdate().format(DAY_MONTH_YEAR))
+                .pesel(userInfo.getPesel())
                 .createdAt(userInfo.getCreatedAt().format(DAY_MONTH_YEAR_TIME))
                 .modifiedAt(userInfo.getModifiedAt().format(DAY_MONTH_YEAR_TIME))
                 .build();
