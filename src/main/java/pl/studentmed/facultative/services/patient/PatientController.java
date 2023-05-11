@@ -8,7 +8,9 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import pl.studentmed.facultative.models.appointment.AppointmentResponseDTO;
 import pl.studentmed.facultative.models.patient.PatientResponseDTO;
+import pl.studentmed.facultative.models.patient.PatientUpdateDTO;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import java.time.LocalDate;
@@ -38,6 +40,12 @@ class PatientController {
             ) {
         var appointments = patientFacade.getPatientAppointments(patientId, appointmentDate, secondDate, offset, limit);
         return appointments.size() > 0 ? ResponseEntity.ok(appointments) : ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping("")
+    @ResponseStatus(HttpStatus.OK)
+    public PatientResponseDTO updatePatient(@Valid @RequestBody PatientUpdateDTO patientUpdateDTO) {
+        return patientFacade.updatePatient(patientUpdateDTO);
     }
 
 }
