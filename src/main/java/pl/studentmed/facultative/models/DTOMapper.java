@@ -32,7 +32,7 @@ public class DTOMapper {
     public static DoctorUserInfoDTO toDTO(Doctor doctor, UserInfo userInfo, Address address) {
         return new DoctorUserInfoDTO(
                 doctor.getId(),
-                doctor.getSpecialization().value,
+                doctor.getSpecialization() != null ? doctor.getSpecialization().value : null,
                 toDTO(userInfo),
                 toDTO(address)
         );

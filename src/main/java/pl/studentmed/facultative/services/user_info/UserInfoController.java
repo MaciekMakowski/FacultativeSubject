@@ -6,10 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import pl.studentmed.facultative.models.user_info.IUserInfoDTO;
-import pl.studentmed.facultative.models.user_info.UserInfoCreateDTO;
-import pl.studentmed.facultative.models.user_info.UserInfoLoginRequestDTO;
-import pl.studentmed.facultative.models.user_info.UserInfoLoginResponseDTO;
+import pl.studentmed.facultative.models.user_info.*;
 
 @RestController
 @RequestMapping("/api/users")
@@ -21,7 +18,7 @@ class UserInfoController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public IUserInfoDTO createUser(@Valid @RequestBody UserInfoCreateDTO dto) {
+    public UserInfoResponseDTO createUser(@Valid @RequestBody UserInfoCreateDTO dto) {
         return facade.createUser(dto);
     }
 

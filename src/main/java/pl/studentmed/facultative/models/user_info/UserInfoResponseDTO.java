@@ -12,7 +12,7 @@ public record UserInfoResponseDTO(Long userInfoId,
                                   String userRole,
                                   String createdAt,
                                   String modifiedAt
-                                  ) implements IUserInfoDTO {
+                                  ) {
 
     @Builder public UserInfoResponseDTO {}
 }

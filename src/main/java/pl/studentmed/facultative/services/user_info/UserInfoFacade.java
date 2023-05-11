@@ -20,7 +20,7 @@ class UserInfoFacade {
     private final PatientCRUDService patientCRUDService;
     private final DoctorCRUDService doctorCRUDService;
 
-    public IUserInfoDTO createUser(UserInfoCreateDTO user) {
+    public UserInfoResponseDTO createUser(UserInfoCreateDTO user) {
         if (userInfoCRUDService.existsByEmailOrPesel(user.email(), user.pesel())) {
             throw new UserAlreadyExistsException("registration", "User with this email or pesel already exists.");
         }
@@ -32,13 +32,13 @@ class UserInfoFacade {
             var doctorAddress = addressCRUDService.createEmptyAddress();
             var userInfo = userInfoCRUDService.createUser(user, doctorAddress, Role.DOCTOR);
             var doctor = doctorCRUDService.createDoctor(userInfo);
-            return toDTO(doctor, userInfo, doctorAddress);
+            return toDTO(doctor.getUserInfo());
         }
         else {
             var patientAddress = addressCRUDService.createEmptyAddress();
             var userInfo = userInfoCRUDService.createUser(user, patientAddress, Role.PATIENT);
             var patient = patientCRUDService.createPatient(userInfo);
-            return toDTO(patient, userInfo, patientAddress);
+            return toDTO(patient.getUserInfo());
         }
     }
 
