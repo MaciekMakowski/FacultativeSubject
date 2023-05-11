@@ -4,7 +4,7 @@ import lombok.Builder;
 import org.springframework.validation.annotation.Validated;
 
 @Validated
-public record UserInfoLoginResponseDTO(String userInfoId,
+public record UserInfoLoginResponseDTO(Long userInfoId,
                                        String sessionId,
                                        String email,
                                        String firstName,

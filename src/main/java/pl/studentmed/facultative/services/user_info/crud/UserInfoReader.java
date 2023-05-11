@@ -70,7 +70,7 @@ class UserInfoReader {
         final String sessionId = sessionRegistry.registerSession(userInfoLoginRequestDTO.email());
 
         return UserInfoLoginResponseDTO.builder()
-                .userInfoId(String.valueOf(userToLoginInto.getId()))
+                .userInfoId(userToLoginInto.getId())
                 .sessionId(sessionId)
                 .email(userToLoginInto.getEmail())
                 .firstName(userToLoginInto.getFirstName())
