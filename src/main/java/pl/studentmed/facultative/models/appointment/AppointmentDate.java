@@ -1,6 +1,7 @@
 package pl.studentmed.facultative.models.appointment;
 
 import lombok.NoArgsConstructor;
+import pl.studentmed.facultative.exceptions.AppointmentDateTooLateException;
 import pl.studentmed.facultative.exceptions.EmptyFieldException;
 
 import javax.persistence.Embeddable;
@@ -18,6 +19,9 @@ public class AppointmentDate {
     public AppointmentDate(LocalDateTime appointmentDate) {
         if (appointmentDate == null) {
             throw new EmptyFieldException("appointmentDate", "Appointment date can't be empty.");
+        }
+        if (appointmentDate.isBefore(LocalDateTime.now().plusMinutes(15))) {
+            throw new AppointmentDateTooLateException("appointmentDate", "Appointment must be made at least 15 minutes before it.");
         }
         this.date = appointmentDate.format(DAY_MONTH_YEAR_TIME);
     }

@@ -106,4 +106,10 @@ public class ExceptionsHandler {
         return new ErrorMessage("specialization", exception.getMessage());
     }
 
+    @ExceptionHandler(value = AppointmentDateTooLateException.class)
+    @ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
+    public ErrorMessage appointmentDateTooLateException(AppointmentDateTooLateException exception) {
+        return new ErrorMessage(exception.fieldName, exception.getMessage());
+    }
+
 }
