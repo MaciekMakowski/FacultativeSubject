@@ -50,10 +50,6 @@ public class AppointmentCRUDService {
     }
 
     public Appointment editAppointment(Appointment appointment, AppointmentEditDTO dto) {
-        if(dto.newAppointmentDate() != null) {
-            var appointmentDate = new AppointmentDate(dto.newAppointmentDate());
-            isAppointmentDateAvailable(appointment.getDoctor(), appointmentDate);
-        }
         return updater.editAppointment(appointment, dto);
     }
 

@@ -22,9 +22,6 @@ class AppointmentUpdater {
         if (dto.newStatus() != null) {
             changeAppointmentStatus(appointmentToEdit, dto.newStatus());
         }
-        if (dto.newAppointmentDate() != null) {
-            changeAppointmentDate(appointmentToEdit, dto.newAppointmentDate());
-        }
         var modifiedAt = LocalDateTime.now();
         var modifiedAtFormatted = modifiedAt.format(DAY_MONTH_YEAR_TIME);
         appointmentToEdit.setModifiedAt(modifiedAtFormatted);
