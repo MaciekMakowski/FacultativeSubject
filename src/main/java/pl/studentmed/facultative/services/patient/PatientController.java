@@ -33,12 +33,13 @@ class PatientController {
     @GetMapping("/{patientId}/appointments")
     public ResponseEntity<List<AppointmentResponseDTO>> getPatientAppointments(
             @PathVariable Long patientId,
+            @RequestParam String status,
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate appointmentDate,
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate secondDate,
             @RequestParam(required = false) @Min(0) @Max(300) Integer offset,
             @RequestParam(required = false) @Min(1) @Max(30) Integer limit
             ) {
-        var appointments = patientFacade.getPatientAppointments(patientId, appointmentDate, secondDate, offset, limit);
+        var appointments = patientFacade.getPatientAppointments(patientId, status, appointmentDate, secondDate, offset, limit);
         return appointments.size() > 0 ? ResponseEntity.ok(appointments) : ResponseEntity.noContent().build();
     }
 

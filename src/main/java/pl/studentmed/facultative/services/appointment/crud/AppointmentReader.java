@@ -5,10 +5,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 import pl.studentmed.facultative.exceptions.EntityNotFoundException;
-import pl.studentmed.facultative.models.appointment.Appointment;
-import pl.studentmed.facultative.models.appointment.AppointmentBusyHoursDTO;
-import pl.studentmed.facultative.models.appointment.AppointmentDate;
-import pl.studentmed.facultative.models.appointment.AppointmentResponseDTO;
+import pl.studentmed.facultative.models.appointment.*;
 import pl.studentmed.facultative.models.doctor.Doctor;
 
 import java.time.LocalDate;
@@ -49,29 +46,30 @@ class AppointmentReader {
         return repository.getAppointmentsByDoctorId(doctorId, pageable);
     }
 
-    public List<AppointmentResponseDTO> getPatientAppointments(Long patientId, LocalDate appointmentDate,
+    public List<AppointmentResponseDTO> getPatientAppointments(Long patientId, AppointmentStatus status, LocalDate appointmentDate,
                                                                LocalDate secondDate, Integer givenOffset,
                                                                Integer givenLimit) {
         var pageable = createPageRequest(givenOffset, givenLimit);
         if (appointmentDate != null && secondDate != null) {
-            return getAppointmentWithDateBetween(patientId, appointmentDate, secondDate, pageable);
+            return getAppointmentWithDateBetween(patientId, status, appointmentDate, secondDate, pageable);
         }
         if (appointmentDate != null) {
-            return getAppointmentWithDateLike(patientId, appointmentDate, pageable);
+            return getAppointmentWithDateLike(patientId, status, appointmentDate, pageable);
         }
-        return repository.getAppointmentsByPatientId(patientId, pageable);
+        return repository.getAppointmentsByPatientId(patientId, status, pageable);
     }
 
-    private List<AppointmentResponseDTO> getAppointmentWithDateBetween(
-            Long patientId, LocalDate firstDate, LocalDate secondDate, PageRequest pageable) {
+    private List<AppointmentResponseDTO> getAppointmentWithDateBetween(Long patientId, AppointmentStatus status,
+                                                                       LocalDate firstDate, LocalDate secondDate,
+                                                                       PageRequest pageable) {
         var startDate = firstDate.format(DAY_MONTH_YEAR);
         var endDate = secondDate.format(DAY_MONTH_YEAR);
-        return repository.getAppointmentsByPatientIdAndDateBetween(patientId, startDate, endDate, pageable);
+        return repository.getAppointmentsByPatientIdAndDateBetween(patientId, status, startDate, endDate, pageable);
     }
-    private List<AppointmentResponseDTO> getAppointmentWithDateLike(
-            Long patientId, LocalDate appointmentDate, PageRequest pageable) {
+    private List<AppointmentResponseDTO> getAppointmentWithDateLike(Long patientId, AppointmentStatus status,
+                                                                    LocalDate appointmentDate, PageRequest pageable) {
         var wantedDate = appointmentDate.format(DAY_MONTH_YEAR);
-        return repository.getAppointmentsByPatientIdAndAppointmentDateLike(patientId, wantedDate, pageable);
+        return repository.getAppointmentsByPatientIdAndAppointmentDateLike(patientId, status, wantedDate, pageable);
     }
 
     private static PageRequest createPageRequest(Integer givenOffset, Integer givenLimit) {

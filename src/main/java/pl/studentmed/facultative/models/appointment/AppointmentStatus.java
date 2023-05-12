@@ -20,7 +20,7 @@ public enum AppointmentStatus {
 
     public static AppointmentStatus getAppointmentStatus(String givenValue) {
         return Stream.of(values())
-                .filter(colorValue -> colorValue.value.equals(givenValue))
+                .filter(appointmentStatus -> appointmentStatus.value.equals(givenValue))
                 .findFirst()
                 .orElseThrow(() -> new InvalidAppointmentStatusException(String.format("Appointment status must be one of '%s', '%s', '%s', '%s', or '%s'",
                         NEW.value, APPROVED.value, CANCELED.value, DONE.value, RESCHEDULED.value)));

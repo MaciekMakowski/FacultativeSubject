@@ -5,10 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import pl.studentmed.facultative.models.appointment.Appointment;
-import pl.studentmed.facultative.models.appointment.AppointmentBusyHoursDTO;
-import pl.studentmed.facultative.models.appointment.AppointmentDate;
-import pl.studentmed.facultative.models.appointment.AppointmentResponseDTO;
+import pl.studentmed.facultative.models.appointment.*;
 import pl.studentmed.facultative.models.doctor.Doctor;
 
 import java.util.List;
@@ -108,11 +105,13 @@ interface AppointmentRepository extends JpaRepository<Appointment, Long> {
             join fetch Patient p on app.patient = p
             join fetch Doctor d on app.doctor = d
             where p.id = :patientId
+            and app.status = :status
             and app.appointmentDate.date like :appointmentDate%
             order by app.appointmentDate.date asc
             """
     )
     List<AppointmentResponseDTO> getAppointmentsByPatientIdAndAppointmentDateLike(@Param("patientId") Long patientId,
+                                                                                  @Param("status") AppointmentStatus status,
                                                                                   @Param("appointmentDate") String wantedDate,
                                                                                   Pageable pageable);
 
@@ -134,9 +133,10 @@ interface AppointmentRepository extends JpaRepository<Appointment, Long> {
             join fetch Patient p on app.patient = p
             join fetch Doctor d on app.doctor = d
             where p.id = :patientId
+            and app.status = :status
             order by app.appointmentDate.date asc
            """)
-    List<AppointmentResponseDTO> getAppointmentsByPatientId(@Param("patientId") Long patientId, Pageable pageable);
+    List<AppointmentResponseDTO> getAppointmentsByPatientId(@Param("patientId") Long patientId, @Param("status") AppointmentStatus status, Pageable pageable);
 
 
     @Query("""
@@ -171,10 +171,12 @@ interface AppointmentRepository extends JpaRepository<Appointment, Long> {
             join fetch Patient p on app.patient = p
             join fetch Doctor d on app.doctor = d
             where p.id = :patientId
+            and app.status = :status
             and app.appointmentDate.date between :startDate AND :endDate
             order by app.appointmentDate.date asc
            """)
     List<AppointmentResponseDTO> getAppointmentsByPatientIdAndDateBetween(@Param("patientId") Long patientId,
+                                                                          @Param("status") AppointmentStatus status,
                                                                           @Param("startDate") String startDate,
                                                                           @Param("endDate") String endDate,
                                                                           PageRequest pageable);
