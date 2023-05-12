@@ -26,9 +26,9 @@ public class AppointmentCRUDService {
         return reader.getAppointmentById(appointmentId);
     }
 
-    public Appointment createAppointment(Patient patient, Doctor doctor, AppointmentDate appointmentDate, String patientSymptoms) {
+    public Appointment createAppointment(Patient patient, Doctor doctor, AppointmentDate appointmentDate, String patientSymptoms, String medicinesTaken) {
         isAppointmentDateAvailable(doctor, appointmentDate);
-        return creator.createAppointment(patient, doctor, appointmentDate, patientSymptoms);
+        return creator.createAppointment(patient, doctor, appointmentDate, patientSymptoms, medicinesTaken);
     }
 
     private void isAppointmentDateAvailable(Doctor doctor, AppointmentDate appointmentDate) {

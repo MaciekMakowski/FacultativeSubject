@@ -13,8 +13,8 @@ class AppointmentCreator {
 
     private final AppointmentRepository repository;
 
-    public Appointment createAppointment(Patient patient, Doctor doctor, AppointmentDate appointmentDate, String patientSymptoms) {
-        Appointment appointment = new Appointment(patient, doctor, appointmentDate, patientSymptoms);
+    public Appointment createAppointment(Patient patient, Doctor doctor, AppointmentDate appointmentDate, String patientSymptoms, String medicinesTaken) {
+        Appointment appointment = new Appointment(patient, doctor, appointmentDate, patientSymptoms, medicinesTaken);
         return repository.saveAndFlush(appointment);
     }
 

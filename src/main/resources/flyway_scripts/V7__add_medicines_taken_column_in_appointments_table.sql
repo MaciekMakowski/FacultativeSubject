@@ -1,0 +1,1 @@
+alter table appointments add column medicines_taken varchar(255);

@@ -63,6 +63,7 @@ public class DTOMapper {
                 .appointmentDate(appointment.getAppointmentDate().date)
                 .appointmentStatus(appointment.getStatus())
                 .patientSymptoms(appointment.getPatientSymptoms())
+                .medicinesTaken(appointment.getMedicinesTaken())
                 .doctorRecommendations(appointment.getRecommendations())
                 .createdAt(appointment.getCreatedAt())
                 .modifiedAt(appointment.getModifiedAt())

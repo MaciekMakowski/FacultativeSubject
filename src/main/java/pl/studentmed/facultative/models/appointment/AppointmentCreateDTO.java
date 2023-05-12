@@ -9,5 +9,6 @@ public record AppointmentCreateDTO(
                                    @NotNull Long doctorId,
                                    @NotNull
                                    LocalDateTime appointmentDate,
-                                   String patientSymptoms) {
+                                   String patientSymptoms,
+                                   String medicinesTaken) {
 }

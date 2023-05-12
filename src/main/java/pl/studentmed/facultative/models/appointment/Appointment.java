@@ -40,7 +40,9 @@ public class Appointment extends BasicEntity {
 
     private String recommendations;
 
-    public Appointment(Patient patient, Doctor doctor, AppointmentDate appointmentDate, String patientSymptoms) {
+    private String medicinesTaken;
+
+    public Appointment(Patient patient, Doctor doctor, AppointmentDate appointmentDate, String patientSymptoms, String medicinesTaken) {
         this.patient = patient;
         this.doctor = doctor;
         this.appointmentDate = appointmentDate;
@@ -49,6 +51,7 @@ public class Appointment extends BasicEntity {
         var now = LocalDateTime.now();
         this.createdAt = now.format(DAY_MONTH_YEAR_TIME);
         this.modifiedAt = now.format(DAY_MONTH_YEAR_TIME);
+        this.medicinesTaken = medicinesTaken;
     }
 
     public boolean canBeCanceled() {
