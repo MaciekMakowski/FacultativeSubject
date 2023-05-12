@@ -146,8 +146,12 @@ interface AppointmentRepository extends JpaRepository<Appointment, Long> {
                 )
             from Appointment app
             where app.appointmentDate.date like :appointmentDate%
+            and app.doctor.id = :doctorId
            """)
-    List<AppointmentBusyHoursDTO> getBusyAppointmentsHoursByGivenDate(@Param("appointmentDate") String appointmentDate);
+    List<AppointmentBusyHoursDTO> getBusyAppointmentsHoursByGivenDateAndDoctorId(
+            @Param("appointmentDate") String appointmentDate,
+            @Param("doctorId") Long doctorId
+    );
 
     @Query("""
             select new pl.studentmed.facultative.models.appointment.AppointmentResponseDTO

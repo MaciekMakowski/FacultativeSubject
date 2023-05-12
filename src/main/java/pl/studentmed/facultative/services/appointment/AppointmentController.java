@@ -37,8 +37,10 @@ class AppointmentController {
     }
 
     @GetMapping("/busy_at")
-    public ResponseEntity<List<AppointmentBusyHoursDTO>> getBusyAppointmentHoursForDate(@NotNull @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate givenDate) {
-        var busyHours = facade.getBusyAppointmentHoursForDate(givenDate);
+    public ResponseEntity<List<AppointmentBusyHoursDTO>> getBusyAppointmentHoursForDateAndDoctorId(
+            @NotNull @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate givenDate,
+            @NotNull @RequestParam Long doctorId) {
+        var busyHours = facade.getBusyAppointmentHoursForDateAndDoctorId(givenDate, doctorId);
         return busyHours.size() > 0 ? ResponseEntity.ok(busyHours) : ResponseEntity.noContent().build();
     }
 

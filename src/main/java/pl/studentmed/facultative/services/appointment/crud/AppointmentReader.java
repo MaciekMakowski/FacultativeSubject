@@ -80,9 +80,9 @@ class AppointmentReader {
         return PageRequest.of(offset, limit, Sort.by("appointmentDate").ascending());
     }
 
-    public List<AppointmentBusyHoursDTO> getBusyAppointmentHoursForDate(LocalDate givenDate) {
+    public List<AppointmentBusyHoursDTO> getBusyAppointmentHoursForDateAndDoctorId(LocalDate givenDate, Long doctorId) {
         var wantedDate = givenDate.format(DAY_MONTH_YEAR);
-        return repository.getBusyAppointmentsHoursByGivenDate(wantedDate);
+        return repository.getBusyAppointmentsHoursByGivenDateAndDoctorId(wantedDate, doctorId);
     }
 
 }

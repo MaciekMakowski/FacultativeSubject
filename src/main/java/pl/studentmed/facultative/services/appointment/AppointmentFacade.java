@@ -32,8 +32,8 @@ class AppointmentFacade {
         return toDTO(appointment);
     }
 
-    public List<AppointmentBusyHoursDTO> getBusyAppointmentHoursForDate(LocalDate givenDate) {
-        return appointmentCRUDService.getBusyAppointmentHoursForDate(givenDate);
+    public List<AppointmentBusyHoursDTO> getBusyAppointmentHoursForDateAndDoctorId(LocalDate givenDate, Long doctorId) {
+        return appointmentCRUDService.getBusyAppointmentHoursForDateAndDoctorId(givenDate, doctorId);
     }
 
     public AppointmentResponseDTO editAppointment(AppointmentEditDTO dto) {
