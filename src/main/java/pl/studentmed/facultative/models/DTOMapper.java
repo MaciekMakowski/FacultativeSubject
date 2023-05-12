@@ -73,7 +73,7 @@ public class DTOMapper {
         return DoctorSpecializationDTO.builder()
                 .doctorId(doctor.getId())
                 .doctorName(combineStrings(doctor.getUserInfo().getFirstName(), doctor.getUserInfo().getLastName()))
-                .specialization(doctor.getSpecialization().value)
+                .specialization(doctor.getSpecialization().value != null ? doctor.getSpecialization().value : null)
                 .build();
     }
 
