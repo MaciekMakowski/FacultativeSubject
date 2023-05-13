@@ -30,6 +30,13 @@ class PatientController {
         return patientFacade.getPatientById(patientId);
     }
 
+    @GetMapping("")
+    @ResponseStatus(HttpStatus.OK)
+    public List<PatientResponseDTO> getAllPatients(@RequestParam(required = false) @Min(0) @Max(300) Integer offset,
+                                                   @RequestParam(required = false) @Min(1) @Max(30) Integer limit) {
+        return patientFacade.getAllPatients(offset, limit);
+    }
+
     @GetMapping("/{patientId}/appointments")
     public ResponseEntity<List<AppointmentResponseDTO>> getPatientAppointments(
             @PathVariable Long patientId,

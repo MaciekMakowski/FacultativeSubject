@@ -6,6 +6,8 @@ import pl.studentmed.facultative.models.patient.Patient;
 import pl.studentmed.facultative.models.patient.PatientUpdateDTO;
 import pl.studentmed.facultative.models.user_info.UserInfo;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class PatientCRUDService {
@@ -16,6 +18,10 @@ public class PatientCRUDService {
 
     public Patient getPatientById(Long patientId) {
         return reader.getPatientById(patientId);
+    }
+
+    public List<Patient> getAllPatients(Integer offset, Integer limit) {
+        return reader.getAllPatients(offset, limit);
     }
 
     public Patient createPatient(UserInfo userInfo) {

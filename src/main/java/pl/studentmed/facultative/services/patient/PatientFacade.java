@@ -13,6 +13,7 @@ import pl.studentmed.facultative.services.user_info.crud.UserInfoCRUDService;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static pl.studentmed.facultative.models.DTOMapper.toDTO;
 
@@ -28,6 +29,14 @@ class PatientFacade {
     public PatientResponseDTO getPatientById(Long patientId) {
         var patient = patientCRUDService.getPatientById(patientId);
         return toDTO(patient, patient.getUserInfo(), patient.getUserInfo().getAddress());
+    }
+
+    public List<PatientResponseDTO> getAllPatients(Integer offset, Integer limit) {
+        var patients = patientCRUDService.getAllPatients(offset, limit);
+        return patients
+                .stream()
+                .map(patient -> toDTO(patient, patient.getUserInfo(), patient.getUserInfo().getAddress()))
+                .collect(Collectors.toList());
     }
 
     public List<AppointmentResponseDTO> getPatientAppointments(Long patientId, String status, LocalDate appointmentDate, LocalDate secondDate, Integer offset, Integer limit) {
