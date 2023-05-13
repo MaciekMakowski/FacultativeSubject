@@ -1,11 +1,21 @@
 For patient -
-1. User's appointment cancel
-2. Password reminder
+1. Password reminder
 
 For admin -
-1. Acceptation of appointment
-2. Appointment calendar
-3. List of doctors
-4. List of patients
-5. Patient's card
-6. Doctor's card
+1. Create Appointment for calling person
+    Create account with password=pesel
+2. All new appointments
+    getAllNewAppointments (to approve)
+3. Patient's card
+    getPatientById with all appointments - change request param to required=false?
+4. List of doctors
+    getAllDoctors
+5. Doctor's card
+    getDoctorById with all his patients
+6. Done appointment
+    change status (done), (optional) write recommendations, automatically create new appointment after 14 days
+7. Appointment calendar
+    getAppointmentsByDoctorIdForDay - similar to getPatientAppointments in PatientController
+
+
+
