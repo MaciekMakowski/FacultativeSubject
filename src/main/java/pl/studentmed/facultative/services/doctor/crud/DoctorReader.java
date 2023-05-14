@@ -22,6 +22,10 @@ class DoctorReader {
                 );
     }
 
+    public List<DoctorSpecializationDTO> getAllDoctors() {
+        return repository.getAllDoctors();
+    }
+
     public List<DoctorSpecializationDTO> getDoctorsBySpecialization(String givenSpecialization) {
         var specialization = Specialization.getSpecialization(givenSpecialization);
         return repository.getDoctorsBySpecialization(specialization);

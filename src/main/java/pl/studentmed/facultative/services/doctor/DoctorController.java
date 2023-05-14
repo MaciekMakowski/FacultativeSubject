@@ -41,6 +41,12 @@ class DoctorController {
     }
 
     @GetMapping("")
+    public ResponseEntity<List<DoctorSpecializationDTO>> getAllDoctors() {
+        var doctors = doctorFacade.getAllDoctors();
+        return doctors.size() > 0 ? ResponseEntity.ok(doctors) : ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("by-specialization")
     public ResponseEntity<List<DoctorSpecializationDTO>> getDoctorsBySpecialization(@NotEmpty @RequestParam String specialization) {
         var doctors = doctorFacade.getDoctorsBySpecialization(specialization);
         return doctors.size() > 0 ? ResponseEntity.ok(doctors) : ResponseEntity.noContent().build();

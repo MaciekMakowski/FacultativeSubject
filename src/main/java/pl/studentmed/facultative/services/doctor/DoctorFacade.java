@@ -29,6 +29,10 @@ class DoctorFacade {
         return appointmentCRUDService.getDoctorAppointments(doctorId, date, offset, limit);
     }
 
+    public List<DoctorSpecializationDTO> getAllDoctors() {
+        return doctorCRUDService.getAllDoctors();
+    }
+
     public List<DoctorSpecializationDTO> getDoctorsBySpecialization(String specialization) {
         return doctorCRUDService.getDoctorsBySpecialization(specialization);
     }

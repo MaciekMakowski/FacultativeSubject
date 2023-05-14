@@ -2,13 +2,13 @@ For patient -
 1. Password reminder
 
 For admin -
-1. Create Appointment for calling person
+1. Create Appointment for calling person -- in progress [igor]
     Create account with password=pesel
-2. All new appointments
+2. All new appointments6 -- done
     getAllNewAppointments (to approve)
-3. Patient's card
+3. Patient's card -- in progress [igor]
     getPatientById with all appointments - change request param to required=false?
-4. List of doctors
+4. List of doctors -- done
     getAllDoctors
 5. Doctor's card
     getDoctorById with all his patients

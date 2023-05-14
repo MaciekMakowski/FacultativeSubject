@@ -19,6 +19,17 @@ interface DoctorRepository extends JpaRepository<Doctor, Long> {
                 cast(doc.specialization as string) 
             )
             from Doctor doc
+           """)
+    List<DoctorSpecializationDTO> getAllDoctors();
+
+    @Query("""
+            select new pl.studentmed.facultative.models.doctor.DoctorSpecializationDTO
+            (
+                doc.id,
+                concat(doc.userInfo.firstName, ' ', doc.userInfo.lastName),
+                cast(doc.specialization as string) 
+            )
+            from Doctor doc
             where doc.specialization = :specialization
            """)
     List<DoctorSpecializationDTO> getDoctorsBySpecialization(@Param("specialization") Specialization specialization);

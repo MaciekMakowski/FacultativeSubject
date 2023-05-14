@@ -26,6 +26,10 @@ public class DoctorCRUDService {
         return creator.createDoctor(userInfo);
     }
 
+
+    public List<DoctorSpecializationDTO> getAllDoctors() {
+        return reader.getAllDoctors();
+    }
     public List<DoctorSpecializationDTO> getDoctorsBySpecialization(String specialization) {
         return reader.getDoctorsBySpecialization(specialization);
     }
