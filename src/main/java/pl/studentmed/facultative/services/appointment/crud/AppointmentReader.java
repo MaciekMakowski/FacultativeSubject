@@ -5,13 +5,16 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 import pl.studentmed.facultative.exceptions.EntityNotFoundException;
+import pl.studentmed.facultative.exceptions.NoFreeDoctorAppointmentsException;
 import pl.studentmed.facultative.models.appointment.*;
 import pl.studentmed.facultative.models.doctor.Doctor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static pl.studentmed.facultative.models.StudentMedDateUtils.DAY_MONTH_YEAR;
+import static pl.studentmed.facultative.models.StudentMedDateUtils.SELECTABLE_HOURS;
 
 @Component
 @RequiredArgsConstructor
@@ -86,6 +89,54 @@ class AppointmentReader {
     public List<AppointmentBusyHoursDTO> getBusyAppointmentHoursForDateAndDoctorId(LocalDate givenDate, Long doctorId) {
         var wantedDate = givenDate.format(DAY_MONTH_YEAR);
         return repository.getBusyAppointmentsHoursByGivenDateAndDoctorId(wantedDate, doctorId);
+    }
+
+    public AppointmentDate getControlAppointmentDate(Appointment appointment) {
+        int maxDaysToCheck = 365;
+        int daysToAdd = 0;
+
+        while (daysToAdd <= maxDaysToCheck) {
+            var appointmentDateAfterDays = appointment.getAppointmentDate().toLocalDateTime().plusDays(14 + daysToAdd);
+            var appointmentDateFormatted = appointmentDateAfterDays.toLocalDate().format(DAY_MONTH_YEAR);
+            var appointmentTimes = repository.getAppointmentTimesByAppointmentDateAndDoctor(appointmentDateFormatted, appointment.getDoctor().getId());
+
+            if (appointmentTimes == null || appointmentTimes.isEmpty()) {
+                return createAppointmentDate(appointmentDateFormatted, SELECTABLE_HOURS.get(0));
+            }
+
+            String availableTime = findAvailableTime(appointmentTimes);
+            if (availableTime != null) {
+                return createAppointmentDate(appointmentDateFormatted, availableTime);
+            }
+
+            daysToAdd++;
+        }
+        throw new NoFreeDoctorAppointmentsException("appointmentDate", "There is no free date in the next "
+                + maxDaysToCheck + " days to make control appointment with the same doctor.");
+    }
+
+    private LocalDateTime toLocalDateTime(String date, String time) {
+        var days = date.substring(0, 2);
+        var month = date.substring(3, 5);
+        var year = date.substring(6, 10);
+        var hours = time.substring(0, 2);
+        var minutes = time.substring(3, 5);
+        return LocalDateTime.of(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(days),
+                Integer.parseInt(hours), Integer.parseInt(minutes));
+    }
+
+    private AppointmentDate createAppointmentDate(String appointmentDate, String appointmentTime) {
+        LocalDateTime dateTime = toLocalDateTime(appointmentDate, appointmentTime);
+        return new AppointmentDate(dateTime);
+    }
+
+    private String findAvailableTime(List<String> appointmentTimes) {
+        for (String time : SELECTABLE_HOURS) {
+            if (!appointmentTimes.contains(time)) {
+                return time;
+            }
+        }
+        return null;
     }
 
 }
