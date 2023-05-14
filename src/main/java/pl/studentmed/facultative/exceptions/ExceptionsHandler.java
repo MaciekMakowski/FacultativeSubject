@@ -112,4 +112,16 @@ public class ExceptionsHandler {
         return new ErrorMessage(exception.fieldName, exception.getMessage());
     }
 
+    @ExceptionHandler(value = NoFreeDoctorAppointmentsException.class)
+    @ResponseStatus(value = HttpStatus.OK)
+    public ErrorMessage noFreeDoctorAppointmentsException(NoFreeDoctorAppointmentsException exception) {
+        return new ErrorMessage(exception.fieldName, exception.getMessage());
+    }
+
+    @ExceptionHandler(value = AppointmentAlreadyDoneException.class)
+    @ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
+    public ErrorMessage appointmentAlreadyDoneException(AppointmentAlreadyDoneException exception) {
+        return new ErrorMessage(exception.fieldName, exception.getMessage());
+    }
+
 }
