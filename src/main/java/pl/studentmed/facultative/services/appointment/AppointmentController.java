@@ -60,4 +60,11 @@ class AppointmentController {
         return facade.editAppointment(appointmentEditDTO);
     }
 
+    @PatchMapping("/done/{appointmentId}")
+    @ResponseStatus(HttpStatus.OK)
+    public AppointmentResponseDTO finnishAppointment(@PathVariable Long appointmentId,
+                                                     @RequestParam(required = false) String recommendations) {
+        return facade.finnishAppointment(appointmentId, recommendations);
+    }
+
 }
