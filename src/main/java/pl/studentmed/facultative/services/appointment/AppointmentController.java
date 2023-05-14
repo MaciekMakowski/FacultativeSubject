@@ -1,7 +1,5 @@
 package pl.studentmed.facultative.services.appointment;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -13,6 +11,10 @@ import pl.studentmed.facultative.models.appointment.AppointmentCreateDTO;
 import pl.studentmed.facultative.models.appointment.AppointmentEditDTO;
 import pl.studentmed.facultative.models.appointment.AppointmentResponseDTO;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -30,10 +32,12 @@ class AppointmentController {
         return facade.getAppointmentDTOById(appointmentId);
     }
 
-    @PostMapping("")
-    @ResponseStatus(HttpStatus.CREATED)
-    public AppointmentResponseDTO createAppointment(@Valid @RequestBody AppointmentCreateDTO appointmentCreateDTO) {
-        return facade.createAppointment(appointmentCreateDTO);
+    @GetMapping("/new")
+    public List<AppointmentResponseDTO> getAllNewAppointments(
+            @RequestParam(required = false) @Min(0) @Max(300) Integer offset,
+            @RequestParam(required = false) @Min(1) @Max(30) Integer limit
+    ) {
+        return facade.getAllNewAppointments(offset, limit);
     }
 
     @GetMapping("/busy_at")
@@ -42,6 +46,12 @@ class AppointmentController {
             @NotNull @RequestParam Long doctorId) {
         var busyHours = facade.getBusyAppointmentHoursForDateAndDoctorId(givenDate, doctorId);
         return busyHours.size() > 0 ? ResponseEntity.ok(busyHours) : ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("")
+    @ResponseStatus(HttpStatus.CREATED)
+    public AppointmentResponseDTO createAppointment(@Valid @RequestBody AppointmentCreateDTO appointmentCreateDTO) {
+        return facade.createAppointment(appointmentCreateDTO);
     }
 
     @PatchMapping("")

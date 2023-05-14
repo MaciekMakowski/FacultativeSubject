@@ -72,6 +72,11 @@ class AppointmentReader {
         return repository.getAppointmentsByPatientIdAndAppointmentDateLike(patientId, status, wantedDate, pageable);
     }
 
+    public List<AppointmentResponseDTO> getAllNewAppointments(Integer givenOffset, Integer givenLimit) {
+        var pageable = createPageRequest(givenOffset, givenLimit);
+        return repository.getAllNewAppointments(pageable);
+    }
+
     private static PageRequest createPageRequest(Integer givenOffset, Integer givenLimit) {
         var offset = givenOffset != null ? givenOffset : 0;
         var limit = givenLimit != null ? givenLimit : 5;

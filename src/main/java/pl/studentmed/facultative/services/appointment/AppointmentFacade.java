@@ -24,16 +24,20 @@ class AppointmentFacade {
         return appointmentCRUDService.getAppointmentDTOById(appointmentId);
     }
 
+    public List<AppointmentResponseDTO> getAllNewAppointments(Integer offset, Integer limit) {
+        return appointmentCRUDService.getAllNewAppointments(offset, limit);
+    }
+
+    public List<AppointmentBusyHoursDTO> getBusyAppointmentHoursForDateAndDoctorId(LocalDate givenDate, Long doctorId) {
+        return appointmentCRUDService.getBusyAppointmentHoursForDateAndDoctorId(givenDate, doctorId);
+    }
+
     public AppointmentResponseDTO createAppointment(AppointmentCreateDTO dto) {
         var patient = patientCRUDService.getPatientById(dto.patientId());
         var doctor = doctorCRUDService.getDoctorById(dto.doctorId());
         var appointmentDate = new AppointmentDate(dto.appointmentDate());
         var appointment = appointmentCRUDService.createAppointment(patient, doctor, appointmentDate, dto.patientSymptoms(), dto.medicinesTaken());
         return toDTO(appointment);
-    }
-
-    public List<AppointmentBusyHoursDTO> getBusyAppointmentHoursForDateAndDoctorId(LocalDate givenDate, Long doctorId) {
-        return appointmentCRUDService.getBusyAppointmentHoursForDateAndDoctorId(givenDate, doctorId);
     }
 
     public AppointmentResponseDTO editAppointment(AppointmentEditDTO dto) {

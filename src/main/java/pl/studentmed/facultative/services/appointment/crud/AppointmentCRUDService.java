@@ -26,6 +26,22 @@ public class AppointmentCRUDService {
         return reader.getAppointmentById(appointmentId);
     }
 
+    public List<AppointmentResponseDTO> getDoctorAppointments(Long doctorId, LocalDate date, Integer offset, Integer limit) {
+        return reader.getDoctorAppointments(doctorId, date, offset, limit);
+    }
+
+    public List<AppointmentResponseDTO> getPatientAppointments(Long patientId, AppointmentStatus status, LocalDate appointmentDate, LocalDate secondDate, Integer offset, Integer limit) {
+        return reader.getPatientAppointments(patientId, status, appointmentDate, secondDate, offset, limit);
+    }
+
+    public List<AppointmentResponseDTO> getAllNewAppointments(Integer offset, Integer limit) {
+        return reader.getAllNewAppointments(offset, limit);
+    }
+
+    public List<AppointmentBusyHoursDTO> getBusyAppointmentHoursForDateAndDoctorId(LocalDate givenDate, Long doctorId) {
+        return reader.getBusyAppointmentHoursForDateAndDoctorId(givenDate, doctorId);
+    }
+
     public Appointment createAppointment(Patient patient, Doctor doctor, AppointmentDate appointmentDate, String patientSymptoms, String medicinesTaken) {
         isAppointmentDateAvailable(doctor, appointmentDate);
         return creator.createAppointment(patient, doctor, appointmentDate, patientSymptoms, medicinesTaken);
@@ -35,18 +51,6 @@ public class AppointmentCRUDService {
         if (reader.checkIfDoctorHasAppointmentOnThisDate(doctor, appointmentDate)) {
             throw new AppointmentDateAlreadyTakenException("appointment", "This date is already taken.");
         }
-    }
-
-    public List<AppointmentResponseDTO> getDoctorAppointments(Long doctorId, LocalDate date, Integer offset, Integer limit) {
-        return reader.getDoctorAppointments(doctorId, date, offset, limit);
-    }
-
-    public List<AppointmentResponseDTO> getPatientAppointments(Long patientId, AppointmentStatus status, LocalDate appointmentDate, LocalDate secondDate, Integer offset, Integer limit) {
-        return reader.getPatientAppointments(patientId, status, appointmentDate, secondDate, offset, limit);
-    }
-
-    public List<AppointmentBusyHoursDTO> getBusyAppointmentHoursForDateAndDoctorId(LocalDate givenDate, Long doctorId) {
-        return reader.getBusyAppointmentHoursForDateAndDoctorId(givenDate, doctorId);
     }
 
     public Appointment editAppointment(Appointment appointment, AppointmentEditDTO dto) {

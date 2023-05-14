@@ -1,8 +1,11 @@
 package pl.studentmed.facultative.models.user_info;
 
-import javax.validation.constraints.*;
 import lombok.Builder;
 import org.springframework.validation.annotation.Validated;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Validated
 public record UserInfoLoginRequestDTO(@NotNull

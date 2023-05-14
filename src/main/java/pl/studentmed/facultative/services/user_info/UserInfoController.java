@@ -1,12 +1,16 @@
 package pl.studentmed.facultative.services.user_info;
 
-import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import pl.studentmed.facultative.models.user_info.*;
+import pl.studentmed.facultative.models.user_info.UserInfoCreateDTO;
+import pl.studentmed.facultative.models.user_info.UserInfoLoginRequestDTO;
+import pl.studentmed.facultative.models.user_info.UserInfoLoginResponseDTO;
+import pl.studentmed.facultative.models.user_info.UserInfoResponseDTO;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/users")
