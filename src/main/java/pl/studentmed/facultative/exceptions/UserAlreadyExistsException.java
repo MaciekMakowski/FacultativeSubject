@@ -8,4 +8,5 @@ public class UserAlreadyExistsException extends RuntimeException {
         super(message);
         this.fieldName = fieldName;
     }
+
 }
