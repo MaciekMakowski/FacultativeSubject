@@ -46,4 +46,9 @@ class AppointmentFacade {
         return toDTO(editedAppointment);
     }
 
+    public AppointmentResponseDTO finnishAppointment(Long appointmentId, String recommendations) {
+        var appointment = appointmentCRUDService.finnishAppointment(appointmentId, recommendations);
+        return toDTO(appointment);
+    }
+
 }
