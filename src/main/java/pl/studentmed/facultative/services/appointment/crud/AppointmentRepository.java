@@ -203,6 +203,13 @@ interface AppointmentRepository extends JpaRepository<Appointment, Long> {
                                                                           @Param("endDate") String endDate,
                                                                           PageRequest pageable);
 
-
+    @Query("""
+            select
+            substring( app.appointmentDate.date, 12)
+            from Appointment app
+            where app.doctor.id = :doctorId
+            and app.appointmentDate.date like :appointmentDate%
+           """)
+    List<String> getAppointmentTimesByAppointmentDateAndDoctor(String appointmentDate, Long doctorId);
 
 }
