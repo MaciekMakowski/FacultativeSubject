@@ -57,4 +57,11 @@ public class AppointmentCRUDService {
         return updater.editAppointment(appointment, dto);
     }
 
+    public Appointment finnishAppointment(Long appointmentId, String recommendations) {
+        var appointment = getAppointmentById(appointmentId);
+        var appointmentControlDate = reader.getControlAppointmentDate(appointment);
+        creator.createControlAppointment(appointment, appointmentControlDate);
+        return updater.finnishAppointment(appointment, recommendations);
+    }
+
 }
