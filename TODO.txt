@@ -8,9 +8,7 @@ For admin -
     getPatientById with all appointments - change request param to required=false?
 3. Doctor's card
     getDoctorById with all his patients
-4. Done appointment                                                                             -- in progress [adam]
-    change status (done), (optional) write recommendations, automatically create new appointment after 14 days
-5. Appointment calendar
+4. Appointment calendar
     getAppointmentsByDoctorIdForDay - similar to getPatientAppointments in PatientController
 
 
