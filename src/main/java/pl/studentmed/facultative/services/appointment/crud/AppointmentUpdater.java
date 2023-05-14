@@ -2,6 +2,7 @@ package pl.studentmed.facultative.services.appointment.crud;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import pl.studentmed.facultative.exceptions.AppointmentAlreadyDoneException;
 import pl.studentmed.facultative.exceptions.AppointmentCantBeCancelledException;
 import pl.studentmed.facultative.models.appointment.Appointment;
 import pl.studentmed.facultative.models.appointment.AppointmentDate;
@@ -26,6 +27,18 @@ class AppointmentUpdater {
         var modifiedAtFormatted = modifiedAt.format(DAY_MONTH_YEAR_TIME);
         appointmentToEdit.setModifiedAt(modifiedAtFormatted);
         return repository.saveAndFlush(appointmentToEdit);
+    }
+
+    public Appointment finnishAppointment(Appointment appointment, String recommendations) {
+        if (recommendations != null) {
+            appointment.setRecommendations(recommendations);
+        }
+        var newStatus = AppointmentStatus.getAppointmentStatus("done");
+        if (appointment.getStatus().equals(newStatus)) {
+            throw new AppointmentAlreadyDoneException("appointmentStatus", "This appointment already has the status done.");
+        }
+        appointment.setStatus(newStatus);
+        return repository.saveAndFlush(appointment);
     }
 
     private void changeAppointmentDate(Appointment appointmentToEdit, LocalDateTime givenAppointmentDate) {
