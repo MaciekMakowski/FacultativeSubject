@@ -1,6 +1,7 @@
 package pl.studentmed.facultative.services.doctor;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -32,7 +33,7 @@ class DoctorController {
     @GetMapping("/{doctorId}/appointments")
     public ResponseEntity<List<AppointmentResponseDTO>> getDoctorAppointments(
             @PathVariable Long doctorId,
-            @RequestParam(required = false) LocalDate appointmentDate,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate appointmentDate,
             @RequestParam(required = false) @Min(0) @Max(300) Integer offset,
             @RequestParam(required = false) @Min(1) @Max(30) Integer limit
     ) {
