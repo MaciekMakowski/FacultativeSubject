@@ -5,10 +5,11 @@ For admin -
 1. Create Appointment for calling person                                                        -- in progress [igor]
     Create account with password=pesel
 2. Patient's card                                                                               -- in progress [igor]
-    getPatientById with all appointments - change request param to required=false?
-3. Doctor's card
+    getPatientById with all appointments - change request param String status to required=false?
+     and if, then find all appointments
+3. Doctor's card                                                                                -- in progress [adam]
     getDoctorById with all his patients
-4. Appointment calendar
+4. Appointment calendar                                                                         -- in progress [adam]
     getAppointmentsByDoctorIdForDay - similar to getPatientAppointments in PatientController
 
 
