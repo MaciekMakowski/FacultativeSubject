@@ -8,7 +8,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import pl.studentmed.facultative.models.appointment.AppointmentResponseDTO;
 import pl.studentmed.facultative.models.doctor.DoctorSpecializationDTO;
-import pl.studentmed.facultative.models.doctor.DoctorUserInfoDTO;
+import pl.studentmed.facultative.models.doctor.DoctorResponseDTO;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -26,7 +26,7 @@ class DoctorController {
 
     @GetMapping("/{doctorId}")
     @ResponseStatus(HttpStatus.OK)
-    public DoctorUserInfoDTO getDoctorById(@PathVariable Long doctorId) {
+    public DoctorResponseDTO getDoctorById(@PathVariable Long doctorId) {
         return doctorFacade.getDoctorById(doctorId);
     }
 
@@ -54,8 +54,12 @@ class DoctorController {
     }
 
     @PatchMapping("/{doctorId}")
-    public DoctorSpecializationDTO changeDoctorSpecialization(@PathVariable Long doctorId, @NotEmpty @RequestParam String specialization) {
-        return doctorFacade.changeDoctorSpecialization(doctorId, specialization);
+    public DoctorResponseDTO editDoctor(
+            @PathVariable Long doctorId,
+            @RequestParam(required = false)  String specialization,
+            @RequestParam(required = false)  String description,
+            @RequestParam(required = false)  String photo) {
+        return doctorFacade.editDoctor(doctorId, specialization, description, photo);
     }
 
 }

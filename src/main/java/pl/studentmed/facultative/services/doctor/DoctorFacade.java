@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import pl.studentmed.facultative.models.appointment.AppointmentResponseDTO;
 import pl.studentmed.facultative.models.doctor.DoctorSpecializationDTO;
-import pl.studentmed.facultative.models.doctor.DoctorUserInfoDTO;
+import pl.studentmed.facultative.models.doctor.DoctorResponseDTO;
 import pl.studentmed.facultative.services.appointment.crud.AppointmentCRUDService;
 import pl.studentmed.facultative.services.doctor.crud.DoctorCRUDService;
 
@@ -20,7 +20,7 @@ class DoctorFacade {
     private final DoctorCRUDService doctorCRUDService;
     private final AppointmentCRUDService appointmentCRUDService;
 
-    public DoctorUserInfoDTO getDoctorById(Long doctorId) {
+    public DoctorResponseDTO getDoctorById(Long doctorId) {
         var doctor = doctorCRUDService.getDoctorById(doctorId);
         return toDTO(doctor, doctor.getUserInfo(), doctor.getUserInfo().getAddress());
     }
@@ -37,8 +37,9 @@ class DoctorFacade {
         return doctorCRUDService.getDoctorsBySpecialization(specialization);
     }
 
-    public DoctorSpecializationDTO changeDoctorSpecialization(Long doctorId, String specialization) {
-        return doctorCRUDService.changeDoctorSpecialization(doctorId, specialization);
+    public DoctorResponseDTO editDoctor(Long doctorId, String specialization, String description, String photo) {
+        var doctor = doctorCRUDService.editDoctor(doctorId, specialization, description, photo);
+        return toDTO(doctor, doctor.getUserInfo(), doctor.getUserInfo().getAddress());
     }
 
 }

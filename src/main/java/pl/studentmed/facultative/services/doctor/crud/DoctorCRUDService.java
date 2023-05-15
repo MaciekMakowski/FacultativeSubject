@@ -8,8 +8,6 @@ import pl.studentmed.facultative.models.user_info.UserInfo;
 
 import java.util.List;
 
-import static pl.studentmed.facultative.models.DTOMapper.toDTO;
-
 @Service
 @RequiredArgsConstructor
 public class DoctorCRUDService {
@@ -34,10 +32,9 @@ public class DoctorCRUDService {
         return reader.getDoctorsBySpecialization(specialization);
     }
 
-    public DoctorSpecializationDTO changeDoctorSpecialization(Long doctorId, String specialization) {
+    public Doctor editDoctor(Long doctorId, String specialization, String description, String photo) {
         var doctor = reader.getDoctorById(doctorId);
-        var updatedDoctor = updater.changeDoctorSpecialization(doctor, specialization);
-        return toDTO(updatedDoctor);
+        return updater.editDoctor(doctor, specialization, description, photo);
     }
 
 }

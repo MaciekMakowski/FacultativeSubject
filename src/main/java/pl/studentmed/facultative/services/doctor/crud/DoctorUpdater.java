@@ -11,9 +11,17 @@ class DoctorUpdater {
 
     private final DoctorRepository repository;
 
-    public Doctor changeDoctorSpecialization(Doctor doctor, String givenSpecialization) {
-        var specialization = Specialization.getSpecialization(givenSpecialization);
-        doctor.setSpecialization(specialization);
+    public Doctor editDoctor(Doctor doctor, String specialization, String description, String photo) {
+        if (specialization != null) {
+            var newSpecialization = Specialization.getSpecialization(specialization);
+            doctor.setSpecialization(newSpecialization);
+        }
+        if (description != null) {
+            doctor.setDescription(description);
+        }
+        if (photo != null) {
+            doctor.setPhoto(photo);
+        }
         return repository.saveAndFlush(doctor);
     }
 
