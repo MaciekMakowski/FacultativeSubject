@@ -1,6 +1,8 @@
 package pl.studentmed.facultative.services.patient.crud;
 
+import org.hibernate.cfg.NotYetImplementedException;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import pl.studentmed.facultative.models.patient.Patient;
 
 import java.util.HashMap;
@@ -36,6 +38,11 @@ class InMemoryPatientRepository implements IPatientRepository {
             DATABASE.put(id, patient);
         }
         return patient;
+    }
+
+    @Override
+    public List<Patient> getAllPatientsByDoctorId(Long doctorId, Pageable pageable) {
+        throw new NotYetImplementedException();
     }
 
 }

@@ -2,6 +2,7 @@ package pl.studentmed.facultative.services.patient.crud;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import pl.studentmed.facultative.exceptions.EntityNotFoundException;
 import pl.studentmed.facultative.models.patient.Patient;
 
@@ -27,6 +28,10 @@ class PatientRepository implements IPatientRepository {
 
     public Patient saveAndFlush(Patient patient) {
         return repository.saveAndFlush(patient);
+    }
+
+    public List<Patient> getAllPatientsByDoctorId(Long doctorId, Pageable pageable) {
+        return repository.getAllPatientsByDoctorId(doctorId, pageable);
     }
 
 }
