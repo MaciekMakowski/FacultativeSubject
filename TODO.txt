@@ -7,11 +7,9 @@ For admin -
 2. Patient's card                                                                               -- in progress [igor]
     getPatientById with all appointments - change request param String status to required=false?
      and if, then find all appointments
-3. Appointment calendar                                                                         -- in progress [adam]
-    getAppointmentsByDoctorIdForDay - similar to getPatientAppointments in PatientController
-4. Add to Doctor field with photo path
-5. Add Doctor description field
-6. Translate Errors to polish
+3. Add to Doctor field with photo path
+4. Add Doctor description field
+5. Translate Errors to polish
 
 
 
