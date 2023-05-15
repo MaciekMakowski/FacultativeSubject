@@ -162,7 +162,7 @@ interface AppointmentRepository extends JpaRepository<Appointment, Long> {
     List<AppointmentResponseDTO> getAllNewAppointments(Pageable pageable);
 
     @Query("""
-            select new pl.studentmed.facultative.models.appointment.AppointmentBusyHoursDTO
+            select
                 (
                 substring(app.appointmentDate.date, 12)
                 )
@@ -170,10 +170,8 @@ interface AppointmentRepository extends JpaRepository<Appointment, Long> {
             where app.appointmentDate.date like :appointmentDate%
             and app.doctor.id = :doctorId
            """)
-    List<AppointmentBusyHoursDTO> getBusyAppointmentsHoursByGivenDateAndDoctorId(
-            @Param("appointmentDate") String appointmentDate,
-            @Param("doctorId") Long doctorId
-    );
+    List<String> getBusyAppointmentsHoursByGivenDateAndDoctorId(@Param("appointmentDate") String appointmentDate,
+                                                                @Param("doctorId") Long doctorId);
 
     @Query("""
             select new pl.studentmed.facultative.models.appointment.AppointmentResponseDTO
@@ -202,14 +200,5 @@ interface AppointmentRepository extends JpaRepository<Appointment, Long> {
                                                                           @Param("startDate") String startDate,
                                                                           @Param("endDate") String endDate,
                                                                           PageRequest pageable);
-
-    @Query("""
-            select
-            substring( app.appointmentDate.date, 12)
-            from Appointment app
-            where app.doctor.id = :doctorId
-            and app.appointmentDate.date like :appointmentDate%
-           """)
-    List<String> getAppointmentTimesByAppointmentDateAndDoctor(String appointmentDate, Long doctorId);
 
 }

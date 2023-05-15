@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import pl.studentmed.facultative.models.appointment.AppointmentBusyHoursDTO;
 import pl.studentmed.facultative.models.appointment.AppointmentCreateDTO;
 import pl.studentmed.facultative.models.appointment.AppointmentEditDTO;
 import pl.studentmed.facultative.models.appointment.AppointmentResponseDTO;
@@ -41,7 +40,7 @@ class AppointmentController {
     }
 
     @GetMapping("/busy_at")
-    public ResponseEntity<List<AppointmentBusyHoursDTO>> getBusyAppointmentHoursForDateAndDoctorId(
+    public ResponseEntity<List<String>> getBusyAppointmentHoursForDateAndDoctorId(
             @NotNull @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate givenDate,
             @NotNull @RequestParam Long doctorId) {
         var busyHours = facade.getBusyAppointmentHoursForDateAndDoctorId(givenDate, doctorId);
