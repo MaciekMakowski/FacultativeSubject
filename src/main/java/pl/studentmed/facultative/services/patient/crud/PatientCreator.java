@@ -9,7 +9,7 @@ import pl.studentmed.facultative.models.user_info.UserInfo;
 @RequiredArgsConstructor
 class PatientCreator {
 
-    private final PatientRepository repository;
+    private final IPatientRepository repository;
 
     public Patient createPatient(UserInfo userInfo) {
         var patient = new Patient(userInfo);

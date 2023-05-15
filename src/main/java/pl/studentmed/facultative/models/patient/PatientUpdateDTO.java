@@ -1,5 +1,6 @@
 package pl.studentmed.facultative.models.patient;
 
+import lombok.Builder;
 import pl.studentmed.facultative.models.address.AddressUpdateDTO;
 import pl.studentmed.facultative.models.user_info.UserInfoUpdateDTO;
 
@@ -17,4 +18,6 @@ public record PatientUpdateDTO(@NotNull
                                String medicines,
                                AddressUpdateDTO addressUpdateDTO
 ) {
+
+    @Builder public PatientUpdateDTO {}
 }

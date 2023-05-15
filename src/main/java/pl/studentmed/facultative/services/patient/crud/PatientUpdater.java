@@ -8,7 +8,7 @@ import pl.studentmed.facultative.models.patient.Patient;
 @RequiredArgsConstructor
 class PatientUpdater {
 
-    private final PatientRepository repository;
+    private final IPatientRepository repository;
 
     public Patient updatePatient(Patient patient, String allergies, String medicines) {
         if (allergies != null) {
