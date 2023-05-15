@@ -86,7 +86,7 @@ class AppointmentReader {
         return PageRequest.of(offset, limit, Sort.by("appointmentDate").ascending());
     }
 
-    public List<AppointmentBusyHoursDTO> getBusyAppointmentHoursForDateAndDoctorId(LocalDate givenDate, Long doctorId) {
+    public List<String> getBusyAppointmentHoursForDateAndDoctorId(LocalDate givenDate, Long doctorId) {
         var wantedDate = givenDate.format(DAY_MONTH_YEAR);
         return repository.getBusyAppointmentsHoursByGivenDateAndDoctorId(wantedDate, doctorId);
     }
@@ -98,7 +98,7 @@ class AppointmentReader {
         while (daysToAdd <= maxDaysToCheck) {
             var appointmentDateAfterDays = appointment.getAppointmentDate().toLocalDateTime().plusDays(14 + daysToAdd);
             var appointmentDateFormatted = appointmentDateAfterDays.toLocalDate().format(DAY_MONTH_YEAR);
-            var appointmentTimes = repository.getAppointmentTimesByAppointmentDateAndDoctor(appointmentDateFormatted, appointment.getDoctor().getId());
+            var appointmentTimes = repository.getBusyAppointmentsHoursByGivenDateAndDoctorId(appointmentDateFormatted, appointment.getDoctor().getId());
 
             if (appointmentTimes == null || appointmentTimes.isEmpty()) {
                 return createAppointmentDate(appointmentDateFormatted, SELECTABLE_HOURS.get(0));

@@ -20,6 +20,11 @@ class PatientReader {
         return repository.findAll(pageable);
     }
 
+    public List<Patient> getAllPatientsByDoctorId(Long doctorId, Integer givenOffset, Integer givenLimit) {
+        var pageable = createPageRequest(givenOffset, givenLimit);
+        return repository.getAllPatientsByDoctorId(doctorId, pageable);
+    }
+
     private static PageRequest createPageRequest(Integer givenOffset, Integer givenLimit) {
         var offset = givenOffset != null ? givenOffset : 0;
         var limit = givenLimit != null ? givenLimit : 5;

@@ -28,7 +28,7 @@ class AppointmentFacade {
         return appointmentCRUDService.getAllNewAppointments(offset, limit);
     }
 
-    public List<AppointmentBusyHoursDTO> getBusyAppointmentHoursForDateAndDoctorId(LocalDate givenDate, Long doctorId) {
+    public List<String> getBusyAppointmentHoursForDateAndDoctorId(LocalDate givenDate, Long doctorId) {
         return appointmentCRUDService.getBusyAppointmentHoursForDateAndDoctorId(givenDate, doctorId);
     }
 

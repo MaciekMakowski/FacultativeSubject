@@ -38,7 +38,7 @@ public class AppointmentCRUDService {
         return reader.getAllNewAppointments(offset, limit);
     }
 
-    public List<AppointmentBusyHoursDTO> getBusyAppointmentHoursForDateAndDoctorId(LocalDate givenDate, Long doctorId) {
+    public List<String> getBusyAppointmentHoursForDateAndDoctorId(LocalDate givenDate, Long doctorId) {
         return reader.getBusyAppointmentHoursForDateAndDoctorId(givenDate, doctorId);
     }
 

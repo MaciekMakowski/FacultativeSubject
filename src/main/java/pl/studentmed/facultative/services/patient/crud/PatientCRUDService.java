@@ -24,6 +24,10 @@ public class PatientCRUDService {
         return reader.getAllPatients(offset, limit);
     }
 
+    public List<Patient> getAllPatientsByDoctorId(Long doctorId, Integer offset, Integer limit) {
+        return reader.getAllPatientsByDoctorId(doctorId, offset, limit);
+    }
+
     public Patient createPatient(UserInfo userInfo) {
        return creator.createPatient(userInfo);
     }

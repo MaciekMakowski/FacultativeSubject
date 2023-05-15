@@ -5,11 +5,9 @@ For admin -
 1. Create Appointment for calling person                                                        -- in progress [igor]
     Create account with password=pesel
 2. Patient's card                                                                               -- in progress [igor]
-    getPatientById with all appointments - change request param to required=false?
-3. Doctor's card
-    getDoctorById with all his patients
-4. Appointment calendar
-    getAppointmentsByDoctorIdForDay - similar to getPatientAppointments in PatientController
+    getPatientById with all appointments - change request param String status to required=false?
+     and if, then find all appointments
+3. Translate Errors to polish
 
 
 

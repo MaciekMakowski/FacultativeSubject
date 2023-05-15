@@ -31,4 +31,7 @@ public class Doctor extends BasicEntity {
         this.userInfo = userInfo;
     }
 
+    private String description;
+    private String photo;
+
 }

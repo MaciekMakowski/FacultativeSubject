@@ -51,4 +51,12 @@ class PatientFacade {
         return toDTO(patient, userInfo, address);
     }
 
+    public List<PatientResponseDTO> getAllPatientsByDoctorId(Long doctorId, Integer offset, Integer limit) {
+        var patients = patientCRUDService.getAllPatientsByDoctorId(doctorId, offset, limit);
+        return patients
+                .stream()
+                .map(patient -> toDTO(patient, patient.getUserInfo(), patient.getUserInfo().getAddress()))
+                .collect(Collectors.toList());
+    }
+
 }

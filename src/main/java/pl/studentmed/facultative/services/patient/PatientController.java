@@ -56,4 +56,14 @@ class PatientController {
         return patientFacade.updatePatient(patientUpdateDTO);
     }
 
+    @GetMapping("/by-doctor/{doctorId}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<List<PatientResponseDTO>> getAllPatientsByDoctorId(
+            @PathVariable Long doctorId,
+            @RequestParam(required = false) @Min(0) @Max(300) Integer offset,
+            @RequestParam(required = false) @Min(1) @Max(30) Integer limit) {
+        var appointments = patientFacade.getAllPatientsByDoctorId(doctorId, offset, limit);
+        return appointments.size() > 0 ? ResponseEntity.ok(appointments) : ResponseEntity.noContent().build();
+    }
+
 }

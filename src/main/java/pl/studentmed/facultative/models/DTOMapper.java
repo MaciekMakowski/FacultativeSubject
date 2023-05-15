@@ -7,7 +7,7 @@ import pl.studentmed.facultative.models.appointment.Appointment;
 import pl.studentmed.facultative.models.appointment.AppointmentResponseDTO;
 import pl.studentmed.facultative.models.doctor.Doctor;
 import pl.studentmed.facultative.models.doctor.DoctorSpecializationDTO;
-import pl.studentmed.facultative.models.doctor.DoctorUserInfoDTO;
+import pl.studentmed.facultative.models.doctor.DoctorResponseDTO;
 import pl.studentmed.facultative.models.patient.Patient;
 import pl.studentmed.facultative.models.patient.PatientResponseDTO;
 import pl.studentmed.facultative.models.user_info.UserInfo;
@@ -29,10 +29,12 @@ public class DTOMapper {
             );
     }
 
-    public static DoctorUserInfoDTO toDTO(Doctor doctor, UserInfo userInfo, Address address) {
-        return new DoctorUserInfoDTO(
+    public static DoctorResponseDTO toDTO(Doctor doctor, UserInfo userInfo, Address address) {
+        return new DoctorResponseDTO(
                 doctor.getId(),
                 doctor.getSpecialization() != null ? doctor.getSpecialization().value : null,
+                doctor.getDescription() != null ? doctor.getDescription() : null,
+                doctor.getPhoto() != null ? doctor.getPhoto() : null,
                 toDTO(userInfo),
                 toDTO(address)
         );
