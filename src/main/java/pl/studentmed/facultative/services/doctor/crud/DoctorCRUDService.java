@@ -28,6 +28,11 @@ public class DoctorCRUDService {
     public List<DoctorSpecializationDTO> getAllDoctors() {
         return reader.getAllDoctors();
     }
+
+    public List<Doctor> getAllDoctorsEntities() {
+        return reader.getAllDoctorsEntities();
+    }
+
     public List<DoctorSpecializationDTO> getDoctorsBySpecialization(String specialization) {
         return reader.getDoctorsBySpecialization(specialization);
     }

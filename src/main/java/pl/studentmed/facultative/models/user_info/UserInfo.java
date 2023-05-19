@@ -51,4 +51,8 @@ public class UserInfo extends BasicEntity {
         this.address = address;
     }
 
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }
+
 }

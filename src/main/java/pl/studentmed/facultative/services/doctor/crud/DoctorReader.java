@@ -31,4 +31,7 @@ class DoctorReader {
         return repository.getDoctorsBySpecialization(specialization);
     }
 
+    public List<Doctor> getAllDoctorsEntities() {
+        return repository.findAll();
+    }
 }

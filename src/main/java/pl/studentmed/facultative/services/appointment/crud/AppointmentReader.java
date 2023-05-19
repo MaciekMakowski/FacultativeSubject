@@ -94,7 +94,7 @@ class AppointmentReader {
     public AppointmentDate getControlAppointmentDate(Appointment appointment) {
         int maxDaysToCheck = 365;
         int daysToAdd = 0;
-
+        // TODO : exclude saturdays and sundays
         while (daysToAdd <= maxDaysToCheck) {
             var appointmentDateAfterDays = appointment.getAppointmentDate().toLocalDateTime().plusDays(14 + daysToAdd);
             var appointmentDateFormatted = appointmentDateAfterDays.toLocalDate().format(DAY_MONTH_YEAR);
@@ -137,6 +137,10 @@ class AppointmentReader {
             }
         }
         return null;
+    }
+
+    public List<Appointment> getAllAppointmentEntities() {
+        return repository.findAll();
     }
 
 }
