@@ -15,8 +15,11 @@ interface DoctorRepository extends JpaRepository<Doctor, Long> {
             select new pl.studentmed.facultative.models.doctor.DoctorSpecializationDTO
             (
                 doc.id,
-                concat(doc.userInfo.firstName, ' ', doc.userInfo.lastName),
-                cast(doc.specialization as string) 
+                cast(doc.specialization as string),
+                doc.description,
+                doc.photo,
+                doc.userInfo.firstName,
+                doc.userInfo.lastName
             )
             from Doctor doc
            """)
@@ -26,8 +29,11 @@ interface DoctorRepository extends JpaRepository<Doctor, Long> {
             select new pl.studentmed.facultative.models.doctor.DoctorSpecializationDTO
             (
                 doc.id,
-                concat(doc.userInfo.firstName, ' ', doc.userInfo.lastName),
-                cast(doc.specialization as string) 
+                cast(doc.specialization as string),
+                doc.description,
+                doc.photo,
+                doc.userInfo.firstName,
+                doc.userInfo.lastName
             )
             from Doctor doc
             where doc.specialization = :specialization

@@ -75,8 +75,11 @@ public class DTOMapper {
     public static DoctorSpecializationDTO toDTO(Doctor doctor) {
         return DoctorSpecializationDTO.builder()
                 .doctorId(doctor.getId())
-                .doctorName(combineStrings(doctor.getUserInfo().getFirstName(), doctor.getUserInfo().getLastName()))
                 .specialization(doctor.getSpecialization().value != null ? doctor.getSpecialization().value : null)
+                .description(doctor.getDescription() != null ? doctor.getDescription() : null)
+                .photo(doctor.getPhoto() != null ? doctor.getPhoto() : null)
+                .firstName(doctor.getUserInfo().getFirstName())
+                .lastName(doctor.getUserInfo().getLastName())
                 .build();
     }
 
