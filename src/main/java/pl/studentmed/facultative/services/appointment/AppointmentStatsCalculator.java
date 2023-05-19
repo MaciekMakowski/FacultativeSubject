@@ -21,7 +21,7 @@ class AppointmentStatsCalculator {
         return ClinicStatsDTO.of((long) appointments.size(), countAppointmentsByEachStatus(appointments));
     }
 
-    private List<Appointment> excludeDoctorAppointments(List<Appointment> appointments, Doctor doctor) {
+    private List<Appointment> extractDoctorAppointments(List<Appointment> appointments, Doctor doctor) {
         return appointments.stream()
                 .filter(appointment -> appointment.getDoctor().getId().equals(doctor.getId()))
                 .toList();
@@ -30,7 +30,7 @@ class AppointmentStatsCalculator {
     private List<DoctorAppointmentsStatsDTO> countEachDoctorStats(List<Appointment> appointments, List<Doctor> doctors) {
         ArrayList<DoctorAppointmentsStatsDTO> statsList = new ArrayList<>();
         for (Doctor doctor: doctors) {
-            var doctorAppointments = excludeDoctorAppointments(appointments, doctor);
+            var doctorAppointments = extractDoctorAppointments(appointments, doctor);
             var doctorAppointmentsStats = countAppointmentsByEachStatus(doctorAppointments);
             statsList.add(DoctorAppointmentsStatsDTO.of(doctor, doctorAppointmentsStats));
         }
