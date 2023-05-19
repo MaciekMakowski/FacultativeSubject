@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import pl.studentmed.facultative.models.appointment.AllAppointmentsStatsDTO;
 import pl.studentmed.facultative.models.appointment.AppointmentCreateDTO;
 import pl.studentmed.facultative.models.appointment.AppointmentEditDTO;
 import pl.studentmed.facultative.models.appointment.AppointmentResponseDTO;
@@ -64,6 +65,12 @@ class AppointmentController {
     public AppointmentResponseDTO finnishAppointment(@PathVariable Long appointmentId,
                                                      @RequestParam(required = false) String recommendations) {
         return facade.finnishAppointment(appointmentId, recommendations);
+    }
+
+    @GetMapping("/clinic-stats")
+    @ResponseStatus(HttpStatus.OK)
+    public AllAppointmentsStatsDTO getClinicStats() {
+        return facade.getClinicAndDoctorsStats();
     }
 
 }

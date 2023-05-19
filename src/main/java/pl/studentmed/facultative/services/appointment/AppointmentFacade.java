@@ -19,6 +19,7 @@ class AppointmentFacade {
     private final AppointmentCRUDService appointmentCRUDService;
     private final PatientCRUDService patientCRUDService;
     private final DoctorCRUDService doctorCRUDService;
+    private final AppointmentStatsCalculator appointmentStatsCalculator;
 
     public AppointmentResponseDTO getAppointmentDTOById(Long appointmentId) {
         return appointmentCRUDService.getAppointmentDTOById(appointmentId);
@@ -49,6 +50,12 @@ class AppointmentFacade {
     public AppointmentResponseDTO finnishAppointment(Long appointmentId, String recommendations) {
         var appointment = appointmentCRUDService.finnishAppointment(appointmentId, recommendations);
         return toDTO(appointment);
+    }
+
+    public AllAppointmentsStatsDTO getClinicAndDoctorsStats() {
+        var appointments = appointmentCRUDService.getAllApointments();
+        var doctors = doctorCRUDService.getAllDoctorsEntities();
+        return appointmentStatsCalculator.countClinicAndDoctorsStats(appointments, doctors);
     }
 
 }
