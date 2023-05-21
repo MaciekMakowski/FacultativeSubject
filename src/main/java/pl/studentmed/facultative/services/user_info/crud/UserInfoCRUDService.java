@@ -50,11 +50,7 @@ public class UserInfoCRUDService {
         var userInfo = reader.getUserInfoById(userInfoUpdateDTO.userInfoId());
         return updater.updateUserInfo(
                 userInfo,
-                userInfoUpdateDTO.firstName(),
-                userInfoUpdateDTO.lastName(),
-                userInfoUpdateDTO.password(),
                 userInfoUpdateDTO.phoneNumber(),
-                userInfoUpdateDTO.birthdate(),
                 userInfoUpdateDTO.email()
         );
     }
