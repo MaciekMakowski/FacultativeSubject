@@ -25,6 +25,10 @@ class PatientReader {
         return repository.getAllPatientsByDoctorId(doctorId, pageable);
     }
 
+    public Patient getPatientByUserInfoId(Long userInfoId) {
+        return repository.getPatientByUserInfoId(userInfoId);
+    }
+
     private static PageRequest createPageRequest(Integer givenOffset, Integer givenLimit) {
         var offset = givenOffset != null ? givenOffset : 0;
         var limit = givenLimit != null ? givenLimit : 5;

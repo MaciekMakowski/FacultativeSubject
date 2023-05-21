@@ -45,4 +45,9 @@ class InMemoryPatientRepository implements IPatientRepository {
         throw new NotYetImplementedException();
     }
 
+    @Override
+    public Patient getPatientByUserInfoId(Long userInfoId) {
+        throw new NotYetImplementedException();
+    }
+
 }

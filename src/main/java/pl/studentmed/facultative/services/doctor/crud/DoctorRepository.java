@@ -40,4 +40,5 @@ interface DoctorRepository extends JpaRepository<Doctor, Long> {
            """)
     List<DoctorSpecializationDTO> getDoctorsBySpecialization(@Param("specialization") Specialization specialization);
 
+    Doctor findDoctorByUserInfoId(Long userInfoId);
 }

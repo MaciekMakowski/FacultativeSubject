@@ -20,10 +20,13 @@ public class DoctorCRUDService {
         return reader.getDoctorById(doctorId);
     }
 
+    public Doctor getDoctorByUserInfoId(Long userInfoId) {
+        return reader.getDoctorByUserInfoId(userInfoId);
+    }
+
     public Doctor createDoctor(UserInfo userInfo) {
         return creator.createDoctor(userInfo);
     }
-
 
     public List<DoctorSpecializationDTO> getAllDoctors() {
         return reader.getAllDoctors();

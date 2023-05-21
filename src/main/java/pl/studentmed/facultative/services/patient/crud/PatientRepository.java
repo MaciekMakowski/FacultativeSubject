@@ -34,4 +34,8 @@ class PatientRepository implements IPatientRepository {
         return repository.getAllPatientsByDoctorId(doctorId, pageable);
     }
 
+    public Patient getPatientByUserInfoId(Long userInfoId) {
+        return repository.getPatientByUserInfoId(userInfoId);
+    }
+
 }

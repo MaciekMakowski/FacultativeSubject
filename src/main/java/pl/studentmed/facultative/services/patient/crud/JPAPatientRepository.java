@@ -17,4 +17,15 @@ interface JPAPatientRepository extends JpaRepository<Patient, Long> {
             where app.doctor.id = :doctorId
            """)
     List<Patient> getAllPatientsByDoctorId(@Param("doctorId")Long doctorId, Pageable pageable);
+
+    @Query(
+            value = """
+                    select *
+                    from patients as p
+                    join user_infos as ui
+                    on p.user_infos_id = ui.id
+                    where p.user_infos_id = ?1""",
+            nativeQuery = true)
+    Patient getPatientByUserInfoId(Long userInfoId);
+
 }

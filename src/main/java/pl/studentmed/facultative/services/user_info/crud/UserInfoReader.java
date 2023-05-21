@@ -11,6 +11,7 @@ import pl.studentmed.facultative.exceptions.EntityNotFoundException;
 import pl.studentmed.facultative.models.user_info.UserInfo;
 import pl.studentmed.facultative.models.user_info.UserInfoLoginRequestDTO;
 import pl.studentmed.facultative.models.user_info.UserInfoLoginResponseDTO;
+import pl.studentmed.facultative.services.patient.crud.IPatientRepository;
 import pl.studentmed.facultative.services.user_security.SessionRegistry;
 
 @Component
@@ -19,8 +20,6 @@ class UserInfoReader {
 
     private final UserInfoRepository repository;
     private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-    private final AuthenticationManager authenticationManager;
-    private final SessionRegistry sessionRegistry;
 
     public UserInfo getUserInfoById(Long userInfoId) {
         return repository.findById(userInfoId)
@@ -54,31 +53,6 @@ class UserInfoReader {
 
     public UserInfo getRegisteredUserInfoByEmail(String userEmail) {
         return repository.findRegisteredUserInfoByEmail(userEmail);
-    }
-
-    public UserInfoLoginResponseDTO loginUser(UserInfoLoginRequestDTO userInfoLoginRequestDTO) {
-        existsByEmail(userInfoLoginRequestDTO.email());
-        checkCredentials(userInfoLoginRequestDTO.email(), userInfoLoginRequestDTO.password());
-
-        var userToLoginInto = getRegisteredUserInfoByEmail(userInfoLoginRequestDTO.email());
-
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                userInfoLoginRequestDTO.email(),
-                userInfoLoginRequestDTO.password())
-        );
-
-        final String sessionId = sessionRegistry.registerSession(userInfoLoginRequestDTO.email());
-
-        return UserInfoLoginResponseDTO.builder()
-                .userInfoId(userToLoginInto.getId())
-                .sessionId(sessionId)
-                .email(userToLoginInto.getEmail())
-                .firstName(userToLoginInto.getFirstName())
-                .lastName(userToLoginInto.getLastName())
-                .pesel(userToLoginInto.getPesel())
-                .role(userToLoginInto.getRole().value)
-                .build();
-
     }
 
 }

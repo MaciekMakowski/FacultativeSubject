@@ -22,6 +22,10 @@ class DoctorReader {
                 );
     }
 
+    public Doctor getDoctorByUserInfoId(Long userInfoId) {
+        return repository.findDoctorByUserInfoId(userInfoId);
+    }
+
     public List<DoctorSpecializationDTO> getAllDoctors() {
         return repository.getAllDoctors();
     }

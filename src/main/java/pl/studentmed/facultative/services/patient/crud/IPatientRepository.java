@@ -14,4 +14,6 @@ public interface IPatientRepository {
     Patient saveAndFlush(Patient patient);
 
     List<Patient> getAllPatientsByDoctorId(Long doctorId, Pageable pageable);
+
+    Patient getPatientByUserInfoId(Long userInfoId);
 }

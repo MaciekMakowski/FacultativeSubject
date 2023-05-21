@@ -20,6 +20,10 @@ public class PatientCRUDService {
         return reader.getPatientById(patientId);
     }
 
+    public Patient getPatientByUserInfoId(Long userInfoId) {
+        return reader.getPatientByUserInfoId(userInfoId);
+    }
+
     public List<Patient> getAllPatients(Integer offset, Integer limit) {
         return reader.getAllPatients(offset, limit);
     }

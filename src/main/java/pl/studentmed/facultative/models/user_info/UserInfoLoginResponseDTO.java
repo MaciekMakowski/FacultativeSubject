@@ -10,7 +10,10 @@ public record UserInfoLoginResponseDTO(Long userInfoId,
                                        String firstName,
                                        String lastName,
                                        String pesel,
-                                       String role) {
+                                       String role,
+                                       Long patientId,
+                                       Long addressId,
+                                       Long doctorId) {
 
     @Builder public UserInfoLoginResponseDTO {}
 
