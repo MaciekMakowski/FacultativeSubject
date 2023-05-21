@@ -1,13 +1,11 @@
-For patient -
-1. Password reminder
-
 For admin -
 1. Create Appointment for calling person                                                        -- in progress [igor]
     Create account with password=pesel
-2. Patient's card                                                                               -- in progress [igor]
+2. (Probably no longer to do)Patient's card                                                     -- in progress [igor]
     getPatientById with all appointments - change request param String status to required=false?
      and if, then find all appointments
-3. Translate Errors to polish
+3. Change allergies and medicines to list of strings instead of single string
+4. Translate Errors to polish
 
 
 
