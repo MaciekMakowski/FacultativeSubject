@@ -20,7 +20,8 @@ class UserInfoUpdater {
                                    String lastName,
                                    String password,
                                    String phoneNumber,
-                                   LocalDate birthdate) {
+                                   LocalDate birthdate,
+                                   String email) {
         if (firstName != null) {
             userInfo.setFirstName(firstName);
         }
@@ -35,6 +36,9 @@ class UserInfoUpdater {
         }
         if (birthdate != null) {
             userInfo.setBirthdate(birthdate);
+        }
+        if (email != null) {
+            userInfo.setEmail(email);
         }
         return repository.saveAndFlush(userInfo);
     }

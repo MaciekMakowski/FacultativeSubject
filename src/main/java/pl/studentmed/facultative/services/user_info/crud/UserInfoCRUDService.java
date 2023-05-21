@@ -2,13 +2,12 @@ package pl.studentmed.facultative.services.user_info.crud;
 
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 import pl.studentmed.facultative.models.address.Address;
-import pl.studentmed.facultative.models.user_info.*;
-import pl.studentmed.facultative.services.user_security.SessionRegistry;
+import pl.studentmed.facultative.models.user_info.Role;
+import pl.studentmed.facultative.models.user_info.UserInfo;
+import pl.studentmed.facultative.models.user_info.UserInfoCreateDTO;
+import pl.studentmed.facultative.models.user_info.UserInfoUpdateDTO;
 
 @Service
 @RequiredArgsConstructor
@@ -55,7 +54,8 @@ public class UserInfoCRUDService {
                 userInfoUpdateDTO.lastName(),
                 userInfoUpdateDTO.password(),
                 userInfoUpdateDTO.phoneNumber(),
-                userInfoUpdateDTO.birthdate()
+                userInfoUpdateDTO.birthdate(),
+                userInfoUpdateDTO.email()
         );
     }
 
