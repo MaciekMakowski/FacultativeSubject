@@ -3,13 +3,9 @@ package pl.studentmed.facultative.services.appointment;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import pl.studentmed.facultative.models.appointment.AllAppointmentsStatsDTO;
-import pl.studentmed.facultative.models.appointment.AppointmentCreateDTO;
-import pl.studentmed.facultative.models.appointment.AppointmentEditDTO;
-import pl.studentmed.facultative.models.appointment.AppointmentResponseDTO;
+import pl.studentmed.facultative.models.appointment.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Max;
@@ -41,11 +37,10 @@ class AppointmentController {
     }
 
     @GetMapping("/busy_at")
-    public ResponseEntity<List<String>> getBusyAppointmentHoursForDateAndDoctorId(
+    public List<AppointmentsHoursDTO> getBusyAppointmentHoursForDateAndDoctorId(
             @NotNull @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate givenDate,
             @NotNull @RequestParam Long doctorId) {
-        var busyHours = facade.getBusyAppointmentHoursForDateAndDoctorId(givenDate, doctorId);
-        return busyHours.size() > 0 ? ResponseEntity.ok(busyHours) : ResponseEntity.noContent().build();
+        return facade.getBusyAppointmentHoursForDateAndDoctorId(givenDate, doctorId);
     }
 
     @PostMapping("")

@@ -20,6 +20,7 @@ class AppointmentFacade {
     private final PatientCRUDService patientCRUDService;
     private final DoctorCRUDService doctorCRUDService;
     private final AppointmentStatsCalculator appointmentStatsCalculator;
+    private final AppointmentBusyHoursService appointmentBusyHoursService;
 
     public AppointmentResponseDTO getAppointmentDTOById(Long appointmentId) {
         return appointmentCRUDService.getAppointmentDTOById(appointmentId);
@@ -29,8 +30,9 @@ class AppointmentFacade {
         return appointmentCRUDService.getAllNewAppointments(offset, limit);
     }
 
-    public List<String> getBusyAppointmentHoursForDateAndDoctorId(LocalDate givenDate, Long doctorId) {
-        return appointmentCRUDService.getBusyAppointmentHoursForDateAndDoctorId(givenDate, doctorId);
+    public List<AppointmentsHoursDTO> getBusyAppointmentHoursForDateAndDoctorId(LocalDate givenDate, Long doctorId) {
+        var busyHours = appointmentCRUDService.getBusyAppointmentHoursForDateAndDoctorId(givenDate, doctorId);
+        return appointmentBusyHoursService.getAppointmentHours(busyHours);
     }
 
     public AppointmentResponseDTO createAppointment(AppointmentCreateDTO dto) {
