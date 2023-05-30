@@ -53,13 +53,16 @@ class AppointmentReader {
                                                                LocalDate secondDate, Integer givenOffset,
                                                                Integer givenLimit) {
         var pageable = createPageRequest(givenOffset, givenLimit);
-        if (appointmentDate != null && secondDate != null) {
+        if (appointmentDate != null && secondDate != null && status != null) {
             return getAppointmentWithDateBetween(patientId, status, appointmentDate, secondDate, pageable);
         }
-        if (appointmentDate != null) {
+        if (appointmentDate != null && status != null) {
             return getAppointmentWithDateLike(patientId, status, appointmentDate, pageable);
         }
-        return repository.getAppointmentsByPatientId(patientId, status, pageable);
+        if (status != null) {
+            return repository.getAppointmentsByPatientIdAndStatus(patientId, status, pageable);
+        }
+        return repository.getAppointmentsByPatientId(patientId, pageable);
     }
 
     private List<AppointmentResponseDTO> getAppointmentWithDateBetween(Long patientId, AppointmentStatus status,

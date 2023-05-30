@@ -40,7 +40,7 @@ class PatientController {
     @GetMapping("/{patientId}/appointments")
     public ResponseEntity<List<AppointmentResponseDTO>> getPatientAppointments(
             @PathVariable Long patientId,
-            @RequestParam String status,
+            @RequestParam(required = false) String status,
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate appointmentDate,
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate secondDate,
             @RequestParam(required = false) @Min(0) @Max(300) Integer offset,

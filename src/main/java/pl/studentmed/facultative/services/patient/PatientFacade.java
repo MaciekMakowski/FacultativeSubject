@@ -40,7 +40,10 @@ class PatientFacade {
     }
 
     public List<AppointmentResponseDTO> getPatientAppointments(Long patientId, String status, LocalDate appointmentDate, LocalDate secondDate, Integer offset, Integer limit) {
-        var appointmentStatus = AppointmentStatus.getAppointmentStatus(status);
+        AppointmentStatus appointmentStatus = null;
+        if (status != null) {
+            appointmentStatus = AppointmentStatus.getAppointmentStatus(status);
+        }
         return appointmentCRUDService.getPatientAppointments(patientId, appointmentStatus, appointmentDate, secondDate, offset, limit);
     }
 
