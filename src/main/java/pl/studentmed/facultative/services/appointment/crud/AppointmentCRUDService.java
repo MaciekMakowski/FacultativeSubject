@@ -6,6 +6,7 @@ import pl.studentmed.facultative.exceptions.AppointmentDateAlreadyTakenException
 import pl.studentmed.facultative.models.appointment.*;
 import pl.studentmed.facultative.models.doctor.Doctor;
 import pl.studentmed.facultative.models.patient.Patient;
+import pl.studentmed.facultative.models.user_info.UserInfo;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -53,8 +54,8 @@ public class AppointmentCRUDService {
         }
     }
 
-    public Appointment editAppointment(Appointment appointment, AppointmentEditDTO dto) {
-        return updater.editAppointment(appointment, dto);
+    public Appointment editAppointment(Appointment appointment, AppointmentEditDTO dto, UserInfo userWhichIsEditing) {
+        return updater.editAppointment(appointment, dto, userWhichIsEditing);
     }
 
     public Appointment finnishAppointment(Long appointmentId, String recommendations) {

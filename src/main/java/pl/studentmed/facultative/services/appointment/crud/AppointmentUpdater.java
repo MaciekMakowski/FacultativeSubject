@@ -8,6 +8,8 @@ import pl.studentmed.facultative.models.appointment.Appointment;
 import pl.studentmed.facultative.models.appointment.AppointmentDate;
 import pl.studentmed.facultative.models.appointment.AppointmentEditDTO;
 import pl.studentmed.facultative.models.appointment.AppointmentStatus;
+import pl.studentmed.facultative.models.user_info.Role;
+import pl.studentmed.facultative.models.user_info.UserInfo;
 
 import java.time.LocalDateTime;
 
@@ -19,9 +21,9 @@ class AppointmentUpdater {
 
     private final AppointmentRepository repository;
 
-    public Appointment editAppointment(Appointment appointmentToEdit, AppointmentEditDTO dto) {
+    public Appointment editAppointment(Appointment appointmentToEdit, AppointmentEditDTO dto, UserInfo userWhichIsEditing) {
         if (dto.newStatus() != null) {
-            changeAppointmentStatus(appointmentToEdit, dto.newStatus());
+            changeAppointmentStatus(appointmentToEdit, dto.newStatus(), userWhichIsEditing);
         }
         var modifiedAt = LocalDateTime.now();
         var modifiedAtFormatted = modifiedAt.format(DAY_MONTH_YEAR_TIME);
@@ -47,10 +49,10 @@ class AppointmentUpdater {
         appointmentToEdit.setStatus(AppointmentStatus.RESCHEDULED);
     }
 
-    private void changeAppointmentStatus(Appointment appointmentToEdit, String givenStatus) {
+    private void changeAppointmentStatus(Appointment appointmentToEdit, String givenStatus, UserInfo userWhichIsEditing) {
         var newStatus = AppointmentStatus.getAppointmentStatus(givenStatus);
         if (AppointmentStatus.isCanceled(newStatus)) {
-            if (!appointmentToEdit.canBeCanceled()) {
+            if (!appointmentToEdit.canBeCanceled() && userWhichIsEditing.getRole() != Role.RECEPTION) {
                 throw new AppointmentCantBeCancelledException("appointment",
                         "Appointment can't be cancelled if there is less than 24 hours left.");
             }

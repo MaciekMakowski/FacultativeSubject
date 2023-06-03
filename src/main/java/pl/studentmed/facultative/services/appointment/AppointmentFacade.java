@@ -6,6 +6,7 @@ import pl.studentmed.facultative.models.appointment.*;
 import pl.studentmed.facultative.services.appointment.crud.AppointmentCRUDService;
 import pl.studentmed.facultative.services.doctor.crud.DoctorCRUDService;
 import pl.studentmed.facultative.services.patient.crud.PatientCRUDService;
+import pl.studentmed.facultative.services.user_info.crud.UserInfoCRUDService;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -21,6 +22,7 @@ class AppointmentFacade {
     private final DoctorCRUDService doctorCRUDService;
     private final AppointmentStatsCalculator appointmentStatsCalculator;
     private final AppointmentBusyHoursService appointmentBusyHoursService;
+    private final UserInfoCRUDService userInfoCRUDService;
 
     public AppointmentResponseDTO getAppointmentDTOById(Long appointmentId) {
         return appointmentCRUDService.getAppointmentDTOById(appointmentId);
@@ -45,7 +47,8 @@ class AppointmentFacade {
 
     public AppointmentResponseDTO editAppointment(AppointmentEditDTO dto) {
         var appointmentToEdit = appointmentCRUDService.getAppointmentById(dto.appointmentId());
-        var editedAppointment = appointmentCRUDService.editAppointment(appointmentToEdit, dto);
+        var userWhichIsEditing = userInfoCRUDService.getUserInfoById(dto.userInfoId());
+        var editedAppointment = appointmentCRUDService.editAppointment(appointmentToEdit, dto, userWhichIsEditing);
         return toDTO(editedAppointment);
     }
 
