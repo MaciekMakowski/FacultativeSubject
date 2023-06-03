@@ -19,11 +19,12 @@ class AppointmentCreator {
         return repository.saveAndFlush(appointment);
     }
 
-    public Appointment createControlAppointment(Appointment appointment, AppointmentDate appointmentControlDate) {
+    public Appointment createControlAppointment(Appointment appointment, AppointmentDate appointmentControlDate, String diagnosis) {
         var patientSymptoms = appointment.getPatientSymptoms();
         Appointment controlAppointment = new Appointment(appointment.getPatient(), appointment.getDoctor(), appointmentControlDate, patientSymptoms, appointment.getMedicinesTaken());
 
         controlAppointment.setStatus(AppointmentStatus.CONTROL);
+        controlAppointment.setDiagnosis(diagnosis);
 
         return repository.saveAndFlush(controlAppointment);
     }

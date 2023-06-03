@@ -64,8 +64,9 @@ class AppointmentController {
     @PatchMapping("/done/{appointmentId}")
     @ResponseStatus(HttpStatus.OK)
     public AppointmentResponseDTO finnishAppointment(@PathVariable Long appointmentId,
-                                                     @RequestParam(required = false) String recommendations) {
-        return facade.finnishAppointment(appointmentId, recommendations);
+                                                     @RequestParam(required = false) String recommendations,
+                                                     @RequestParam(required = false) String diagnosis) {
+        return facade.finnishAppointment(appointmentId, recommendations, diagnosis);
     }
 
     @GetMapping("/clinic-stats")

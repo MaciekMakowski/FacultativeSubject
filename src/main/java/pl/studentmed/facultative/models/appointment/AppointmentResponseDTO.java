@@ -11,7 +11,8 @@ public record AppointmentResponseDTO(Long appointmentId,
                                      AppointmentStatus appointmentStatus,
                                      String doctorRecommendations,
                                      String createdAt,
-                                     String modifiedAt) {
+                                     String modifiedAt,
+                                     String diagnosis) {
 
     @Builder public AppointmentResponseDTO {}
 

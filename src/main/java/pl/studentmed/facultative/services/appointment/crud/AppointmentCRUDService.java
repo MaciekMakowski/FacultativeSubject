@@ -58,11 +58,11 @@ public class AppointmentCRUDService {
         return updater.editAppointment(appointment, dto, userWhichIsEditing);
     }
 
-    public Appointment finnishAppointment(Long appointmentId, String recommendations) {
+    public Appointment finnishAppointment(Long appointmentId, String recommendations, String diagnosis) {
         var appointment = getAppointmentById(appointmentId);
         var appointmentControlDate = reader.getControlAppointmentDate(appointment);
-        creator.createControlAppointment(appointment, appointmentControlDate);
-        return updater.finnishAppointment(appointment, recommendations);
+        creator.createControlAppointment(appointment, appointmentControlDate, diagnosis);
+        return updater.finnishAppointment(appointment, recommendations, diagnosis);
     }
 
     public List<Appointment> getAllAppointments() {

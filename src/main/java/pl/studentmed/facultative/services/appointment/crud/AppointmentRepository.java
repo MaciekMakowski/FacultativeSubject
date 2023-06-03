@@ -27,7 +27,8 @@ interface AppointmentRepository extends JpaRepository<Appointment, Long> {
                 app.status,
                 app.recommendations,
                 app.createdAt,
-                app.modifiedAt
+                app.modifiedAt,
+                app.diagnosis
                 )
             from Appointment app
             join fetch Patient p on app.patient = p
@@ -49,7 +50,8 @@ interface AppointmentRepository extends JpaRepository<Appointment, Long> {
                 app.status,
                 app.recommendations,
                 app.createdAt,
-                app.modifiedAt
+                app.modifiedAt,
+                app.diagnosis
                 )
             from Appointment app
             join fetch Patient p on app.patient = p
@@ -73,7 +75,8 @@ interface AppointmentRepository extends JpaRepository<Appointment, Long> {
                 app.status,
                 app.recommendations,
                 app.createdAt,
-                app.modifiedAt
+                app.modifiedAt,
+                app.diagnosis
                 )
             from Appointment app
             join fetch Patient p on app.patient = p
@@ -99,7 +102,8 @@ interface AppointmentRepository extends JpaRepository<Appointment, Long> {
                 app.status,
                 app.recommendations,
                 app.createdAt,
-                app.modifiedAt
+                app.modifiedAt,
+                app.diagnosis
                 )
             from Appointment app
             join fetch Patient p on app.patient = p
@@ -127,7 +131,8 @@ interface AppointmentRepository extends JpaRepository<Appointment, Long> {
                 app.status,
                 app.recommendations,
                 app.createdAt,
-                app.modifiedAt
+                app.modifiedAt,
+                app.diagnosis
                 )
             from Appointment app
             join fetch Patient p on app.patient = p
@@ -151,7 +156,8 @@ interface AppointmentRepository extends JpaRepository<Appointment, Long> {
                 app.status,
                 app.recommendations,
                 app.createdAt,
-                app.modifiedAt
+                app.modifiedAt,
+                app.diagnosis
                 )
             from Appointment app
             join fetch Patient p on app.patient = p
@@ -185,7 +191,8 @@ interface AppointmentRepository extends JpaRepository<Appointment, Long> {
                 app.status,
                 app.recommendations,
                 app.createdAt,
-                app.modifiedAt
+                app.modifiedAt,
+                app.diagnosis
                 )
             from Appointment app
             join fetch Patient p on app.patient = p
@@ -213,7 +220,8 @@ interface AppointmentRepository extends JpaRepository<Appointment, Long> {
                 app.status,
                 app.recommendations,
                 app.createdAt,
-                app.modifiedAt
+                app.modifiedAt,
+                app.diagnosis
                 )
             from Appointment app
             join fetch Patient p on app.patient = p
@@ -235,7 +243,8 @@ interface AppointmentRepository extends JpaRepository<Appointment, Long> {
                 app.status,
                 app.recommendations,
                 app.createdAt,
-                app.modifiedAt
+                app.modifiedAt,
+                app.diagnosis
                 )
             from Appointment app
             join fetch Patient p on app.patient = p

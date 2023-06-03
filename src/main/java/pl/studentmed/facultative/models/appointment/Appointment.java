@@ -41,6 +41,7 @@ public class Appointment extends BasicEntity {
     private String recommendations;
 
     private String medicinesTaken;
+    private String diagnosis;
 
     public Appointment(Patient patient, Doctor doctor, AppointmentDate appointmentDate, String patientSymptoms, String medicinesTaken) {
         this.patient = patient;

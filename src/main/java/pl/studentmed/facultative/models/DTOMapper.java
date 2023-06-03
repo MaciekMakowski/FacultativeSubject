@@ -69,6 +69,7 @@ public class DTOMapper {
                 .doctorRecommendations(appointment.getRecommendations())
                 .createdAt(appointment.getCreatedAt())
                 .modifiedAt(appointment.getModifiedAt())
+                .diagnosis(appointment.getDiagnosis() != null ? appointment.getDiagnosis() : null)
                 .build();
     }
 

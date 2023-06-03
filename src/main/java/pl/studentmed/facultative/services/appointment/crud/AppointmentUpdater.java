@@ -31,9 +31,12 @@ class AppointmentUpdater {
         return repository.saveAndFlush(appointmentToEdit);
     }
 
-    public Appointment finnishAppointment(Appointment appointment, String recommendations) {
+    public Appointment finnishAppointment(Appointment appointment, String recommendations, String diagnosis) {
         if (recommendations != null) {
             appointment.setRecommendations(recommendations);
+        }
+        if (diagnosis != null) {
+            appointment.setDiagnosis(diagnosis);
         }
         var newStatus = AppointmentStatus.getAppointmentStatus("done");
         if (appointment.getStatus().equals(newStatus)) {
