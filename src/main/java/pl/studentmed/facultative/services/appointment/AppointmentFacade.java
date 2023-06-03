@@ -55,9 +55,12 @@ class AppointmentFacade {
     }
 
     public AllAppointmentsStatsDTO getClinicAndDoctorsStats() {
-        var appointments = appointmentCRUDService.getAllApointments();
+        var appointments = appointmentCRUDService.getAllAppointments();
         var doctors = doctorCRUDService.getAllDoctorsEntities();
         return appointmentStatsCalculator.countClinicAndDoctorsStats(appointments, doctors);
     }
 
+    public List<AppointmentResponseDTO> getAllAppointments() {
+        return appointmentCRUDService.getAllAppointmentsMapped();
+    }
 }

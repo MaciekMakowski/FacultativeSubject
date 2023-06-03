@@ -222,4 +222,25 @@ interface AppointmentRepository extends JpaRepository<Appointment, Long> {
             order by app.appointmentDate.date asc
            """)
     List<AppointmentResponseDTO> getAppointmentsByPatientId(@Param("patientId") Long patientId, PageRequest pageable);
+
+    @Query("""
+           select new pl.studentmed.facultative.models.appointment.AppointmentResponseDTO
+                (
+                app.id,
+                concat(p.userInfo.firstName, ' ', p.userInfo.lastName),
+                concat(d.userInfo.firstName, ' ', d.userInfo.lastName),
+                app.appointmentDate.date,
+                app.patientSymptoms,
+                app.medicinesTaken,
+                app.status,
+                app.recommendations,
+                app.createdAt,
+                app.modifiedAt
+                )
+            from Appointment app
+            join fetch Patient p on app.patient = p
+            join fetch Doctor d on app.doctor = d
+            order by app.appointmentDate.date asc
+           """)
+    List<AppointmentResponseDTO> getAllAppointmentsMapped();
 }

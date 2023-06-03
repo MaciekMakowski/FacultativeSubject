@@ -20,11 +20,10 @@ class AppointmentCreator {
     }
 
     public Appointment createControlAppointment(Appointment appointment, AppointmentDate appointmentControlDate) {
-        var patientSymptoms = "Control appointment patient's with symptoms:\n" + appointment.getPatientSymptoms();
+        var patientSymptoms = appointment.getPatientSymptoms();
         Appointment controlAppointment = new Appointment(appointment.getPatient(), appointment.getDoctor(), appointmentControlDate, patientSymptoms, appointment.getMedicinesTaken());
 
-        var statusApproved = AppointmentStatus.getAppointmentStatus("approved");
-        controlAppointment.setStatus(statusApproved);
+        controlAppointment.setStatus(AppointmentStatus.CONTROL);
 
         return repository.saveAndFlush(controlAppointment);
     }

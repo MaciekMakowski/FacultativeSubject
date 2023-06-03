@@ -10,7 +10,8 @@ public enum AppointmentStatus {
     APPROVED("approved"),
     CANCELED("canceled"),
     DONE("done"),
-    RESCHEDULED("rescheduled");
+    RESCHEDULED("rescheduled"),
+    CONTROL("control");
 
     public final String value;
 
@@ -22,8 +23,8 @@ public enum AppointmentStatus {
         return Stream.of(values())
                 .filter(appointmentStatus -> appointmentStatus.value.equals(givenValue))
                 .findFirst()
-                .orElseThrow(() -> new InvalidAppointmentStatusException(String.format("Appointment status must be one of '%s', '%s', '%s', '%s', or '%s'",
-                        NEW.value, APPROVED.value, CANCELED.value, DONE.value, RESCHEDULED.value)));
+                .orElseThrow(() -> new InvalidAppointmentStatusException(String.format("Appointment status must be one of '%s', '%s', '%s', '%s', '%s' or '%s'",
+                        NEW.value, APPROVED.value, CANCELED.value, DONE.value, RESCHEDULED.value, CONTROL.value)));
     }
 
     public static boolean isCanceled(AppointmentStatus appointmentStatus) {

@@ -26,6 +26,19 @@ public class AppointmentDate {
         this.date = appointmentDate.format(DAY_MONTH_YEAR_TIME);
     }
 
+    public static AppointmentDate controlAppointmentDate(LocalDateTime controlAppointmentDate) {
+        return createAppointmentDateForControlAppointment(controlAppointmentDate);
+    }
+
+    private static AppointmentDate createAppointmentDateForControlAppointment(LocalDateTime controlAppointmentDate) {
+        if (controlAppointmentDate == null) {
+            throw new EmptyFieldException("appointmentDate", "Appointment date can't be empty.");
+        }
+        AppointmentDate appointmentDate = new AppointmentDate();
+        appointmentDate.date = controlAppointmentDate.format(DAY_MONTH_YEAR_TIME);
+        return appointmentDate;
+    }
+
     public LocalDateTime toLocalDateTime() {
         var days = this.date.substring(0, 2);
         var month = this.date.substring(3, 5);

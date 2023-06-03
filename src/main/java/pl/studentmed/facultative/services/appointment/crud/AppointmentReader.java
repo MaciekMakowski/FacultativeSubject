@@ -130,7 +130,7 @@ class AppointmentReader {
 
     private AppointmentDate createAppointmentDate(String appointmentDate, String appointmentTime) {
         LocalDateTime dateTime = toLocalDateTime(appointmentDate, appointmentTime);
-        return new AppointmentDate(dateTime);
+        return AppointmentDate.controlAppointmentDate(dateTime);
     }
 
     private String findAvailableTime(List<String> appointmentTimes) {
@@ -146,4 +146,7 @@ class AppointmentReader {
         return repository.findAll();
     }
 
+    public List<AppointmentResponseDTO> getAllAppointmentsMapped() {
+        return repository.getAllAppointmentsMapped();
+    }
 }

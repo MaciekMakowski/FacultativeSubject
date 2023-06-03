@@ -22,6 +22,12 @@ class AppointmentController {
 
     private final AppointmentFacade facade;
 
+    @GetMapping("/all")
+    @ResponseStatus(HttpStatus.OK)
+    public List<AppointmentResponseDTO> getAllAppointments() {
+        return facade.getAllAppointments();
+    }
+
     @GetMapping("/{appointmentId}")
     @ResponseStatus(HttpStatus.OK)
     public AppointmentResponseDTO getAppointmentById(@PathVariable Long appointmentId) {

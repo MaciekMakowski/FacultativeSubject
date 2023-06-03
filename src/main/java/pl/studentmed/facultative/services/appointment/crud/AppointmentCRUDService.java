@@ -64,8 +64,11 @@ public class AppointmentCRUDService {
         return updater.finnishAppointment(appointment, recommendations);
     }
 
-    public List<Appointment> getAllApointments() {
+    public List<Appointment> getAllAppointments() {
         return reader.getAllAppointmentEntities();
     }
 
+    public List<AppointmentResponseDTO> getAllAppointmentsMapped() {
+        return reader.getAllAppointmentsMapped();
+    }
 }
