@@ -30,7 +30,8 @@ class UserInfoFacade {
             throw new UserAlreadyExistsException("registration", "User with this email or pesel already exists.");
         }
         if (Role.isReception(user.role())) {
-            var userInfo = userInfoCRUDService.createUser(user, null, Role.RECEPTION);
+            var emptyAddress = addressCRUDService.createEmptyAddress();
+            var userInfo = userInfoCRUDService.createUser(user, emptyAddress, Role.RECEPTION);
             return toDTO(userInfo);
         }
         else if (Role.isDoctor(user.role())) {
