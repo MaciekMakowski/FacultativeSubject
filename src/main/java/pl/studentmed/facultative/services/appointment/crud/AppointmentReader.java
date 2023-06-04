@@ -85,7 +85,7 @@ class AppointmentReader {
 
     private static PageRequest createPageRequest(Integer givenOffset, Integer givenLimit) {
         var offset = givenOffset != null ? givenOffset : 0;
-        var limit = givenLimit != null ? givenLimit : 5;
+        var limit = givenLimit != null ? givenLimit : 20;
         return PageRequest.of(offset, limit, Sort.by("appointmentDate").ascending());
     }
 
