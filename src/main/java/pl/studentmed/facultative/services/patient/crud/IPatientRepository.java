@@ -16,4 +16,5 @@ public interface IPatientRepository {
     List<Patient> getAllPatientsByDoctorId(Long doctorId, Pageable pageable);
 
     Patient getPatientByUserInfoId(Long userInfoId);
+
 }

@@ -21,8 +21,6 @@ public class CurrentUser implements UserDetails {
         this.password = password;
     }
 
-    // TODO -- change authorities if front needs it, generate only sessionID
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority("ADMIN"));
