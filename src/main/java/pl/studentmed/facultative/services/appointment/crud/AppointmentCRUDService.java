@@ -3,6 +3,7 @@ package pl.studentmed.facultative.services.appointment.crud;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.studentmed.facultative.exceptions.AppointmentDateAlreadyTakenException;
+import pl.studentmed.facultative.exceptions.NoFreeDoctorAppointmentsException;
 import pl.studentmed.facultative.models.appointment.*;
 import pl.studentmed.facultative.models.doctor.Doctor;
 import pl.studentmed.facultative.models.patient.Patient;
@@ -59,10 +60,15 @@ public class AppointmentCRUDService {
     }
 
     public Appointment finnishAppointment(Long appointmentId, String recommendations, String diagnosis) {
-        var appointment = getAppointmentById(appointmentId);
-        var appointmentControlDate = reader.getControlAppointmentDate(appointment);
-        creator.createControlAppointment(appointment, appointmentControlDate, diagnosis);
-        return updater.finnishAppointment(appointment, recommendations, diagnosis);
+        try {
+            var appointment = getAppointmentById(appointmentId);
+            var appointmentControlDate = reader.getControlAppointmentDate(appointment);
+            creator.createControlAppointment(appointment, appointmentControlDate, diagnosis);
+            return updater.finnishAppointment(appointment, recommendations, diagnosis);
+        } catch (NoFreeDoctorAppointmentsException e) {
+            var appointment = getAppointmentById(appointmentId);
+            return updater.finnishAppointment(appointment, recommendations, diagnosis);
+        }
     }
 
     public List<Appointment> getAllAppointments() {
@@ -72,4 +78,5 @@ public class AppointmentCRUDService {
     public List<AppointmentResponseDTO> getAllAppointmentsMapped() {
         return reader.getAllAppointmentsMapped();
     }
+
 }
