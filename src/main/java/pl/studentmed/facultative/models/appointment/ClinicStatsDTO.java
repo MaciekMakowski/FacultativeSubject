@@ -16,4 +16,5 @@ public record ClinicStatsDTO(Long numberOfAllAppointments,
                 dto.numberOfDone(),
                 dto.numberOfRescheduled());
     }
+
 }

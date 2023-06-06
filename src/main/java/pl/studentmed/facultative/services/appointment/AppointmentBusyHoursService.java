@@ -2,7 +2,7 @@ package pl.studentmed.facultative.services.appointment;
 
 import org.springframework.stereotype.Service;
 import pl.studentmed.facultative.models.appointment.AppointmentsHoursDTO;
-import pl.studentmed.facultative.models.appointment.AvaliableHoursDTO;
+import pl.studentmed.facultative.models.appointment.AvailableHoursDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,10 +25,10 @@ class AppointmentBusyHoursService {
             var dto = new AppointmentsHoursDTO(fullHour, new ArrayList<>());
             for (String hourAndMinute: hoursAndMinutes) {
                 if(busyHoursAtDay.contains(hourAndMinute)) {
-                    dto.hours().add(new AvaliableHoursDTO(hourAndMinute, false));
+                    dto.hours().add(new AvailableHoursDTO(hourAndMinute, false));
                 }
                 else {
-                    dto.hours().add(new AvaliableHoursDTO(hourAndMinute, true));
+                    dto.hours().add(new AvailableHoursDTO(hourAndMinute, true));
                 }
             }
             result.add(dto);
