@@ -52,12 +52,4 @@ class AppointmentBusyHoursService {
                 .toList();
     }
 
-//    var hoursAndMinutesForFullHour = new ArrayList<String>();
-//        for (String hourAndMinute: hoursAndMinutes) {
-//        String hour = hourAndMinute.substring(0, 3);
-//        if (hour.equals(fullHour)) {
-//            hoursAndMinutesForFullHour.add(hourAndMinute);
-//        }
-//    }
-//        return hoursAndMinutesForFullHour;
 }

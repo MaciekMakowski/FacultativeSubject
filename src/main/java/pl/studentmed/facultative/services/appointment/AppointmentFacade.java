@@ -66,4 +66,5 @@ class AppointmentFacade {
     public List<AppointmentResponseDTO> getAllAppointments() {
         return appointmentCRUDService.getAllAppointmentsMapped();
     }
+
 }

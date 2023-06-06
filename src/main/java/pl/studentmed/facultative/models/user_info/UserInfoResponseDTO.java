@@ -15,4 +15,5 @@ public record UserInfoResponseDTO(Long userInfoId,
                                   ) {
 
     @Builder public UserInfoResponseDTO {}
+
 }

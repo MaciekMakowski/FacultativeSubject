@@ -252,4 +252,5 @@ interface AppointmentRepository extends JpaRepository<Appointment, Long> {
             order by app.appointmentDate.date asc
            """)
     List<AppointmentResponseDTO> getAllAppointmentsMapped();
+
 }
