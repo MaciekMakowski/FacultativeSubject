@@ -9,8 +9,10 @@ import pl.studentmed.facultative.exceptions.NoFreeDoctorAppointmentsException;
 import pl.studentmed.facultative.models.appointment.*;
 import pl.studentmed.facultative.models.doctor.Doctor;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import static pl.studentmed.facultative.models.StudentMedDateUtils.DAY_MONTH_YEAR;
@@ -95,27 +97,32 @@ class AppointmentReader {
     }
 
     public AppointmentDate getControlAppointmentDate(Appointment appointment) {
-        int maxDaysToCheck = 365;
+        LocalDate currentDate = LocalDate.now();
+        LocalDate endOfYear = LocalDate.of(currentDate.getYear(), 12, 31);
+        int maxDaysToCheck = (int) ChronoUnit.DAYS.between(currentDate, endOfYear);
         int daysToAdd = 0;
-        // TODO : exclude saturdays and sundays
+
         while (daysToAdd <= maxDaysToCheck) {
             var appointmentDateAfterDays = appointment.getAppointmentDate().toLocalDateTime().plusDays(14 + daysToAdd);
-            var appointmentDateFormatted = appointmentDateAfterDays.toLocalDate().format(DAY_MONTH_YEAR);
-            var appointmentTimes = repository.getBusyAppointmentsHoursByGivenDateAndDoctorId(appointmentDateFormatted, appointment.getDoctor().getId());
+            DayOfWeek dayOfWeek = appointmentDateAfterDays.getDayOfWeek();
 
-            if (appointmentTimes == null || appointmentTimes.isEmpty()) {
-                return createAppointmentDate(appointmentDateFormatted, SELECTABLE_HOURS.get(0));
-            }
+            if (dayOfWeek != DayOfWeek.SATURDAY && dayOfWeek != DayOfWeek.SUNDAY) {
+                String appointmentDateFormatted = appointmentDateAfterDays.format(DAY_MONTH_YEAR);
+                List<String> appointmentTimes = repository.getBusyAppointmentsHoursByGivenDateAndDoctorId(appointmentDateFormatted, appointment.getDoctor().getId());
 
-            String availableTime = findAvailableTime(appointmentTimes);
-            if (availableTime != null) {
-                return createAppointmentDate(appointmentDateFormatted, availableTime);
+                if (appointmentTimes == null || appointmentTimes.isEmpty()) {
+                    return createAppointmentDate(appointmentDateFormatted, SELECTABLE_HOURS.get(0));
+                }
+
+                String availableTime = findAvailableTime(appointmentTimes);
+                if (availableTime != null) {
+                    return createAppointmentDate(appointmentDateFormatted, availableTime);
+                }
             }
 
             daysToAdd++;
         }
-        throw new NoFreeDoctorAppointmentsException("appointmentDate", "There is no free date in the next "
-                + maxDaysToCheck + " days to make control appointment with the same doctor.");
+        throw new NoFreeDoctorAppointmentsException("appointmentDate", "There are no free dates for this doctor this year.");
     }
 
     private LocalDateTime toLocalDateTime(String date, String time) {
@@ -149,4 +156,5 @@ class AppointmentReader {
     public List<AppointmentResponseDTO> getAllAppointmentsMapped() {
         return repository.getAllAppointmentsMapped();
     }
+
 }
