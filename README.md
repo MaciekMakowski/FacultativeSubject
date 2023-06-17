@@ -4,10 +4,10 @@ Repository created for the backend part of the Clinic Management project impleme
 
 ## Technologies
 ![Spring](https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white)
-![Maven](https://img.shields.io/badge/Maven-00000F?style=for-the-badge&logo=maven&logoColor=white)
+![Maven](https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=Apache%20Maven&logoColor=white)
 ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-00000F?style=for-the-badge&logo=postgresql&logoColor=white)
-![Flyway](https://img.shields.io/badge/Flyway-00000F?style=for-the-badge&logo=flyway&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+![Flyway](https://img.shields.io/static/v1?style=for-the-badge&message=Flyway&color=CC0200&logo=Flyway&logoColor=FFFFFF&label=)
 
 ## Purpose of the project
 
