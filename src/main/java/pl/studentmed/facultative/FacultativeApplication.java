@@ -15,7 +15,7 @@ public class FacultativeApplication {
 	public CorsFilter corsFilter() {
 		CorsConfiguration corsConfiguration = new CorsConfiguration();
 		corsConfiguration.setAllowCredentials(true);
-		corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:5173", "http://localhost:5173/api/users/login"));
+		corsConfiguration.setAllowedOrigins(Arrays.asList("https://billenium-clinic-managment.vercel.app", "https://billenium-clinic-managment.vercel.app/api/users/login"));
 		corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", "Access-Control-Allow-Origin", "Content-Type",
 				"Accept", "Authorization", "Origin, Accept", "X-Requested-With",
 				"Access-Control-Request-Method", "Access-Control-Request-Headers"));
